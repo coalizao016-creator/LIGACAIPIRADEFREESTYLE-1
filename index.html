@@ -3,71 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coalizão 016 | Liga Caipira de Freestyle</title>
+    <title>Coalizão 016 | II Liga Caipira de Freestyle</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            --cor-primaria: #f39c12;
+            --cor-primaria: #f39c12; /* Laranja Coalizão */
             --cor-secundaria: #e74c3c;
-            --bg-dark: #0a0a0a;
+            --bg-dark: #0a0a0a; /* Fundo do site */
+            --bg-nav: #000000; /* Fundo do menu */
+            --bg-hero: #111111; /* Fundo do banner */
             --bg-card: #151515;
             --text-light: #ffffff;
+            /* Fontes */
+            --fonte-principal: 'Roboto', sans-serif;
+            --fonte-titulo: 'Anton', sans-serif; /* Fonte 'foda' para o título */
         }
 
         body { 
             margin: 0; 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            font-family: var(--fonte-principal); 
             background: var(--bg-dark); 
             color: var(--text-light); 
             line-height: 1.6;
         }
 
-        /* Navegação */
+        /* --- MENU ESTILIZADO --- */
         nav { 
-            background: #000; 
-            padding: 20px; 
-            text-align: center; 
-            border-bottom: 1px solid #222; 
+            background: var(--bg-nav); 
+            padding: 15px 0; 
+            border-bottom: 2px solid #1a1a1a; 
             position: sticky; 
             top: 0; 
-            z-index: 1000; 
+            z-index: 2000; 
         }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
-        nav a:hover { color: var(--cor-primaria); }
 
-        /* Banner de Hype */
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo a {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -1px;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .nav-logo span {
+            color: var(--cor-primaria);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem !important;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cor-primaria);
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--cor-primaria) !important;
+        }
+
+        .dropdown { position: relative; }
+        .dropdown-label { color: #fff; font-weight: bold; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #151515;
+            min-width: 180px;
+            top: 100%;
+            right: 0;
+            border-radius: 4px;
+            border: 1px solid #222;
+            padding: 10px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .dropdown-content a {
+            padding: 10px 20px;
+            display: block;
+            text-transform: none;
+            font-size: 0.9rem;
+            color: #fff;
+            text-decoration: none;
+        }
+        .dropdown-content a:hover { background: #222; color: var(--cor-primaria); }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        .hamburger { display: none; cursor: pointer; }
+        .bar { width: 25px; height: 3px; background-color: #fff; margin: 5px 0; transition: 0.4s; }
+
+        @media (max-width: 850px) {
+            .hamburger { display: block; }
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 65px;
+                width: 80%;
+                height: 100vh;
+                background: #0f0f0f;
+                flex-direction: column;
+                padding-top: 50px;
+                transition: 0.4s;
+                gap: 30px;
+                border-left: 1px solid #222;
+            }
+            .nav-links.active { right: 0; }
+            .nav-link { font-size: 1.2rem !important; }
+            .dropdown-content { position: static; background: transparent; text-align: center; border: none; box-shadow: none; display: block; }
+        }
+
+        /* --- NOVO BANNER DE HERÓI (SEM FOTO) --- */
         .hero-inscricoes {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('img/capa.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 120px 20px;
+            /* Fundo sólido com um degradê radial sutil para dar profundidade */
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--bg-hero) 70%);
+            padding: 150px 20px; /* Mais padding para dar destaque ao texto */
             text-align: center;
             border-bottom: 5px solid var(--cor-primaria);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh; /* Ocupa metade da altura da tela */
         }
 
         .badge-temporada {
             background-color: var(--cor-primaria);
             color: #000;
-            padding: 5px 15px;
+            padding: 6px 18px;
             font-weight: 900;
             border-radius: 4px;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
-        /* TÍTULO EM DESTAQUE - SLOGAN AGORA AQUI */
+        /* TÍTULO COM FONTE 'FODA' - MUDADO PARA O NOME DA LIGA */
         .hero-inscricoes h1 { 
-            font-size: clamp(1.8rem, 7vw, 3.8rem); 
-            margin: 0 0 15px 0; 
+            font-family: var(--fonte-titulo); /* Usa a fonte 'Anton' */
+            font-size: clamp(2.5rem, 10vw, 6rem); /* Fonte gigante e responsiva */
+            margin: 0 0 20px 0; 
             color: #fff; 
-            line-height: 1.1; 
-            font-style: italic; 
-            font-weight: 900;
+            line-height: 0.9; /* Linhas bem juntas para impacto */
             text-transform: uppercase;
-            letter-spacing: -1px;
+            letter-spacing: -2px; /* Letras juntas */
+            /* Efeito de sombra sutil para destacar */
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+        }
+
+        .hero-inscricoes h1 span {
+            color: var(--cor-primaria); /* Destaque para o 'II' */
         }
         
+        .hero-subtitulo {
+            max-width: 700px; 
+            margin: 0 auto 35px; 
+            font-size: 1.3rem; 
+            color: #aaa; 
+            font-weight: 300; 
+            letter-spacing: 1px;
+        }
+
         .cta-button {
             display: inline-block;
             background-color: var(--cor-primaria);
@@ -83,55 +217,22 @@
         }
         .cta-button:hover { transform: scale(1.05); background-color: #fff; }
 
-        /* A Jornada do MC */
-        .jornada-container {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .jornada-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .jornada-card {
-            background: var(--bg-card);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #222;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        /* EFEITO DE BRILHO NA ETAPA BASE */
-        .jornada-card.foco-atual {
-            border-color: var(--cor-primaria);
-            animation: glowPulsante 2s infinite alternate;
-        }
+        /* --- RESTO DO CONTEÚDO --- */
+        .jornada-container { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        .jornada-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+        .jornada-card { background: var(--bg-card); padding: 25px; border-radius: 8px; border: 1px solid #222; transition: 0.3s; }
+        .jornada-card.foco-atual { border-color: var(--cor-primaria); animation: glowPulsante 2s infinite alternate; }
 
         @keyframes glowPulsante {
-            0% { box-shadow: 0 0 5px rgba(243, 156, 18, 0.2); border-color: rgba(243, 156, 18, 0.5); }
-            100% { box-shadow: 0 0 20px rgba(243, 156, 18, 0.6); border-color: var(--cor-primaria); }
+            0% { box-shadow: 0 0 5px rgba(243, 156, 18, 0.2); }
+            100% { box-shadow: 0 0 20px rgba(243, 156, 18, 0.4); }
         }
 
-        .jornada-card span {
-            color: var(--cor-primaria);
-            font-size: 2.5rem;
-            font-weight: 900;
-            display: block;
-            margin-bottom: 10px;
-            opacity: 0.3;
-        }
-        
-        .jornada-card.foco-atual span { opacity: 0.8; text-shadow: 0 0 10px var(--cor-primaria); }
+        .jornada-card span { color: var(--cor-primaria); font-size: 2.5rem; font-weight: 900; display: block; margin-bottom: 10px; opacity: 0.3; }
+        .jornada-card.foco-atual span { opacity: 0.8; }
         .jornada-card h3 { margin: 0 0 10px 0; text-transform: uppercase; color: #fff; }
 
-        /* Seção de Agenda */
-        .agenda-section { background: #0a0a0a; padding: 80px 20px; }
+        .agenda-section { background: var(--bg-dark); padding: 80px 20px; }
         .agenda-max { max-width: 950px; margin: 0 auto; }
         .titulo-secao { text-align: center; font-size: 2.2rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
         
@@ -148,16 +249,8 @@
         }
         .evento-item:hover { transform: translateX(10px); }
 
-        /* Peitas / Loja */
         .loja-container { padding: 80px 20px; background: #000; text-align: center; }
-        .produto-card {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 400px;
-            margin: 40px auto 0;
-            border: 1px solid #222;
-        }
+        .produto-card { background: var(--bg-card); padding: 40px; border-radius: 15px; max-width: 400px; margin: 40px auto 0; border: 1px solid #222; }
         .produto-card img { width: 100%; border-radius: 10px; margin-bottom: 25px; }
 
         .btn-nuvemshop { 
@@ -169,23 +262,46 @@
 
         @media (max-width: 768px) {
             .evento-item { flex-direction: column; text-align: center; gap: 20px; }
+            .hero-inscricoes { padding: 100px 20px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html">INÍCIO</a>
-        <a href="mapaindex.html">MAPA DA LIGA</a>
-        <a href="mcs.html">MCS</a>
-        <a href="batalhas.html">BATALHAS</a>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">COALIZÃO<span>016</span></a>
+            </div>
+
+            <div class="hamburger" id="mobile-menu-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <div class="nav-links" id="nav-links-container">
+                <a href="index.html" class="nav-link active">Início</a>
+                <a href="mapaindex.html" class="nav-link">Mapa da Liga</a>
+                <a href="batalhas.html" class="nav-link">Batalhas</a>
+                
+                <div class="dropdown">
+                    <span class="dropdown-label nav-link">Nossas Redes</span>
+                    <div class="dropdown-content">
+                        <a href="https://www.instagram.com/coalizao016/" target="_blank">Instagram</a>
+                        <a href="https://www.tiktok.com/@coalizao016?" target="_blank">TikTok</a>
+                        <a href="https://www.youtube.com/@Coaliz%C3%A3o016" target="_blank">YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <header class="hero-inscricoes">
         <div class="badge-temporada">Temporada 2026 em Curso</div>
-        <h1>REALIZE SEUS SONHOS<br>OU MORRA TENTANDO</h1>
-        <p style="max-width: 750px; margin: 0 auto 25px; font-size: 1.2rem; color: #ccc; font-weight: 300; letter-spacing: 1px;">
-            A Coalizão 016 apresenta a Liga Caipira de Freestyle. Onde o talento do interior paulista encontra seu palco principal.
+        <h1><span>II</span> LIGA CAIPIRA<br>DE FREESTYLE</h1>
+        <p class="hero-subtitulo">
+            A Coalizão 016 apresenta o maior circuito de batalhas do interior paulista. Onde o talento encontra seu palco principal.
         </p>
         <div class="botoes-hero">
             <a href="mapaindex.html" class="cta-button">EXPLORAR O MAPA</a>
@@ -194,18 +310,18 @@
     </header>
 
     <section class="jornada-container">
-        <h2 class="titulo-secao">A CAMINHADA ATÉ O TOPO DA LIGA</h2>
+        <h2 class="titulo-secao">A CAMINHADA ATÉ O TOPO</h2>
         <div class="jornada-grid">
             <div class="jornada-card foco-atual">
                 <span>01</span>
                 <h3>Etapas Base</h3>
-                <p>O começo de tudo. Mais de 40 batalhas localizadas nas praças mais undergrounds do interior paulista que servem como porta de entrada para a Liga Caipira de Freestyle.</p>
+                <p>O começo de tudo. Mais de 40 batalhas localizadas nas praças mais undergrounds do interior paulista que servem como porta de entrada para a Liga.</p>
                 <p style="font-weight: bold; color: var(--cor-primaria); font-size: 0.8rem; margin-top: 10px; text-transform: uppercase;">Em andamento</p>
             </div>
             <div class="jornada-card">
                 <span>02</span>
                 <h3>Seletivas Regionais</h3>
-                <p>Os vencedores das bases se enfrentam em grandes confrontos divididos em 7 polos regionais, cada um valendo duas vagas na final.</p>
+                <p>Os vencedores das bases se enfrentam em grandes confrontos divididos em 7 polos regionais, cada um valendo vagas na final.</p>
             </div>
             <div class="jornada-card">
                 <span>03</span>
@@ -218,8 +334,7 @@
     <section id="proximas-etapas" class="agenda-section">
         <div class="agenda-max">
             <h2 class="titulo-secao">PRÓXIMAS ETAPAS</h2>
-            <div id="lista-eventos" class="agenda-lista">
-                </div>
+            <div id="lista-eventos" class="agenda-lista"></div>
         </div>
     </section>
 
@@ -233,7 +348,7 @@
                 <img src="img/coalipeita.png" alt="Peita Oficial Coalizão 016">
                 <h3 style="color: var(--cor-primaria);">PEITA OFICIAL 2026</h3>
                 <p style="margin-bottom: 25px;">Peso, tradição e cultura.</p>
-                <a href="https://coalizao016.lojavirtualnuvem.com.br/" target="_blank" class="btn-nuvemshop">COMPRAR AGORA</a>
+                <a href="https://coalizao2.lojavirtualnuvem.com.br/" target="_blank" class="btn-nuvemshop">COMPRAR AGORA</a>
             </div>
         </div>
     </section>
@@ -244,14 +359,23 @@
 
     <script src="agenda.js"></script>
     <script>
+        // Script para o Menu Mobile
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links-container');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Script da Agenda
         const container = document.getElementById('lista-eventos');
         function renderizarAgenda() {
             if (typeof eventos !== 'undefined' && eventos.length > 0) {
                 container.innerHTML = eventos.map(evento => `
                     <div class="evento-item">
                         <div class="evento-info">
-                            <span class="evento-data">${evento.data} | ${evento.diaSemana}</span>
-                            <h3>${evento.nomeBatalha}</h3>
+                            <span class="evento-data" style="color: var(--cor-primaria); font-weight: bold;">${evento.data} | ${evento.diaSemana}</span>
+                            <h3 style="margin: 5px 0;">${evento.nomeBatalha}</h3>
                             <p style="margin: 5px 0; color: #888;">${evento.status}</p>
                         </div>
                         <div style="text-align: right;">

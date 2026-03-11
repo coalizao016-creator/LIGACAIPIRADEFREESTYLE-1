@@ -23,9 +23,7 @@ const batalhas = [
       rede: "https://www.instagram.com/bdvinte_",
       descricao: "",
       campeoes_historicos: ["Segalla"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/bdvinte_" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/bdvinte_" }]
     },
     {
       codigo: "BAT003",
@@ -36,9 +34,7 @@ const batalhas = [
       rede: "https://www.instagram.com/batalhas.o_/",
       descricao: "",
       campeoes_historicos: ["Segalla"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhas.o_" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhas.o_" }]
     },
     {
       codigo: "BAT004",
@@ -49,9 +45,7 @@ const batalhas = [
       rede: "https://www.instagram.com/conexao_de_rima",
       descricao: "",
       campeoes_historicos: [""],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/conexao_de_rima" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/conexao_de_rima" }]
     },
     {
       codigo: "BAT005",
@@ -62,9 +56,7 @@ const batalhas = [
       rede: "https://www.instagram.com/cacarecocla/",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [ 
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadomorro016" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadomorro016" }]
     },
     {
       codigo: "BAT006",
@@ -75,9 +67,7 @@ const batalhas = [
       rede: "https://www.instagram.com/dueloda3/",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [ 
-        { nome: "Instagram", url: "https://www.instagram.com/dueloda3/" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/dueloda3/" }]
     },
     {
       codigo: "BAT007",
@@ -88,9 +78,7 @@ const batalhas = [
       rede: "https://www.instagram.com/batalhadomorro016",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadomorro016" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadomorro016" }]
     },
     {
       codigo: "BAT008",
@@ -99,7 +87,7 @@ const batalhas = [
       dia: "Sábado",
       coords: [-21.999014, -47.911788],
       rede: "https://www.instagram.com/hiphopsalva016/",
-      descricao: "O Hip Hop Salva é um coletivo atuante desde 2018 em São Carlos (SP), que utiliza a cultura como resposta à violência contra a juventude preta e periférica. Promove os cinco elementos do Hip Hop por meio de oficinas formativas, ocupações culturais em áreas de alta vulnerabilidade, festivais, shows, mostras e batalhas de rima. Os eventos são gratuitos, acessíveis e realizados em espaços públicos, com prioridade para artistas negros e LGBTQIA+, além de parcerias com produtores locais e política “Lixo Zero”. Já formou mais de 450 pessoas, gerou trabalho e renda para diversos artistas e é reconhecido por editais nacionais, consolidando-se como importante articulador cultural da região.",
+      descricao: "O Hip Hop Salva utiliza a cultura como resposta à violência contra a juventude preta e periférica.",
       campeoes_historicos: [],
       redes_sociais_links: [
         { nome: "Instagram", url: "https://www.instagram.com/hiphopsalva016" },
@@ -116,9 +104,7 @@ const batalhas = [
       rede: "https://www.instagram.com/batalhafonte/",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [ 
-        { nome: "Instagram", url: "https://www.instagram.com/batalhafonte/" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhafonte/" }]
     },
     {
       codigo: "BAT010",
@@ -129,9 +115,7 @@ const batalhas = [
       rede: "https://www.instagram.com/rap.naalta/",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [ 
-        { nome: "Instagram", url: "https://www.instagram.com/rap.naalta/" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/rap.naalta/" }]
     },
     {
       codigo: "BAT011",
@@ -142,9 +126,7 @@ const batalhas = [
       rede: "https://www.instagram.com/batalhadoraio",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadoraio" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadoraio" }]
     },
     {
       codigo: "BAT012",
@@ -155,9 +137,7 @@ const batalhas = [
       rede: "https://www.instagram.com/batalhadobenca",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadobenca" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadobenca" }]
     },
     {
       codigo: "BAT013",
@@ -168,9 +148,7 @@ const batalhas = [
       rede: "https://www.instagram.com/batalhadopicorp/",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadopicorp/" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadopicorp/" }]
     },
     {
       codigo: "BAT014",
@@ -179,11 +157,9 @@ const batalhas = [
       dia: "Sábado",
       coords: [-21.4064, -48.5058], 
       rede: "https://www.instagram.com/batalhadosbrodi",
-      descricao: "Quinzenalmente aos sábados na praça do balão em Taquaritinga-SP trazendo um formato mais descontraído onde o mc sorteado pode escolher desafiar ou sortear o outro mc que irá contra, ao final de toda batalha ocorrem rodas de conversa e festividade.",
+      descricao: "Quinzenalmente aos sábados na praça do balão.",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadosbrodi" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadosbrodi" }]
     },
     {
       codigo: "BAT015",
@@ -194,9 +170,7 @@ const batalhas = [
       rede: "https://www.instagram.com/batalhasn7",
       descricao: "",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhasn7" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhasn7" }]
     },
     {
       codigo: "BAT016",
@@ -205,11 +179,9 @@ const batalhas = [
       dia: "Domingo",
       coords: [-20.645917, -47.275330],
       rede: "https://www.instagram.com/batalha_do_diamante_",
-      descricao: "Batalha especializada em garimpo de artistas, as joias raras da cena interiorana! Já vai para sua 3ª edição e sempre traz o hip-hop vivo e seus 4 elementos. Da cidade do garimpo pro mundo !",
+      descricao: "Especializada em garimpo de artistas interioranos!",
       campeoes_historicos: ["Tyrano", "Doctor L"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalha_do_diamante_" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha_do_diamante_" }]
     },
     {
       codigo: "BAT017",
@@ -218,11 +190,9 @@ const batalhas = [
       dia: "Domingo",
       coords: [-20.479452, -47.397541],
       rede: "https://www.instagram.com/batalha.leal",
-      descricao: "A Batalha Leal é a unica batalha que ocorre na zona norte de Franca com o objetivo de mostrar o poder dos artistas locais e quebrar a ideia que essa zona é a mais 'favelada' da cidade trazendo eventos fodas.",
+      descricao: "Batalha na zona norte de Franca.",
       campeoes_historicos: ["Nevas", "Biné"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalha.leal" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha.leal" }]
     },
     {
       codigo: "BAT018",
@@ -231,11 +201,9 @@ const batalhas = [
       dia: "Quarta-feira",
       coords: [-21.1783, -47.8105],
       rede: "https://www.instagram.com/batalhanovaerarp",
-      descricao: "A Batalha Nova Era é um evento de batalhas de rima freestyle que acontece toda quarta-feira na Praça XV de Novembro, no centro de Ribeirão Preto (SP). É um ponto de encontro importante para a cultura hip-hop local.",
+      descricao: "Acontece na Praça XV de Novembro.",
       campeoes_historicos: ["Jimmy", "Bubba"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhanovaerarp" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhanovaerarp" }]
     },
     {
       codigo: "BAT019",
@@ -244,11 +212,9 @@ const batalhas = [
       dia: "Quinta-feira",
       coords: [-20.553615, -47.359490],
       rede: "https://www.instagram.com/batalhadosnomades016/",
-      descricao: "Desde 2018, a Batalha dos Nômades vem ocupando espaços e fazendo história na cena do freestyle francano. Nascida com o espírito livre e resistência na essência, a Nômades não é só uma roda de rima — é movimento, é cultura, é vivência trocada verso a verso.",
+      descricao: "Resistência na essência do freestyle francano.",
       campeoes_historicos: ["Tyrano", "Vinicin", "Doctor L"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadosnomades016/" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadosnomades016/" }]
     },
     {
       codigo: "BAT020",
@@ -257,11 +223,9 @@ const batalhas = [
       dia: "Quarta-feira",
       coords: [-21.955, -47.9969],
       rede: "https://www.instagram.com/batalhadomp016",
-      descricao: "A primeira e única batalha de Ibaté 🔥🔥🔥",
+      descricao: "A primeira e única batalha de Ibaté.",
       campeoes_historicos: ["Duke mc", "Ph mc", "Puma mc"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadomp016" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadomp016" }]
     },
     {
       codigo: "BAT021",
@@ -270,11 +234,9 @@ const batalhas = [
       dia: "Segunda-feira",
       coords: [-21.7891, -48.1760],
       rede: "https://www.instagram.com/batalha_das_estacoes",
-      descricao: "Batalha underground que promove eventos semanais com gravação e criação de conteúdo para artistas.",
+      descricao: "Batalha underground em Araraquara.",
       campeoes_historicos: ["Jhow", "Gomex", "Akira"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalha_das_estacoes" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha_das_estacoes" }]
     },
     {
       codigo: "BAT022",
@@ -283,11 +245,9 @@ const batalhas = [
       dia: "Quinta-feira",
       coords: [-22.0178, -47.8912],
       rede: "https://www.instagram.com/batalha_dospombos",
-      descricao: "Movimento cultural de referência desde 2019, com mais de 200 edições, sede do regional CPBMC 2023 e presença em diversos eventos e ações socioculturais.",
+      descricao: "Movimento cultural de referência desde 2019.",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalha_dospombos" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha_dospombos" }]
     },
     {
       codigo: "BAT023",
@@ -296,11 +256,9 @@ const batalhas = [
       dia: "Quarta-feira",
       coords: [-22.0082, -47.8860],
       rede: "https://www.instagram.com/bdalc016",
-      descricao: "Há 8 anos na Praça Brasil, é o coletivo de hiphop mais antigo em atividade na cidade, organizando batalhas, festivais, sarais e slams.",
-      campeoes_historicos: ["Sonic, Stevan "],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/bdalc016" }
-      ]
+      descricao: "O coletivo de hiphop mais antigo em atividade na cidade.",
+      campeoes_historicos: ["Sonic", "Stevan"],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/bdalc016" }]
     },
     {
       codigo: "BAT024",
@@ -309,11 +267,9 @@ const batalhas = [
       dia: "Sábado, Domingo",
       coords: [-21.0003, -47.6599],
       rede: "https://www.instagram.com/bdkfreestyle_",
-      descricao: "Batalha de rimas que agita os fins de semana em Brodowski.",
+      descricao: "Batalha de rimas em Brodowski.",
       campeoes_historicos: ["Tyrano"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/bdkfreestyle_" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/bdkfreestyle_" }]
     },
     {
       codigo: "BAT025",
@@ -322,11 +278,9 @@ const batalhas = [
       dia: "Terça-feira",
       coords: [-21.7893, -48.1762],
       rede: "https://www.instagram.com/batalhadaressaca",
-      descricao: "Batalha de rimas que acontece às terças-feiras na Praça Santa Cruz.",
+      descricao: "Acontece na Praça Santa Cruz.",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadaressaca" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadaressaca" }]
     },
     {
       codigo: "BAT026",
@@ -335,11 +289,9 @@ const batalhas = [
       dia: "Sexta-feira",
       coords: [-21.8015, -48.1775],
       rede: "https://www.instagram.com/batalha_dos_forasteir0s_of",
-      descricao: "Batalha de rimas que acontece às sextas-feiras na Praça do Faveral.",
+      descricao: "Acontece na Praça do Faveral.",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalha_dos_forasteir0s_of" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha_dos_forasteir0s_of" }]
     },
     {
       codigo: "BAT027",
@@ -348,7 +300,7 @@ const batalhas = [
       dia: "Terça-feira",
       coords: [-21.1923, -47.8285],
       rede: "",
-      descricao: "Batalha de rimas que acontece às terças-feiras na Praça do Japão, na Vila Virgínia.",
+      descricao: "Acontece na Praça do Japão, Vila Virgínia.",
       campeoes_historicos: ["Bubba", "Guri", "Killua"],
       redes_sociais_links: []
     },
@@ -359,11 +311,9 @@ const batalhas = [
       dia: "Sábado",
       coords: [-21.7889, -48.1758],
       rede: "https://www.instagram.com/boombattle016",
-      descricao: "Com 8 anos de história e mais de 170 edições, é uma das batalhas mais antigas de Araraquara, promovendo cultura em ruas, escolas e universidades. Acontece mensalmente na Praça Santa Cruz.",
+      descricao: "Uma das batalhas mais antigas de Araraquara.",
       campeoes_historicos: ["Jhow", "Willião", "Tvz"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/boombattle016" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/boombattle016" }]
     },
     {
       codigo: "BAT029",
@@ -371,12 +321,10 @@ const batalhas = [
       cidade: "Araraquara - SP",
       dia: "Sábado",
       coords: [-21.7892, -48.1759],
-      rede: "https://www.instagram.com/batalhadacaos",
-      descricao: "A CAOS é um coletivo que organiza o movimento pela cidade com foco em conhecimento, diversidade e eventos sócio-educativos ao lado da roda cultural na Praça Santa Cruz.",
+      rede: "https://www.instagram.com/batalhadocaos",
+      descricao: "Foco em conhecimento e diversidade.",
       campeoes_historicos: ["Jhow"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadacaos" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadocaos" }]
     },
     {
       codigo: "BAT030",
@@ -385,11 +333,9 @@ const batalhas = [
       dia: "Domingo",
       coords: [-21.1635, -47.8035],
       rede: "https://www.instagram.com/batalhadoeduca",
-      descricao: "Batalha do Educa, onde o foco da rima é a educação!!",
+      descricao: "Foco da rima é a educação.",
       campeoes_historicos: ["Tyrano"],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalhadoeduca" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadoeduca" }]
     },
     {
       codigo: "BAT031",
@@ -398,10 +344,283 @@ const batalhas = [
       dia: "Domingo",
       coords: [-20.885593, -47.584511],
       rede: "https://www.instagram.com/batalha.na.arena/",
-      descricao: "Movimento Hip Hop, artístico e cultural em Batatais-SP.",
+      descricao: "Movimento artístico e cultural em Batatais.",
       campeoes_historicos: [],
-      redes_sociais_links: [
-        { nome: "Instagram", url: "https://www.instagram.com/batalha.na.arena/" }
-      ]
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha.na.arena/" }]
+    },
+    {
+      codigo: "BAT032",
+      nome: "Batalha da Ópera",
+      cidade: "Araraquara - SP",
+      dia: "Quinta-feira",
+      coords: [-21.7851, -48.1758],
+      rede: "https://www.instagram.com/batalha_daopera",
+      descricao: "Local: Praça do teatro municipal de Araraquara.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha_daopera" }]
+    },
+    {
+      codigo: "BAT033",
+      nome: "Batalha da Concha",
+      cidade: "Franca - SP",
+      dia: "Terça-feira",
+      coords: [-20.5385, -47.4005],
+      rede: "https://www.instagram.com/batalha_daconcha016",
+      descricao: "Local: Rua monsenhor rosa 344-414 - centro franca.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha_daconcha016" }]
+    },
+    {
+      codigo: "BAT034",
+      nome: "Batalha do Bando 014",
+      cidade: "Botucatu - SP",
+      dia: "Domingo",
+      coords: [-22.8911, -48.4444],
+      rede: "https://www.instagram.com/batalhadobando014",
+      descricao: "Local: ZL de Botucatu.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadobando014" }]
+    },
+    {
+      codigo: "BAT035",
+      nome: "Batalha da YinYang",
+      cidade: "São Carlos - SP",
+      dia: "Sexta-feira",
+      coords: [-22.0177, -47.8911],
+      rede: "https://www.instagram.com/bdyy3.0",
+      descricao: "Local: Praça dos Voluntários (centro).",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/bdyy3.0" }]
+    },
+    {
+      codigo: "BAT036",
+      nome: "Batalha do Prima",
+      cidade: "Barretos - SP",
+      dia: "Sexta-feira",
+      coords: [-20.5570, -48.5678],
+      rede: "https://www.instagram.com/batalhadoprimabarretos",
+      descricao: "Local: Praça da Primavera, centro.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadoprimabarretos" }]
+    },
+    {
+      codigo: "BAT037",
+      nome: "Batalha Dos MUMM-RA",
+      cidade: "São Manuel - SP",
+      dia: "Sábado",
+      coords: [-22.7317, -48.5714],
+      rede: "https://www.instagram.com/soospitbullpormim",
+      descricao: "Local: Estação ferroviária de São Manuel.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/soospitbullpormim" }]
+    },
+    {
+      codigo: "BAT038",
+      nome: "Batalha dos Vagalumes",
+      cidade: "São José do Rio Preto - SP",
+      dia: "Quinta-feira, Sexta-feira",
+      coords: [-20.8124, -49.3761],
+      rede: "https://www.instagram.com/batalhadosvagalumes",
+      descricao: "Local: Em frente ao Palácios das Águas.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadosvagalumes" }]
+    },
+    {
+      codigo: "BAT039",
+      nome: "Batalha da Girassol",
+      cidade: "Araraquara - SP",
+      dia: "Quarta-feira",
+      coords: [-21.7891, -48.1760],
+      rede: "https://www.instagram.com/batalha_do_girassoo016",
+      descricao: "Local: Praça Santa Cruz, Centro.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalha_do_girassoo016" }]
+    },
+    {
+      codigo: "BAT040",
+      nome: "Batalha do Livrão",
+      cidade: "Altinópolis - SP",
+      dia: "Sábado",
+      coords: [-21.0267, -47.3753],
+      rede: "https://www.instagram.com/batalhadolivrao",
+      descricao: "Local: Praça da Matriz.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadolivrao" }]
+    },
+    {
+      codigo: "BAT041",
+      nome: "Batalha da São Rap",
+      cidade: "Marília - SP",
+      dia: "Sexta-feira",
+      coords: [-22.2139, -49.9458],
+      rede: "https://www.instagram.com/batalhadasaorap014",
+      descricao: "Local: Praça Maria Izabel (Centro).",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadasaorap014" }]
+    },
+    {
+      codigo: "BAT042",
+      nome: "Porta Abertas Hip Hop",
+      cidade: "Marília - SP",
+      dia: "Domingo",
+      coords: [-22.2100, -49.9500],
+      rede: "https://www.instagram.com/portasabertashiphop",
+      descricao: "Local: Poliesportivo do Jk.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/portasabertashiphop" }]
+    },
+    {
+      codigo: "BAT043",
+      nome: "La Família Mc",
+      cidade: "Araraquara - SP",
+      dia: "Domingo",
+      coords: [-21.7891, -48.1760],
+      rede: "https://www.instagram.com/lafamilialfmc",
+      descricao: "Local: Praça Santa Cruz.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/lafamilialfmc" }]
+    },
+    {
+      codigo: "BAT044",
+      nome: "Batalha das Casinhas",
+      cidade: "Bebedouro - SP",
+      dia: "Terça-feira",
+      coords: [-20.9494, -48.4792],
+      rede: "https://www.instagram.com/batalhadabdc",
+      descricao: "Local: Bairro Pedro Paschoal.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadabdc" }]
+    },
+    {
+      codigo: "BAT045",
+      nome: "Batalha da ZN",
+      cidade: "Ribeirão Preto - SP",
+      dia: "Domingo",
+      coords: [-21.1550, -47.8200],
+      rede: "https://www.instagram.com/bdzonanorte",
+      descricao: "Local: General Câmara 2144.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/bdzonanorte" }]
+    },
+    {
+      codigo: "BAT046",
+      nome: "Batalha da Home",
+      cidade: "Campinas - SP",
+      dia: "Terça-feira",
+      coords: [-22.8943, -47.0678],
+      rede: "https://www.instagram.com/batalhadahome/",
+      descricao: "Local: Praça João da Cruz Prates.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadahome/" }]
+    },
+    {
+      codigo: "BAT047",
+      nome: "Batalha do Maestro",
+      cidade: "Campinas - SP",
+      dia: "Quarta-feira",
+      coords: [-22.9038, -47.0594],
+      rede: "https://www.instagram.com/batalhadomaestro/",
+      descricao: "Local: Praça Bento Quirino.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadomaestro/" }]
+    },
+    {
+      codigo: "BAT048",
+      nome: "Batalha da VHD",
+      cidade: "Vinhedo - SP",
+      dia: "Domingo",
+      coords: [-23.0298, -46.9749],
+      rede: "https://www.instagram.com/batalhadavhd/",
+      descricao: "Local: Praça Geraldo Tomé, Vinhedo.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadavhd/" }]
+    },
+    {
+      codigo: "BAT049",
+      nome: "Estação da Rima",
+      cidade: "Campinas - SP",
+      dia: "Segunda-feira",
+      coords: [-22.9064, -47.0621],
+      rede: "https://www.instagram.com/batalhaestacaodarima/",
+      descricao: "Local: Estação da Cultura, Campinas.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhaestacaodarima/" }]
+    },
+    {
+      codigo: "BAT050",
+      nome: "Batalha da Norte 019",
+      cidade: "Piracicaba - SP",
+      dia: "Terça-feira",
+      coords: [-22.6981, -47.6493],
+      rede: "https://www.instagram.com/batalhadanorte019/",
+      descricao: "Local: Pista de Skate Santa Terezinha.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadanorte019/" }]
+    },
+    {
+      codigo: "BAT051",
+      nome: "Batalha da Pista",
+      cidade: "Indaiatuba - SP",
+      dia: "Quinta-feira",
+      coords: [-23.0906, -47.2181],
+      rede: "https://www.instagram.com/bdpista/",
+      descricao: "Local: Pista de Skate da Orla Morena.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/bdpista/" }]
+    },
+    {
+      codigo: "BAT052",
+      nome: "Batalha do Céu",
+      cidade: "Santa Bárbara D'Oeste - SP",
+      dia: "Domingo",
+      coords: [-22.7562, -47.4148],
+      rede: "https://www.instagram.com/batalhadoceubdc/",
+      descricao: "Local: Rua Argeu Egídio dos Santos, 100.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadoceubdc/" }]
+    },
+    {
+      codigo: "BAT053",
+      nome: "Batalha da Sintonia",
+      cidade: "Hortolândia - SP",
+      dia: "Segunda-feira",
+      coords: [-22.8524, -47.2212],
+      rede: "https://www.instagram.com/batalhadasintonia_/",
+      descricao: "Local: Rua Casemiro de Abreu (ao lado da quadra).",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadasintonia_/" }]
+    },
+    {
+      codigo: "BAT054",
+      nome: "Batalha do Cálice",
+      cidade: "Campinas - SP",
+      dia: "Sexta-feira",
+      coords: [-22.9056, -47.0547],
+      rede: "https://www.instagram.com/batalhadocaliceoficial/",
+      descricao: "Local: Largo do Pará - Av. Francisco Glicério.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhadocaliceoficial/" }]
+    },
+    {
+      codigo: "BAT055",
+      nome: "Batalha dos 13",
+      cidade: "Bauru - SP",
+      dia: "Sexta-feira",
+      coords: [-22.3221, -49.0703],
+      rede: "https://www.instagram.com/batalhados13oficial",
+      descricao: "Local: Praça Rui Barbosa, Bauru.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/batalhados13oficial" }]
+    },
+    {
+      codigo: "BAT056",
+      nome: "Duelo de Quebrada",
+      cidade: "Ourinhos - SP",
+      dia: "Quinta-feira",
+      coords: [-22.9772, -49.8706],
+      rede: "https://www.instagram.com/duelodequebrada",
+      descricao: "Local: Rua Gonçalves Ledo, 47, Ourinhos.",
+      campeoes_historicos: [],
+      redes_sociais_links: [{ nome: "Instagram", url: "https://www.instagram.com/duelodequebrada" }]
     }
 ];
