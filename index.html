@@ -11,7 +11,7 @@
     
     <style>
         :root {
-            --cor-primaria: #f39c12; /* Laranja Coalizão */
+            --cor-primaria: #f39c12; 
             --cor-secundaria: #e74c3c;
             --bg-dark: #0a0a0a; 
             --bg-nav: #000000; 
@@ -86,22 +86,6 @@
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-link:hover { color: var(--cor-primaria) !important; }
 
-        .dropdown { position: relative; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: #151515;
-            min-width: 180px;
-            top: 100%; right: 0;
-            border-radius: 4px;
-            border: 1px solid #222;
-            padding: 10px 0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .dropdown-content a { padding: 10px 20px; display: block; color: #fff; text-decoration: none; font-size: 0.9rem; }
-        .dropdown-content a:hover { background: #222; color: var(--cor-primaria); }
-        .dropdown:hover .dropdown-content { display: block; }
-
         .hamburger { display: none; cursor: pointer; }
         .bar { width: 25px; height: 3px; background-color: #fff; margin: 5px 0; transition: 0.4s; }
 
@@ -118,7 +102,6 @@
                 border-left: 1px solid #222;
             }
             .nav-links.active { right: 0; }
-            .dropdown-content { position: static; background: transparent; display: block; text-align: center; border: none; box-shadow: none; }
         }
 
         /* --- HERO --- */
@@ -178,6 +161,8 @@
             margin: 10px;
             transition: 0.3s;
             text-transform: uppercase;
+            cursor: pointer;
+            border: none;
         }
         .cta-button:hover { transform: scale(1.05); background-color: #fff; }
 
@@ -198,7 +183,7 @@
         /* --- AGENDA --- */
         .agenda-section { background: var(--bg-dark); padding: 80px 20px; }
         .agenda-max { max-width: 950px; margin: 0 auto; }
-        .titulo-secao { text-align: center; font-family: var(--fonte-titulo); font-size: 3rem; margin-bottom: 40px; text-transform: uppercase; }
+        .titulo-secao { text-align: center; font-family: var(--fonte-titulo); font-size: 3rem; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px;}
         
         .evento-item {
             background: var(--bg-card);
@@ -213,7 +198,23 @@
         }
         .evento-item:hover { background: #1a1a1a; transform: translateX(5px); }
 
-        .evento-info h3 { font-family: var(--fonte-titulo); font-size: 1.6rem; text-transform: uppercase; margin: 5px 0; color: #fff; }
+        .evento-info h3 { 
+            font-family: var(--fonte-titulo); 
+            font-size: 1.5rem; 
+            text-transform: uppercase; 
+            margin: 5px 0; 
+            color: #fff; 
+            letter-spacing: 1px;
+        }
+
+        .evento-action p {
+            margin: 0; 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            color: #fff; 
+            font-family: var(--fonte-titulo);
+            letter-spacing: 0.5px;
+        }
 
         /* --- LOJA --- */
         .loja-container { padding: 80px 20px; background: #000; text-align: center; }
@@ -228,6 +229,7 @@
 
         @media (max-width: 768px) {
             .evento-item { flex-direction: column; text-align: center; gap: 20px; }
+            .evento-info, .evento-action { text-align: center !important; }
             .titulo-secao { font-size: 2.2rem; }
         }
     </style>
@@ -245,15 +247,7 @@
             <div class="nav-links" id="nav-links-container">
                 <a href="index.html" class="nav-link active">Início</a>
                 <a href="mapaindex.html" class="nav-link">Mapa da Liga</a>
-                <a href="batalhas.html" class="nav-link">Batalhas</a>
-                <div class="dropdown">
-                    <span class="dropdown-label nav-link">Nossas Redes</span>
-                    <div class="dropdown-content">
-                        <a href="https://www.instagram.com/coalizao016/" target="_blank">Instagram</a>
-                        <a href="https://www.tiktok.com/@coalizao016?" target="_blank">TikTok</a>
-                        <a href="https://www.youtube.com/@Coaliz%C3%A3o016" target="_blank">YouTube</a>
-                    </div>
-                </div>
+                <a href="https://www.instagram.com/coalizao016/" target="_blank" class="nav-link">Instagram</a>
             </div>
         </div>
     </nav>
@@ -293,7 +287,9 @@
     <section id="proximas-etapas" class="agenda-section">
         <div class="agenda-max">
             <h2 class="titulo-secao">PRÓXIMAS <span style="color: var(--cor-primaria);">ETAPAS</span></h2>
-            <div id="lista-eventos" class="agenda-lista">
+            <div id="lista-eventos-home" class="agenda-lista">
+                </div>
+            <div id="container-botao-mais" style="text-align: center; margin-top: 40px;">
                 </div>
         </div>
     </section>
@@ -302,7 +298,7 @@
         <h2 class="titulo-secao">FORTALEÇA</h2>
         <div class="produto-card">
             <img src="img/coalipeita.png" alt="Peita Oficial" onerror="this.src='https://via.placeholder.com/400x400?text=COALIPEITA+2026'">
-            <h3 style="color: var(--cor-primaria); font-family: var(--fonte-titulo); font-size: 1.8rem;">PEITA OFICIAL 2026</h3>
+            <h3 style="color: var(--cor-primaria); font-family: var(--fonte-titulo); font-size: 1.8rem; letter-spacing: 1px;">PEITA OFICIAL 2026</h3>
             <p style="margin-bottom: 25px; color: #888;">Adquira e ajude a manter a cena viva.</p>
             <a href="https://coalizao2.lojavirtualnuvem.com.br/" target="_blank" class="btn-nuvemshop">COMPRAR AGORA</a>
         </div>
@@ -317,38 +313,81 @@
         // Menu Mobile
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navLinks = document.getElementById('nav-links-container');
-        menuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+        if(menuBtn) menuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
 
-        // Renderizar Agenda do agenda.js
+        // Configuração da Agenda
+        let mostrarTodos = false;
+
+        function criarCardEvento(evento) {
+            const dataPartes = evento.data.split('-');
+            const dataExibicao = `${dataPartes[2]}/${dataPartes[1]}`;
+            return `
+                <div class="evento-item">
+                    <div class="evento-info" style="text-align: left;">
+                        <span class="evento-data" style="color: var(--cor-primaria); font-weight: 900; font-size: 0.85rem;">
+                            ${dataExibicao} | ${evento.diaSemana.toUpperCase()} | ${evento.horario}
+                        </span>
+                        <h3>${evento.nomeBatalha}</h3>
+                        <p style="margin: 5px 0; color: #888; font-size: 0.85rem;">${evento.status}</p>
+                    </div>
+                    <div class="evento-action" style="text-align: right;">
+                        <p>📍 ${evento.cidade.toUpperCase()}</p>
+                        <a href="${evento.linkInstagram}" target="_blank" style="color: #fff; font-size: 0.7rem; text-decoration: none; font-weight: bold; border: 1px solid #444; padding: 8px 15px; border-radius: 4px; display: inline-block; margin-top: 10px; text-transform: uppercase; transition: 0.3s;">Instagram</a>
+                    </div>
+                </div>
+            `;
+        }
+
         function renderizarAgenda() {
-            const container = document.getElementById('lista-eventos');
-            if (typeof eventos !== 'undefined' && eventos.length > 0) {
-                container.innerHTML = eventos.map(evento => {
-                    // Formata a data AAAA-MM-DD para DD/MM
-                    const dataPartes = evento.data.split('-');
-                    const dataExibicao = dataPartes.length === 3 ? `${dataPartes[2]}/${dataPartes[1]}` : evento.data;
+            const container = document.getElementById('lista-eventos-home');
+            const containerBotao = document.getElementById('container-botao-mais');
+            if (!container) return;
 
-                    return `
-                        <div class="evento-item">
-                            <div class="evento-info" style="text-align: left;">
-                                <span class="evento-data" style="color: var(--cor-primaria); font-weight: 900; font-size: 0.9rem;">
-                                    ${dataExibicao} | ${evento.diaSemana.toUpperCase()} | ${evento.horario}
-                                </span>
-                                <h3>${evento.nomeBatalha}</h3>
-                                <p style="margin: 5px 0; color: #888; font-size: 0.9rem;">${evento.status}</p>
-                            </div>
-                            <div style="text-align: right;" class="evento-action">
-                                <p style="margin: 0; font-weight: 900; font-size: 1.2rem; color: #fff; font-family: var(--fonte-titulo);">📍 ${evento.cidade.toUpperCase()}</p>
-                                <a href="${evento.linkInstagram}" target="_blank" style="color: #fff; font-size: 0.7rem; text-decoration: none; font-weight: bold; border: 1px solid #444; padding: 8px 15px; border-radius: 4px; display: inline-block; margin-top: 10px; text-transform: uppercase; transition: 0.3s;">Instagram</a>
-                            </div>
-                        </div>
+            if (typeof eventos !== 'undefined' && eventos.length > 0) {
+                const hoje = new Date();
+                hoje.setHours(0, 0, 0, 0);
+
+                // Filtrar batalhas futuras ou de hoje
+                const proximas = eventos
+                    .filter(ev => new Date(ev.data + "T00:00:00") >= hoje)
+                    .sort((a, b) => new Date(a.data) - new Date(b.data));
+
+                // Lógica de exibição (6 ou todas)
+                const exibidos = mostrarTodos ? proximas : proximas.slice(0, 6);
+
+                container.innerHTML = exibidos.map(criarCardEvento).join('');
+
+                // Gerenciar o Botão
+                if (proximas.length > 6 && !mostrarTodos) {
+                    containerBotao.innerHTML = `
+                        <button onclick="expandirAgenda()" class="cta-button" style="background: transparent; border: 2px solid var(--cor-primaria); color: var(--cor-primaria);">
+                            VER AGENDA COMPLETA (${proximas.length})
+                        </button>
                     `;
-                }).join('');
-            } else {
-                container.innerHTML = '<p style="text-align:center; color: #666;">Novas datas em breve.</p>';
+                } else if (mostrarTodos) {
+                    containerBotao.innerHTML = `
+                        <button onclick="contrairAgenda()" class="cta-button" style="background: transparent; border: 1px solid #444; color: #888; font-size: 0.8rem;">
+                            VER MENOS
+                        </button>
+                    `;
+                } else {
+                    containerBotao.innerHTML = '';
+                }
             }
         }
-        
+
+        function expandirAgenda() {
+            mostrarTodos = true;
+            renderizarAgenda();
+        }
+
+        function contrairAgenda() {
+            mostrarTodos = false;
+            renderizarAgenda();
+            // Volta para o topo da seção de agenda para o usuário não se perder
+            document.getElementById('proximas-etapas').scrollIntoView({ behavior: 'smooth' });
+        }
+
         document.addEventListener('DOMContentLoaded', renderizarAgenda);
     </script>
 </body>
