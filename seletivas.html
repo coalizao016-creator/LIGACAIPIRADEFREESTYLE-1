@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletivas & Classificados | Coalizão 016</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --cor-primaria: #f39c12; 
+            --bg-dark: #0a0a0a; 
+            --bg-nav: #000000; 
+            --bg-card: #151515;
+            --text-light: #ffffff;
+            --fonte-principal: 'Roboto', sans-serif;
+            --fonte-titulo: 'Anton', sans-serif; 
+        }
+
+        body { 
+            margin: 0; 
+            font-family: var(--fonte-principal); 
+            background: var(--bg-dark); 
+            color: var(--text-light); 
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- MENU PADRONIZADO --- */
+        nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; font-family: var(--fonte-titulo); }
+        .nav-logo span { color: var(--cor-primaria); }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
+
+        .nav-social-group { display: flex; gap: 15px; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px; }
+        .nav-social { color: #fff; font-size: 1.1rem; transition: 0.3s; }
+        .nav-social:hover { color: var(--cor-primaria); }
+
+        /* --- HEADER --- */
+        .header-seletivas {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&q=80'); 
+            background-size: cover;
+            background-position: center;
+            border-bottom: 5px solid var(--cor-primaria);
+        }
+
+        .titulo-pagina { font-family: var(--fonte-titulo); font-size: clamp(3.5rem, 10vw, 6rem); text-transform: uppercase; line-height: 0.9; margin: 0; letter-spacing: -2px; }
+        .subtitulo-pagina { color: var(--cor-primaria); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; font-size: 1rem; margin-bottom: 10px; display: block; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+        .secao-titulo { font-family: var(--fonte-titulo); font-size: 2.5rem; text-transform: uppercase; margin-bottom: 40px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; letter-spacing: 1px; }
+
+        /* --- POLOS --- */
+        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 80px; }
+        .polo-card { 
+            background: var(--bg-card); padding: 25px; border-radius: 8px; border: 1px solid #222; 
+            display: flex; flex-direction: column; position: relative; transition: 0.3s; cursor: pointer;
+        }
+        .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; transform: translateY(-3px); }
+        
+        .polo-numero { position: absolute; right: 20px; top: 10px; font-family: var(--fonte-titulo); font-size: 3rem; color: rgba(255,255,255,0.05); pointer-events: none; }
+        .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.6rem; color: #fff; text-transform: uppercase; margin: 0; z-index: 1; }
+        .polo-batalha { color: var(--cor-primaria); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; z-index: 1; }
+        .polo-data { background: #333; color: #fff; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; align-self: flex-start; }
+
+        /* --- CLASSIFICADOS --- */
+        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+        .card-mc-no-photo { 
+            background: #111; border: 1px solid #222; border-radius: 6px; padding: 30px 20px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .card-mc-no-photo:hover { border-color: var(--cor-primaria); background: #161616; transform: translateY(-5px); }
+
+        .mc-nome { font-family: var(--fonte-titulo); font-size: 3rem; text-transform: uppercase; color: #fff; line-height: 0.9; margin-bottom: 15px; z-index: 1; letter-spacing: 1px; }
+        
+        .mc-batalha-tag {
+            display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.6); 
+            padding: 8px 15px; border-radius: 4px; border: 1px solid #333; z-index: 1;
+        }
+        .batalha-nome-mini { font-size: 0.75rem; color: var(--cor-primaria); font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+
+        .btn-reset {
+            background: transparent; border: 1px solid #333; color: #666; padding: 8px 15px;
+            border-radius: 4px; cursor: pointer; font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
+            margin-left: 15px; transition: 0.3s;
+        }
+        .btn-reset:hover { border-color: var(--cor-primaria); color: var(--cor-primaria); }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 10px; }
+            .nav-social-group { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">COALIZÃO<span>016</span></a></div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="batalhas.html" class="nav-link">Batalhas</a>
+                <a href="seletivas.html" class="nav-link active">Seletivas</a>
+                <a href="mapaindex.html" class="nav-link">Mapa</a>
+                <div class="nav-social-group">
+                    <a href="https://instagram.com/coalizao016" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-youtube"></i></a>
+                    <a href="https://tiktok.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header-seletivas">
+        <span class="subtitulo-pagina">A Elite do Interior</span>
+        <h1 class="titulo-pagina">SELETIVAS <span style="color: var(--cor-primaria);">REGIONAIS</span></h1>
+    </header>
+
+    <div class="container">
+        <h2 class="secao-titulo">ESCOLHA UM POLO</h2>
+        <div class="grid-polos" id="lista-polos"></div>
+
+        <h2 class="secao-titulo" id="vagas-titulo">CLASSIFICADOS GERAIS <button class="btn-reset" onclick="resetarFiltro()">Ver Todos</button></h2>
+        <div class="grid-classificados" id="lista-classificados"></div>
+    </div>
+
+    <footer style="text-align: center; padding: 60px 20px; color: #444; border-top: 1px solid #111;">
+        <p>&copy; 2026 Coalizão 016 - A Voz do Interior Paulista</p>
+    </footer>
+
+    <script src="batalhas.js"></script>
+
+    <script>
+        const polos = [
+            { id: '01', slug: 'ribeirao', cidade: 'Ribeirão Preto', batalha: 'Sangue na 7', data: '07/05' },
+            { id: '02', slug: 'araraquara', cidade: 'Araraquara', batalha: 'Batalha do Raio', data: '19/04' },
+            { id: '03', slug: 'saocarlos', cidade: 'São Carlos', batalha: 'Hip-hop Salva', data: '02/05' },
+            { id: '04', slug: 'bauru', cidade: 'Bauru', batalha: 'Batalha dos 13', data: '02/04' },
+            { id: '05', slug: 'riopreto', cidade: 'SJ do Rio Preto', batalha: 'Batalha do Braile', data: '12/04' },
+            { id: '06', slug: 'franca', cidade: 'Franca', batalha: 'Batalha dos Nômades', data: '23/04' },
+            { id: '07', slug: 'campinas', cidade: 'Campinas', batalha: 'Batalha do Cálice', data: '01/05' }
+        ];
+
+        const classificados = [
+            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030' },
+            { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030' },
+            { nome: 'REZENDE', poloSlug: 'ribeirao', batId: 'BAT018' },
+            { nome: 'HAIKI', poloSlug: 'ribeirao', batId: 'BAT018' },
+            { nome: 'PDG', poloSlug: 'araraquara', batId: 'BAT026' },
+            { nome: 'VALUSTRE', poloSlug: 'araraquara', batId: 'BAT011' },
+            { nome: 'LARIÊ', poloSlug: 'araraquara', batId: 'BAT011' },
+            { nome: 'NARDEX', poloSlug: 'saocarlos', batId: 'BAT023' },
+            { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023' },
+            { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008' },
+            { nome: 'NOISY', poloSlug: 'saocarlos', batId: 'BAT008' },
+            { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT020' },
+            { nome: 'SWART', poloSlug: 'saocarlos', batId: 'BAT020' }
+        ];
+
+        function renderizarPolos() {
+            const container = document.getElementById('lista-polos');
+            container.innerHTML = polos.map(p => `
+                <div class="polo-card" id="polo-${p.slug}" onclick="filtrarPorPolo('${p.slug}')">
+                    <span class="polo-numero">${p.id}</span>
+                    <h3 class="polo-cidade">${p.cidade}</h3>
+                    <span class="polo-batalha">${p.batalha}</span>
+                    <span class="polo-data">📅 ${p.data}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderizarClassificados(lista = classificados, nomePolo = "GERAIS") {
+            const container = document.getElementById('lista-classificados');
+            const titulo = document.getElementById('vagas-titulo');
+            
+            // Ordena os nomes em ordem alfabética para facilitar a busca
+            const listaOrdenada = [...lista].sort((a, b) => a.nome.localeCompare(b.nome));
+
+            titulo.innerHTML = `CLASSIFICADOS: <span style="color: var(--cor-primaria);">${nomePolo}</span> ${nomePolo !== "GERAIS" ? '<button class="btn-reset" onclick="resetarFiltro()">Voltar</button>' : ''}`;
+
+            container.innerHTML = listaOrdenada.map(mc => {
+                const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
+                const nomeBat = batInfo ? batInfo.nome : "Batalha Local";
+                
+                return `
+                    <div class="card-mc-no-photo">
+                        <span class="mc-nome">${mc.nome}</span>
+                        <div class="mc-batalha-tag">
+                            <span class="batalha-nome-mini">${nomeBat}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filtrarPorPolo(slug) {
+            document.querySelectorAll('.polo-card').forEach(c => c.classList.remove('active'));
+            document.getElementById(`polo-${slug}`).classList.add('active');
+            const filtrados = classificados.filter(mc => mc.poloSlug === slug);
+            const poloInfo = polos.find(p => p.slug === slug);
+            renderizarClassificados(filtrados, poloInfo.cidade.toUpperCase());
+            document.getElementById('vagas-titulo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetarFiltro() {
+            document.querySelectorAll('.polo-card').forEach(c => c.classList.remove('active'));
+            renderizarClassificados();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarPolos();
+            renderizarClassificados();
+        });
+    </script>
+</body>
+</html>

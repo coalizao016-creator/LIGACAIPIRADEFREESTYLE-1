@@ -23,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
     
@@ -46,99 +47,21 @@
         }
 
         /* --- MENU PADRONIZADO --- */
-        nav { 
-            background: var(--bg-nav); 
-            padding: 15px 0; 
-            border-bottom: 2px solid #1a1a1a; 
-            position: sticky; 
-            top: 0; 
-            z-index: 2000; 
-        }
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-        .nav-logo a {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: -1px;
-            font-style: italic;
-            text-transform: uppercase;
-        }
+        nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; font-family: var(--fonte-titulo); }
         .nav-logo span { color: var(--cor-primaria); }
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-link {
-            color: #fff !important;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.85rem !important;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute; width: 0; height: 2px;
-            bottom: -5px; left: 0;
-            background-color: var(--cor-primaria);
-            transition: 0.3s;
-        }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link:hover { color: var(--cor-primaria) !important; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
 
-        .dropdown { position: relative; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: #151515;
-            min-width: 180px;
-            top: 100%; right: 0;
-            border-radius: 4px;
-            border: 1px solid #222;
-            padding: 10px 0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .dropdown-content a { padding: 10px 20px; display: block; color: #fff; text-decoration: none; font-size: 0.9rem; }
-        .dropdown-content a:hover { background: #222; color: var(--cor-primaria); }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        .hamburger { display: none; cursor: pointer; }
-        .bar { width: 25px; height: 3px; background-color: #fff; margin: 5px 0; transition: 0.4s; }
-
-        @media (max-width: 850px) {
-            .hamburger { display: block; }
-            .nav-links {
-                position: fixed;
-                right: -100%; top: 65px;
-                width: 80%; height: 100vh;
-                background: #0f0f0f;
-                flex-direction: column;
-                padding-top: 50px;
-                transition: 0.4s; gap: 30px;
-                border-left: 1px solid #222;
-            }
-            .nav-links.active { right: 0; }
-            .dropdown-content { position: static; background: transparent; display: block; text-align: center; border: none; box-shadow: none; }
-        }
+        .nav-social-group { display: flex; gap: 15px; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px; }
+        .nav-social { color: #fff; font-size: 1.1rem; transition: 0.3s; }
+        .nav-social:hover { color: var(--cor-primaria); }
 
         /* --- ESTILOS DO MAPA --- */
         .map-container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; text-align: center; }
-        
-        .map-container h1 {
-            font-family: var(--fonte-titulo);
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-            color: #fff;
-        }
+        .map-container h1 { font-family: var(--fonte-titulo); font-size: clamp(2.5rem, 8vw, 4.5rem); text-transform: uppercase; margin-bottom: 10px; color: #fff; }
 
         #filtros { 
             background: var(--bg-card); 
@@ -150,18 +73,10 @@
             border: 1px solid #222;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
         }
-        #filtros select { 
-            padding: 12px; 
-            border-radius: 5px; 
-            border: 1px solid #444; 
-            background: #000; 
-            color: #fff; 
-            font-weight: bold;
-            cursor: pointer;
-        }
-        #filtros label { color: var(--cor-primaria); font-weight: bold; text-transform: uppercase; font-size: 0.75rem; display: block; margin-bottom: 5px; }
+        .filtro-box { text-align: left; }
+        .filtro-box label { color: var(--cor-primaria); font-weight: bold; text-transform: uppercase; font-size: 0.7rem; display: block; margin-bottom: 5px; letter-spacing: 1px; }
+        #filtros select { padding: 12px; border-radius: 5px; border: 1px solid #444; background: #000; color: #fff; font-weight: bold; cursor: pointer; min-width: 180px; }
 
         #map { 
             height: 70vh; 
@@ -172,77 +87,52 @@
             z-index: 1;
         }
 
-        /* Estilização dos Ícones de Logo no Mapa */
-        .map-logo-marker {
-            border: 2px solid var(--cor-primaria);
-            border-radius: 50%;
-            background: #000;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: transform 0.2s;
-        }
-        .map-logo-marker:hover {
-            transform: scale(1.2);
-            z-index: 1000 !important;
-        }
+        /* Marcadores e Popups */
+        .map-logo-marker { border: 2px solid var(--cor-primaria); border-radius: 50%; background: #000; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.5); transition: 0.2s; }
+        .map-logo-marker:hover { transform: scale(1.2); z-index: 1000 !important; }
 
-        /* Leaflet Popups Dark */
-        .leaflet-popup-content-wrapper { background: #151515; color: #fff; border-radius: 10px; border: 1px solid #333; padding: 5px; }
+        .leaflet-popup-content-wrapper { background: #151515; color: #fff; border-radius: 10px; border: 1px solid #333; }
         .leaflet-popup-tip { background: #151515; }
-        .map-popup-content img { width: 80px; height: 80px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #333; object-fit: cover; }
-        .map-popup-content h3 { font-family: var(--fonte-titulo); color: var(--cor-primaria); margin: 5px 0; font-size: 1.4rem; text-transform: uppercase; }
-        .map-popup-content p { margin: 3px 0; font-size: 0.9rem; }
-        .map-popup-content a { 
-            color: #000; background: var(--cor-primaria); 
-            padding: 8px 15px; display: inline-block; 
-            border-radius: 5px; text-decoration: none; 
-            font-weight: 900; margin-top: 10px; font-size: 0.75rem; 
-        }
+        .map-popup-content img { width: 70px; height: 70px; border-radius: 8px; margin-bottom: 10px; border: 2px solid #333; object-fit: cover; }
+        .map-popup-content h3 { font-family: var(--fonte-titulo); color: var(--cor-primaria); margin: 5px 0; font-size: 1.3rem; text-transform: uppercase; }
+        .map-popup-content a { color: #000; background: var(--cor-primaria); padding: 8px 15px; display: inline-block; border-radius: 4px; text-decoration: none; font-weight: 900; margin-top: 10px; font-size: 0.7rem; }
 
-        footer { text-align: center; padding: 40px 20px; color: #444; font-size: 0.9rem; }
+        footer { text-align: center; padding: 60px 20px; color: #444; border-top: 1px solid #111; }
+
+        @media (max-width: 768px) {
+            .nav-social-group { display: none; }
+            #map { height: 50vh; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">COALIZÃO<span>016</span></a>
-            </div>
-
-            <div class="hamburger" id="mobile-menu-btn">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-
-            <div class="nav-links" id="nav-links-container">
+            <div class="nav-logo"><a href="index.html">COALIZÃO<span>016</span></a></div>
+            <div class="nav-links">
                 <a href="index.html" class="nav-link">Início</a>
-                <a href="mapaindex.html" class="nav-link active">Mapa da Liga</a>
                 <a href="batalhas.html" class="nav-link">Batalhas</a>
-                <a href="mcs.html" class="nav-link">MC's</a>
-                
-                <div class="dropdown">
-                    <span class="dropdown-label nav-link">Redes</span>
-                    <div class="dropdown-content">
-                        <a href="https://www.instagram.com/coalizao016/" target="_blank">Instagram</a>
-                        <a href="https://www.tiktok.com/@coalizao016?" target="_blank">TikTok</a>
-                        <a href="https://www.youtube.com/@Coaliz%C3%A3o016" target="_blank">YouTube</a>
-                    </div>
+                <a href="seletivas.html" class="nav-link">Seletivas</a>
+                <a href="mapaindex.html" class="nav-link active">Mapa</a>
+                <div class="nav-social-group">
+                    <a href="https://instagram.com/coalizao016" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-youtube"></i></a>
+                    <a href="https://tiktok.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="map-container">
-        <h1>O MAPA DO INTERIOR</h1>
-        <p style="color: #888; margin-top: -10px;">Encontre as batalhas mais próximas de você</p>
+        <h1>O MAPA DO <span style="color: var(--cor-primaria);">INTERIOR</span></h1>
+        <p style="color: #666; margin-top: -10px; font-weight: bold; text-transform: uppercase; font-size: 0.8rem;">Encontre as batalhas mais próximas de você</p>
         
         <div id="filtros">
-            <div>
+            <div class="filtro-box">
                 <label>DIA DA SEMANA</label>
                 <select id="filtroDia">
-                    <option value="">TODOS</option>
+                    <option value="">TODOS OS DIAS</option>
                     <option value="Segunda-feira">SEGUNDA</option>
                     <option value="Terça-feira">TERÇA</option>
                     <option value="Quarta-feira">QUARTA</option>
@@ -252,7 +142,7 @@
                     <option value="Domingo">DOMINGO</option>
                 </select>
             </div>
-            <div>
+            <div class="filtro-box">
                 <label>CIDADE</label>
                 <select id="filtroCidade">
                     <option value="">TODAS AS CIDADES</option>
@@ -271,15 +161,9 @@
     <script src="batalhas.js"></script>
     
     <script>
-        // Lógica Menu Mobile
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.getElementById('nav-links-container');
-        menuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
-
-        // Inicialização do Mapa (Ribeirão Preto como centro inicial)
+        // Configuração do Mapa Original
         const map = L.map("map").setView([-21.17, -47.81], 9);
         
-        // Mapa Colorido Padrão
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
@@ -287,19 +171,16 @@
         let markers = [];
 
         function renderMarkers(filtroDia = "", filtroCidade = "") {
-            // Limpa marcadores anteriores
             markers.forEach(m => map.removeLayer(m));
             markers = [];
 
             batalhas.forEach(b => {
-                // Filtro flexível (aceita se o dia selecionado estiver contido na string b.dia)
                 const diaBatalha = b.dia || "";
                 if ((filtroDia === "" || diaBatalha.includes(filtroDia)) && (filtroCidade === "" || b.cidade === filtroCidade)) {
                     
-                    // CRIAÇÃO DO ÍCONE PERSONALIZADO COM A LOGO
                     const logoIcon = L.icon({
                         iconUrl: `images/${b.codigo}.png`,
-                        iconSize: [45, 45], // Tamanho da logo no mapa
+                        iconSize: [45, 45],
                         iconAnchor: [22, 22],
                         popupAnchor: [0, -22],
                         className: "map-logo-marker"
@@ -307,14 +188,6 @@
 
                     const marker = L.marker(b.coords, { icon: logoIcon }).addTo(map);
                     
-                    // Fallback para imagem não encontrada
-                    marker.on('error', function() {
-                        this.setIcon(L.icon({
-                            iconUrl: 'images/placeholder.png',
-                            iconSize: [40, 40]
-                        }));
-                    });
-
                     markers.push(marker);
 
                     const popupContent = `
@@ -323,23 +196,23 @@
                             <h3>${b.nome}</h3>
                             <p><strong>📍 ${b.cidade}</strong></p>
                             <p>${b.dia}</p>
-                            <a href="${b.rede || '#'}" target="_blank">VER NO INSTAGRAM</a>
+                            <a href="${b.linkInstagram || '#'}" target="_blank">INSTAGRAM</a>
                         </div>
                     `;
                     marker.bindPopup(popupContent);
                 }
             });
 
-            // Ajusta o zoom para mostrar todos os pins filtrados
             if (markers.length > 0) {
                 const group = new L.featureGroup(markers);
-                map.fitBounds(group.getBounds().pad(0.2));
+                map.fitBounds(group.getBounds().pad(0.3));
             }
         }
 
-        // Popular o select de Cidades dinamicamente
+        // População Dinâmica e Eventos
         if (typeof batalhas !== 'undefined') {
             const fCidade = document.getElementById("filtroCidade");
+            const fDia = document.getElementById("filtroDia");
             const cidades = [...new Set(batalhas.map(b => b.cidade))].sort();
             
             cidades.forEach(c => {
@@ -349,16 +222,9 @@
                 fCidade.appendChild(opt);
             });
 
-            // Eventos de Mudança nos Filtros
-            document.getElementById("filtroDia").addEventListener("change", (e) => {
-                renderMarkers(e.target.value, fCidade.value);
-            });
-
-            fCidade.addEventListener("change", (e) => {
-                renderMarkers(document.getElementById("filtroDia").value, e.target.value);
-            });
+            fDia.addEventListener("change", () => renderMarkers(fDia.value, fCidade.value));
+            fCidade.addEventListener("change", () => renderMarkers(fDia.value, fCidade.value));
             
-            // Renderização inicial
             renderMarkers();
         }
     </script>
