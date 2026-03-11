@@ -29,6 +29,7 @@
             color: var(--text-light); 
             line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth; /* Deixa o deslize para as seções suave */
         }
 
         /* --- MENU --- */
@@ -247,6 +248,7 @@
             <div class="nav-links" id="nav-links-container">
                 <a href="index.html" class="nav-link active">Início</a>
                 <a href="mapaindex.html" class="nav-link">Mapa da Liga</a>
+                <a href="#proximas-etapas" class="nav-link">Batalhas</a>
                 <a href="https://www.instagram.com/coalizao016/" target="_blank" class="nav-link">Instagram</a>
             </div>
         </div>
@@ -315,7 +317,7 @@
         const navLinks = document.getElementById('nav-links-container');
         if(menuBtn) menuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
 
-        // Configuração da Agenda
+        // Lógica da Agenda Expansível
         let mostrarTodos = false;
 
         function criarCardEvento(evento) {
@@ -347,17 +349,13 @@
                 const hoje = new Date();
                 hoje.setHours(0, 0, 0, 0);
 
-                // Filtrar batalhas futuras ou de hoje
                 const proximas = eventos
                     .filter(ev => new Date(ev.data + "T00:00:00") >= hoje)
                     .sort((a, b) => new Date(a.data) - new Date(b.data));
 
-                // Lógica de exibição (6 ou todas)
                 const exibidos = mostrarTodos ? proximas : proximas.slice(0, 6);
-
                 container.innerHTML = exibidos.map(criarCardEvento).join('');
 
-                // Gerenciar o Botão
                 if (proximas.length > 6 && !mostrarTodos) {
                     containerBotao.innerHTML = `
                         <button onclick="expandirAgenda()" class="cta-button" style="background: transparent; border: 2px solid var(--cor-primaria); color: var(--cor-primaria);">
@@ -384,7 +382,6 @@
         function contrairAgenda() {
             mostrarTodos = false;
             renderizarAgenda();
-            // Volta para o topo da seção de agenda para o usuário não se perder
             document.getElementById('proximas-etapas').scrollIntoView({ behavior: 'smooth' });
         }
 
