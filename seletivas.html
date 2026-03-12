@@ -13,7 +13,6 @@
     <style>
         :root {
             --cor-primaria: #f39c12; 
-            --cor-feminina: #ff69b4; /* Rosa Choque */
             --bg-dark: #0a0a0a; 
             --bg-nav: #000000; 
             --bg-card: #151515;
@@ -61,13 +60,6 @@
         .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
         .card-mc:hover { border-color: var(--cor-primaria); transform: translateY(-5px); }
 
-        /* Estilos específicos para o card feminino nas seletivas */
-        .card-mc.card-mc-feminino:hover { border-color: var(--cor-feminina); }
-        .card-mc.card-mc-feminino .mc-insta-overlay { background: var(--cor-feminina); }
-        .card-mc.card-mc-feminino .mc-batalha-tag { border-color: rgba(255, 105, 180, 0.3); color: var(--cor-feminina); background: rgba(255, 105, 180, 0.1); }
-        .card-mc.card-mc-feminino .btn-card-download { color: var(--cor-feminina); }
-        .card-mc.card-mc-feminino .btn-card-download:hover { background: var(--cor-feminina); color: #000; }
-
         .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #222; position: relative; cursor: pointer; }
         .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.4s; }
         .card-mc:hover .mc-foto { filter: grayscale(0%); }
@@ -93,7 +85,7 @@
 
         .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
 
-        /* --- STORIES TEMPLATE (DESIGN BRUTALISTA ORIGINAL) --- */
+        /* --- STORIES TEMPLATE (ÚNICO E PESADO) --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
@@ -110,7 +102,7 @@
         .st-sub-header { font-family: var(--fonte-principal); font-size: 40px; color: #fff; font-weight: 900; text-transform: uppercase; letter-spacing: 12px; margin-top: -15px; }
         .st-foto-wrapper { position: relative; margin-top: 80px; }
         .st-foto { width: 850px; height: 850px; object-fit: cover; border-radius: 20px; border: 10px solid var(--cor-primaria); box-shadow: 0 0 60px rgba(243, 156, 18, 0.4); }
-        .st-tag { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; font-family: var(--fonte-titulo); font-size: 80px; padding: 10px 80px; text-transform: uppercase; box-shadow: 15px 15px 0px var(--cor-primaria); }
+        .st-tag { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; font-family: var(--fonte-titulo); font-size: 80px; padding: 10px 80px; text-transform: uppercase; box-shadow: 15px 15px 0px var(--cor-primaria); white-space: nowrap; }
         .st-mc-nome { font-family: var(--fonte-titulo); font-size: 240px; color: #fff; text-transform: uppercase; margin-top: 110px; line-height: 0.8; text-shadow: 8px 8px 0px var(--cor-primaria); }
         .st-polo-info { font-size: 55px; color: #fff; font-weight: 900; margin-top: 30px; text-transform: uppercase; border-top: 3px solid var(--cor-primaria); padding-top: 15px; letter-spacing: 3px; margin-bottom: 50px;}
         .st-frase-tema { 
@@ -120,32 +112,6 @@
             letter-spacing: 1px; max-width: 90%; line-height: 1.1;
             text-align: center; width: 100%; display: flex; justify-content: center;
         }
-
-        /* --- STORIES TEMPLATE FEMININO (DESIGN BRUTALISTA ROSA) --- */
-        #stories-template-feminino {
-            position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
-            background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
-        }
-        /* Reutiliza o background e o content do template original, pois são iguais */
-        #stories-template-feminino .st-background { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle at center, #222 0%, #000 70%); }
-        #stories-template-feminino .st-content { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-
-        /* Ajustes específicos de cor para o feminino (ROSA) */
-        #stories-template-feminino { border: 25px solid var(--cor-feminina); }
-        #stories-template-feminino .st-overlay {
-            position: absolute; width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(255, 105, 180, 0.2) 0%, transparent 45%),
-                        radial-gradient(ellipse at bottom, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
-            z-index: 1;
-        }
-        #stories-template-feminino .st-header-title { color: var(--cor-feminina); text-shadow: 0 0 30px rgba(255, 105, 180, 0.6); }
-        #stories-template-feminino .st-sub-header { color: #fff; }
-        #stories-template-feminino .st-foto-wrapper { position: relative; margin-top: 80px; }
-        #stories-template-feminino .st-foto { border: 10px solid var(--cor-feminina); box-shadow: 0 0 60px rgba(255, 105, 180, 0.4); }
-        #stories-template-feminino .st-tag { background: #fff; color: #000; box-shadow: 15px 15px 0px var(--cor-feminina); }
-        #stories-template-feminino .st-mc-nome { color: #fff; text-shadow: 8px 8px 0px var(--cor-feminina); }
-        #stories-template-feminino .st-polo-info { color: #fff; border-top: 3px solid var(--cor-feminina); }
-        #stories-template-feminino .st-frase-tema { color: var(--cor-feminina); text-shadow: 0 0 15px rgba(255, 105, 180, 0.7); }
 
         @media (max-width: 768px) { .grid-classificados { grid-template-columns: repeat(2, 1fr); } }
     </style>
@@ -189,23 +155,7 @@
             </div>
             <div id="st-mc-nome" class="st-mc-nome">NOME</div>
             <div id="st-polo-nome" class="st-polo-info">POLO RIBEIRÃO PRETO</div>
-            <div class="st-frase-tema">"Realize seus sonhos<br>ou morra tentando."</div>
-        </div>
-    </div>
-
-    <div id="stories-template-feminino">
-        <div class="st-background"></div>
-        <div class="st-overlay"></div>
-        <div class="st-content">
-            <div class="st-header-title">LIGA CAIPIRA</div>
-            <div class="st-sub-header">DE FREESTYLE</div>
-            <div class="st-foto-wrapper">
-                <img src="" id="st-img-feminino" class="st-foto">
-                <div id="st-tag-text-feminino" class="st-tag">CLASSIFICADA</div>
-            </div>
-            <div id="st-mc-nome-feminino" class="st-mc-nome">NOME</div>
-            <div id="st-polo-nome-feminino" class="st-polo-info">POLO RIBEIRÃO PRETO</div>
-            <div class="st-frase-tema">"Realize seus sonhos<br>ou morra tentando."</div>
+            <div class="st-frase-tema">Realize seus sonhos<br>ou morra tentando.</div>
         </div>
     </div>
 
@@ -223,9 +173,9 @@
             { id: '07', slug: 'campinas', cidade: 'Campinas', batalha: 'Batalha do Cálice' }
         ];
 
-        // Adicionei o campo "genero: 'F'" para as mulheres
+        // Banco de dados dos MCs (Adicione genero: 'F' para as minas)
         const classificados = [
-            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016' },
+            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016', genero: 'F' },
             { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'oreiudodorap_' },
             { nome: 'REZENDE', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'rezendeemici' },
             { nome: 'HAIKI', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'mc_haiki' },
@@ -263,12 +213,9 @@
                 const nomeArq = mc.nome.toLowerCase();
                 const linkInsta = mc.insta ? `https://instagram.com/${mc.insta}` : '#';
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
-                
-                // Define a classe CSS baseada no gênero
-                const classeFeminina = mc.genero === 'F' ? 'card-mc-feminino' : '';
 
                 return `
-                    <div class="card-mc ${classeFeminina}">
+                    <div class="card-mc">
                         <div class="mc-foto-container" onclick="window.open('${linkInsta}', '_blank')">
                             <img src="img/${nomeArq}.jpg" class="mc-foto" id="img-${mc.nome}" onerror="tentarPng(this, '${nomeArq}')">
                             <div class="mc-insta-overlay"><i class="fab fa-instagram"></i></div>
@@ -277,7 +224,7 @@
                             <h3 class="mc-nome">${mc.nome}</h3>
                             <div class="mc-batalha-tag"><span class="batalha-nome-mini">${nomeBat}</span></div>
                         </div>
-                        <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${poloInfo.cidade}', '${mc.genero}')">
+                        <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${poloInfo.cidade}', '${mc.genero || 'M'}')">
                             <i class="fas fa-camera"></i> Card Stories
                         </button>
                     </div>
@@ -304,30 +251,23 @@
         }
 
         async function baixarArte(nome, cidade, genero) {
-            // Seleciona o template correto baseado no gênero
-            const templateId = genero === 'F' ? 'stories-template-feminino' : 'stories-template';
-            const suffix = genero === 'F' ? '-feminino' : '';
-
-            // Preenche o template selecionado
-            document.getElementById('st-mc-nome' + suffix).innerText = nome;
-            document.getElementById('st-polo-nome' + suffix).innerText = `POLO ${cidade.toUpperCase()}`;
-            document.getElementById('st-img' + suffix).src = document.getElementById(`img-${nome}`).src;
+            // Preenche os dados
+            document.getElementById('st-mc-nome').innerText = nome;
+            document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
+            document.getElementById('st-img').src = document.getElementById(`img-${nome}`).src;
             
-            // Garante que o texto da tag esteja correto no Stories
-            const tagText = genero === 'F' ? 'CLASSIFICADA' : 'CLASSIFICADO';
-            document.getElementById('st-tag-text' + suffix).innerText = tagText;
+            // Troca o texto da tag conforme o gênero
+            document.getElementById('st-tag-text').innerText = (genero === 'F') ? 'CLASSIFICADA' : 'CLASSIFICADO';
 
-            // Gera a imagem usando o template correto
+            // Pequeno delay para garantir que a imagem carregou no template invisível
             setTimeout(() => {
-                html2canvas(document.getElementById(templateId), { 
+                html2canvas(document.getElementById('stories-template'), { 
                     scale: 1, 
                     useCORS: true,
                     logging: false 
                 }).then(canvas => {
                     const link = document.createElement('a');
-                    // Nome do arquivo também reflete o gênero se quiser
-                    const fileTag = genero === 'F' ? 'Classificada' : 'Classificado';
-                    link.download = `Coalizao016-${fileTag}-${nome}.png`;
+                    link.download = `LigaCaipira-${nome}.png`;
                     link.href = canvas.toDataURL();
                     link.click();
                 });
