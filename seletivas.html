@@ -47,14 +47,14 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
         .secao-titulo { font-family: var(--fonte-titulo); font-size: 2rem; text-transform: uppercase; margin-bottom: 30px; border-left: 6px solid var(--cor-primaria); padding-left: 15px; }
 
-        /* --- POLOS --- */
+        /* --- GRID POLOS --- */
         .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 60px; }
-        .polo-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid #222; position: relative; transition: 0.3s; cursor: pointer; }
+        .polo-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid #222; transition: 0.3s; cursor: pointer; }
         .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; }
-        .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.4rem; color: #fff; text-transform: uppercase; margin: 0; }
+        .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.4rem; text-transform: uppercase; margin: 0; }
         .polo-batalha { color: var(--cor-primaria); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
 
-        /* --- CLASSIFICADOS --- */
+        /* --- GRID CLASSIFICADOS --- */
         .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
         .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
         .card-mc:hover { border-color: var(--cor-primaria); transform: translateY(-5px); }
@@ -72,10 +72,9 @@
         .card-mc:hover .mc-insta-overlay { opacity: 1; transform: scale(1); }
 
         .mc-info { padding: 12px; text-align: center; flex-grow: 1; }
-        .mc-nome { font-family: var(--fonte-titulo); font-size: 1.6rem; text-transform: uppercase; color: #fff; margin: 0 0 5px 0; }
+        .mc-nome { font-family: var(--fonte-titulo); font-size: 1.6rem; text-transform: uppercase; color: #fff; margin: 0; }
         .mc-batalha-tag { display: inline-block; font-size: 0.65rem; color: var(--cor-primaria); font-weight: 900; text-transform: uppercase; border: 1px solid rgba(243, 156, 18, 0.3); padding: 2px 8px; border-radius: 4px; }
 
-        /* Botão Download */
         .btn-card-download {
             background: #222; color: var(--cor-primaria); border: none; padding: 10px;
             font-size: 0.7rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
@@ -83,18 +82,29 @@
         }
         .btn-card-download:hover { background: var(--cor-primaria); color: #000; }
 
-        /* --- STORIES TEMPLATE (HIDDEN) --- */
+        .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
+
+        /* --- STORIES TEMPLATE (O DESIGN "FODA") --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
-            background: #000; display: flex; flex-direction: column; align-items: center; border: 25px solid var(--cor-primaria);
+            background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
         }
-        .st-content { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 250px; }
-        .st-foto { width: 700px; height: 700px; object-fit: cover; border-radius: 50%; border: 20px solid var(--cor-primaria); margin-bottom: 60px; }
-        .st-nome { font-family: var(--fonte-titulo); font-size: 160px; color: #fff; text-transform: uppercase; margin: 0; line-height: 0.8; }
-        .st-tag { background: var(--cor-primaria); color: #000; font-family: var(--fonte-titulo); font-size: 60px; padding: 15px 80px; margin: 50px 0; }
-        .st-footer { margin-top: auto; padding-bottom: 120px; font-family: var(--fonte-titulo); font-size: 50px; color: var(--cor-primaria); letter-spacing: 5px; }
-
-        .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
+        .st-background { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle at center, #222 0%, #000 70%); }
+        .st-overlay {
+            position: absolute; width: 100%; height: 100%;
+            background: linear-gradient(0deg, rgba(243, 156, 18, 0.25) 0%, transparent 45%),
+                        radial-gradient(ellipse at bottom, rgba(243, 156, 18, 0.15) 0%, transparent 50%);
+            z-index: 1;
+        }
+        .st-content { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; }
+        .st-header-title { font-family: var(--fonte-titulo); font-size: 90px; color: var(--cor-primaria); margin-top: 120px; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 30px rgba(243, 156, 18, 0.6); }
+        .st-sub-header { font-family: var(--fonte-principal); font-size: 40px; color: #fff; font-weight: 900; text-transform: uppercase; letter-spacing: 12px; margin-top: -15px; }
+        .st-foto-wrapper { position: relative; margin-top: 80px; }
+        .st-foto { width: 850px; height: 850px; object-fit: cover; border-radius: 20px; border: 10px solid var(--cor-primaria); box-shadow: 0 0 60px rgba(243, 156, 18, 0.4); }
+        .st-tag { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; font-family: var(--fonte-titulo); font-size: 80px; padding: 10px 80px; text-transform: uppercase; box-shadow: 15px 15px 0px var(--cor-primaria); }
+        .st-mc-nome { font-family: var(--fonte-titulo); font-size: 240px; color: #fff; text-transform: uppercase; margin-top: 110px; line-height: 0.8; text-shadow: 8px 8px 0px var(--cor-primaria); }
+        .st-polo-info { font-size: 55px; color: #fff; font-weight: 900; margin-top: 30px; text-transform: uppercase; border-top: 3px solid var(--cor-primaria); padding-top: 15px; letter-spacing: 3px; }
+        .st-footer { margin-top: auto; padding-bottom: 80px; font-family: var(--fonte-titulo); font-size: 45px; color: rgba(255,255,255,0.4); }
 
         @media (max-width: 768px) { .grid-classificados { grid-template-columns: repeat(2, 1fr); } }
     </style>
@@ -127,12 +137,18 @@
     </div>
 
     <div id="stories-template">
+        <div class="st-background"></div>
+        <div class="st-overlay"></div>
         <div class="st-content">
-            <img src="" id="st-img" class="st-foto">
-            <div class="st-tag">CLASSIFICADO</div>
-            <div id="st-mc-nome" class="st-nome">NOME</div>
-            <div id="st-polo-nome" style="font-size: 55px; color: #fff; font-weight: 900; margin-top: 20px; text-transform: uppercase;">POLO CIDADE</div>
-            <div class="st-footer">COALIZÃO 016 - LIGA CAIPIRA</div>
+            <div class="st-header-title">LIGA CAIPIRA</div>
+            <div class="st-sub-header">DE FREESTYLE</div>
+            <div class="st-foto-wrapper">
+                <img src="" id="st-img" class="st-foto">
+                <div class="st-tag">CLASSIFICADO</div>
+            </div>
+            <div id="st-mc-nome" class="st-mc-nome">NOME</div>
+            <div id="st-polo-nome" class="st-polo-info">POLO RIBEIRÃO PRETO</div>
+            <div class="st-footer">WWW.COALIZAO016.COM.BR</div>
         </div>
     </div>
 
@@ -233,16 +249,14 @@
 
             setTimeout(() => {
                 html2canvas(document.getElementById('stories-template'), { 
-                    scale: 1, 
-                    useCORS: true,
-                    logging: false 
+                    scale: 1, useCORS: true, logging: false 
                 }).then(canvas => {
                     const link = document.createElement('a');
                     link.download = `Coalizao016-${nome}.png`;
                     link.href = canvas.toDataURL();
                     link.click();
                 });
-            }, 300);
+            }, 400);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
