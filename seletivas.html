@@ -85,7 +85,7 @@
 
         .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
 
-        /* --- STORIES TEMPLATE (ÚNICO E PESADO) --- */
+        /* --- STORIES TEMPLATE --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
@@ -150,7 +150,7 @@
             <div class="st-header-title">LIGA CAIPIRA</div>
             <div class="st-sub-header">DE FREESTYLE</div>
             <div class="st-foto-wrapper">
-                <img src="" id="st-img" class="st-foto">
+                <img src="" id="st-img" class="st-foto" crossorigin="anonymous">
                 <div id="st-tag-text" class="st-tag">CLASSIFICADO</div>
             </div>
             <div id="st-mc-nome" class="st-mc-nome">NOME</div>
@@ -173,7 +173,6 @@
             { id: '07', slug: 'campinas', cidade: 'Campinas', batalha: 'Batalha do Cálice' }
         ];
 
-        // Banco de dados dos MCs (Adicione genero: 'F' para as minas)
         const classificados = [
             { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016', genero: 'F' },
             { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'oreiudodorap_' },
@@ -183,7 +182,7 @@
             { nome: 'VALUSTRE', poloSlug: 'araraquara', batId: 'BAT011', insta: '_valustre' },
             { nome: 'LARIÊ', poloSlug: 'araraquara', batId: 'BAT011', insta: 'larie.prod', genero: 'F' },
             { nome: 'NARDEX', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'nardex.emici' },
-            { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'gabizinha_mc', genero: 'F' },
+            { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'aninha_gabi2013', genero: 'F' },
             { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'ms_rima' },
             { nome: 'NOISY', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'noisyemici' },
             { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT010', insta: '_jotace016' },
@@ -250,28 +249,53 @@
             renderizarClassificados();
         }
 
+        // --- FUNÇÃO CORRIGIDA PARA MOBILE ---
         async function baixarArte(nome, cidade, genero) {
-            // Preenche os dados
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GERANDO...';
+
             document.getElementById('st-mc-nome').innerText = nome;
             document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
-            document.getElementById('st-img').src = document.getElementById(`img-${nome}`).src;
-            
-            // Troca o texto da tag conforme o gênero
             document.getElementById('st-tag-text').innerText = (genero === 'F') ? 'CLASSIFICADA' : 'CLASSIFICADO';
+            
+            const imgMC = document.getElementById(`img-${nome}`);
+            const stImg = document.getElementById('st-img');
+            stImg.src = imgMC.src;
 
-            // Pequeno delay para garantir que a imagem carregou no template invisível
-            setTimeout(() => {
-                html2canvas(document.getElementById('stories-template'), { 
-                    scale: 1, 
-                    useCORS: true,
-                    logging: false 
-                }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = `LigaCaipira-${nome}.png`;
-                    link.href = canvas.toDataURL();
-                    link.click();
-                });
-            }, 400);
+            // Aguarda a imagem carregar no template invisível
+            stImg.onload = async () => {
+                try {
+                    const canvas = await html2canvas(document.getElementById('stories-template'), {
+                        scale: 1, // 1 para performance no celular, aumente se ficar ruim
+                        useCORS: true,
+                        logging: false,
+                        backgroundColor: "#000000"
+                    });
+
+                    // CONVERSÃO PARA BLOB (Resolve o erro do Instagram/Mobile)
+                    canvas.toBlob((blob) => {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = `Classificado-${nome}.png`;
+                        
+                        // Simula o clique para baixar
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+
+                        // Limpa a memória
+                        setTimeout(() => URL.revokeObjectURL(url), 100);
+                        btn.innerHTML = originalText;
+                    }, 'image/png');
+
+                } catch (err) {
+                    console.error("Erro ao gerar imagem:", err);
+                    alert("Erro ao gerar o card. Tente tirar um print da tela!");
+                    btn.innerHTML = originalText;
+                }
+            };
         }
 
         document.addEventListener('DOMContentLoaded', () => {
