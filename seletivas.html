@@ -110,7 +110,7 @@
             font-family: var(--fonte-zika); font-size: 65px; 
             color: var(--cor-primaria); text-shadow: 0 0 15px rgba(243, 156, 18, 0.7); 
             letter-spacing: 1px; max-width: 90%; line-height: 1.1;
-            text-align: center; width: 100%; display: flex; justify-content: center;
+            text-align: center; width: 100%; display: center; justify-content: center;
         }
 
         @media (max-width: 768px) { .grid-classificados { grid-template-columns: repeat(2, 1fr); } }
@@ -232,8 +232,12 @@
         }
 
         function tentarPng(img, nome) {
-            if (img.src.includes('.jpg')) { img.src = `img/${nome}.png`; } 
-            else { img.src = 'img/default-mc.jpg'; img.onerror = null; }
+            if (img.src.includes('.jpg')) { 
+                img.src = `img/${nome}.png`; 
+            } else { 
+                img.src = 'img/default-mc.jpg'; 
+                img.onerror = null; 
+            }
         }
 
         function filtrarPorPolo(slug) {
@@ -249,11 +253,11 @@
             renderizarClassificados();
         }
 
-        // --- FUNÇÃO CORRIGIDA PARA TOQUE NO INSTAGRAM ---
+        // --- FUNÇÃO DE GERAR CARD (COM SUPORTE AO INSTAGRAM) ---
         async function baixarArte(nome, cidade, genero) {
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PREPARANDO...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GERANDO...';
 
             document.getElementById('st-mc-nome').innerText = nome;
             document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
@@ -261,6 +265,8 @@
             
             const imgMC = document.getElementById(`img-${nome}`);
             const stImg = document.getElementById('st-img');
+            
+            // Força o carregamento da imagem do MC no template antes de gerar o canvas
             stImg.src = imgMC.src;
 
             stImg.onload = async () => {
@@ -273,52 +279,34 @@
 
                     const imageData = canvas.toDataURL("image/png");
 
-                    // CRIA O MODAL COM SUPORTE A TOQUE FORÇADO
+                    // CRIA O MODAL PARA SALVAR
                     const modal = document.createElement('div');
-                    modal.id = "modal-download";
                     modal.style = `
                         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                        background: rgba(0,0,0,0.98); z-index: 10000; display: flex;
-                        flex-direction: column; align-items: center; justify-content: flex-start;
-                        padding: 20px; box-sizing: border-box; overflow-y: auto;
+                        background: rgba(0,0,0,0.95); z-index: 99999; display: flex;
+                        flex-direction: column; align-items: center; justify-content: center;
+                        padding: 20px; box-sizing: border-box;
                     `;
 
                     modal.innerHTML = `
-                        <div style="text-align: center; width: 100%; max-width: 400px; padding-top: 30px;">
-                            <p style="color: #f39c12; font-family: 'Anton', sans-serif; font-size: 1.4rem; margin-bottom: 5px;">CARD PRONTO!</p>
-                            <p style="color: #fff; font-size: 0.85rem; margin-bottom: 15px;">
-                                1. Segure o dedo na imagem abaixo<br>
-                                2. Escolha <b>"Fazer download"</b> ou <b>"Compartilhar"</b>
-                            </p>
-                            
-                            <img src="${imageData}" style="width: 100%; border: 2px solid #f39c12; border-radius: 8px; pointer-events: auto; -webkit-user-select: auto; user-select: auto;">
-                            
-                            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-                                <button id="btn-open-new" style="background: #f39c12; color: #000; border: none; padding: 12px; border-radius: 5px; font-weight: bold; text-transform: uppercase;">Abrir em Nova Aba (Garante Download)</button>
-                                <button id="close-modal" style="background: transparent; color: #888; border: 1px solid #444; padding: 10px; border-radius: 5px; font-weight: bold;">FECHAR</button>
-                            </div>
+                        <div style="text-align:center; width:100%; max-width:400px;">
+                            <p style="color:#f39c12; font-family:'Anton'; font-size:1.5rem; margin-bottom:10px;">CARD GERADO!</p>
+                            <p style="color:#fff; font-size:0.9rem; margin-bottom:15px;">Segure o dedo na imagem abaixo para salvar.</p>
+                            <img src="${imageData}" style="width:100%; border-radius:10px; border:2px solid #f39c12; pointer-events: auto;">
+                            <button id="close-modal" style="margin-top:20px; background:#333; color:#fff; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer;">FECHAR</button>
                         </div>
                     `;
 
                     document.body.appendChild(modal);
 
-                    // Função para abrir imagem pura em nova aba (isso "fura" o bloqueio do Instagram)
-                    document.getElementById('btn-open-new').onclick = () => {
-                        const newTab = window.open();
-                        newTab.document.write(`<img src="${imageData}" style="width:100%">`);
-                    };
-
-                    const closeModal = () => {
+                    document.getElementById('close-modal').onclick = () => {
                         document.body.removeChild(modal);
                         btn.innerHTML = originalText;
                     };
 
-                    document.getElementById('close-modal').onclick = closeModal;
-                    modal.onclick = (e) => { if(e.target === modal) closeModal(); };
-
                 } catch (err) {
                     console.error(err);
-                    alert("Erro ao gerar card.");
+                    alert("Erro ao gerar. Tente um print!");
                     btn.innerHTML = originalText;
                 }
             };
