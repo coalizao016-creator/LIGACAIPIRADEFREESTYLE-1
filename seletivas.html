@@ -85,7 +85,7 @@
 
         .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
 
-        /* --- STORIES TEMPLATE --- */
+        /* --- STORIES TEMPLATE (Oculto) --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
@@ -183,7 +183,7 @@
             { nome: 'LARIÊ', poloSlug: 'araraquara', batId: 'BAT011', insta: 'larie.prod', genero: 'F' },
             { nome: 'NARDEX', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'nardex.emici' },
             { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'aninha_gabi2013', genero: 'F' },
-            { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'ms_rima' },
+            { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'miguelricardosecundino' },
             { nome: 'NOISY', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'noisyemici' },
             { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT010', insta: '_jotace016' },
             { nome: 'SWART', poloSlug: 'saocarlos', batId: 'BAT010', insta: 'swart_mc' }
@@ -224,7 +224,7 @@
                             <div class="mc-batalha-tag"><span class="batalha-nome-mini">${nomeBat}</span></div>
                         </div>
                         <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${poloInfo.cidade}', '${mc.genero || 'M'}')">
-                            <i class="fas fa-camera"></i> Card Stories
+                            <i class="fas fa-share-nodes"></i> Compartilhar
                         </button>
                     </div>
                 `;
@@ -249,11 +249,11 @@
             renderizarClassificados();
         }
 
-        // --- FUNÇÃO CORRIGIDA PARA MOBILE ---
+        // --- FUNÇÃO FINAL COM COMPARTILHAMENTO NATIVO ---
         async function baixarArte(nome, cidade, genero) {
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GERANDO...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PREPARANDO...';
 
             document.getElementById('st-mc-nome').innerText = nome;
             document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
@@ -263,35 +263,45 @@
             const stImg = document.getElementById('st-img');
             stImg.src = imgMC.src;
 
-            // Aguarda a imagem carregar no template invisível
             stImg.onload = async () => {
                 try {
                     const canvas = await html2canvas(document.getElementById('stories-template'), {
-                        scale: 1, // 1 para performance no celular, aumente se ficar ruim
+                        scale: 2, // Aumenta a qualidade da imagem
                         useCORS: true,
                         logging: false,
                         backgroundColor: "#000000"
                     });
 
-                    // CONVERSÃO PARA BLOB (Resolve o erro do Instagram/Mobile)
-                    canvas.toBlob((blob) => {
-                        const url = URL.createObjectURL(blob);
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.download = `Classificado-${nome}.png`;
-                        
-                        // Simula o clique para baixar
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
+                    canvas.toBlob(async (blob) => {
+                        const file = new File([blob], `Coalizao016-${nome}.png`, { type: 'image/png' });
 
-                        // Limpa a memória
-                        setTimeout(() => URL.revokeObjectURL(url), 100);
+                        // TENTA COMPARTILHAR (MOBILE)
+                        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                            try {
+                                await navigator.share({
+                                    files: [file],
+                                    title: `Card ${nome}`,
+                                    text: `Meu card de classificado da Coalizão 016!`
+                                });
+                            } catch (err) {
+                                console.log("Compartilhamento cancelado.");
+                            }
+                        } else {
+                            // DOWNLOAD TRADICIONAL (DESKTOP)
+                            const url = URL.createObjectURL(blob);
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.download = `Coalizao016-${nome}.png`;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            setTimeout(() => URL.revokeObjectURL(url), 100);
+                        }
                         btn.innerHTML = originalText;
                     }, 'image/png');
 
                 } catch (err) {
-                    console.error("Erro ao gerar imagem:", err);
+                    console.error("Erro:", err);
                     alert("Erro ao gerar o card. Tente tirar um print da tela!");
                     btn.innerHTML = originalText;
                 }
