@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -19,6 +19,7 @@
             --text-light: #ffffff;
             --fonte-principal: 'Roboto', sans-serif;
             --fonte-titulo: 'Anton', sans-serif; 
+            --fonte-zika: 'UnifrakturMaguntia', cursive; /* Nova fonte para a frase tema */
         }
 
         body { 
@@ -84,7 +85,7 @@
 
         .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
 
-        /* --- STORIES TEMPLATE (O DESIGN "FODA") --- */
+        /* --- STORIES TEMPLATE (O DESIGN "FODA" COM A NOVA FRASE) --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
@@ -103,8 +104,20 @@
         .st-foto { width: 850px; height: 850px; object-fit: cover; border-radius: 20px; border: 10px solid var(--cor-primaria); box-shadow: 0 0 60px rgba(243, 156, 18, 0.4); }
         .st-tag { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; font-family: var(--fonte-titulo); font-size: 80px; padding: 10px 80px; text-transform: uppercase; box-shadow: 15px 15px 0px var(--cor-primaria); }
         .st-mc-nome { font-family: var(--fonte-titulo); font-size: 240px; color: #fff; text-transform: uppercase; margin-top: 110px; line-height: 0.8; text-shadow: 8px 8px 0px var(--cor-primaria); }
-        .st-polo-info { font-size: 55px; color: #fff; font-weight: 900; margin-top: 30px; text-transform: uppercase; border-top: 3px solid var(--cor-primaria); padding-top: 15px; letter-spacing: 3px; }
-        .st-footer { margin-top: auto; padding-bottom: 80px; font-family: var(--fonte-titulo); font-size: 45px; color: rgba(255,255,255,0.4); }
+        .st-polo-info { font-size: 55px; color: #fff; font-weight: 900; margin-top: 30px; text-transform: uppercase; border-top: 3px solid var(--cor-primaria); padding-top: 15px; letter-spacing: 3px; margin-bottom: 50px;}
+        
+        /* Nova estética para a frase tema */
+        .st-frase-tema { 
+            margin-top: auto; /* Empurra para o final */
+            padding-bottom: 80px; 
+            font-family: var(--fonte-zika); /* Usa a fonte UnifrakturMaguntia */
+            font-size: 65px; /* Tamanho grande e Zika */
+            color: var(--cor-primaria); /* Cor laranja da liga */
+            text-shadow: 0 0 15px rgba(243, 156, 18, 0.7); /* Brilho neon */
+            letter-spacing: 1px;
+            max-width: 90%; /* Garante que não corte nas bordas */
+            line-height: 1.1;
+        }
 
         @media (max-width: 768px) { .grid-classificados { grid-template-columns: repeat(2, 1fr); } }
     </style>
@@ -148,7 +161,7 @@
             </div>
             <div id="st-mc-nome" class="st-mc-nome">NOME</div>
             <div id="st-polo-nome" class="st-polo-info">POLO RIBEIRÃO PRETO</div>
-            <div class="st-footer">WWW.COALIZAO016.COM.BR</div>
+            <div class="st-frase-tema">"Realize seus sonhos ou morra tentando."</div>
         </div>
     </div>
 
@@ -249,7 +262,9 @@
 
             setTimeout(() => {
                 html2canvas(document.getElementById('stories-template'), { 
-                    scale: 1, useCORS: true, logging: false 
+                    scale: 1, 
+                    useCORS: true,
+                    logging: false 
                 }).then(canvas => {
                     const link = document.createElement('a');
                     link.download = `Coalizao016-${nome}.png`;
