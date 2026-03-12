@@ -7,124 +7,94 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
             --cor-primaria: #f39c12; 
             --cor-finalista: #ffd700; 
-            --bg-dark: #0a0a0a; 
+            --bg-dark: #050505; 
             --bg-nav: #000000; 
-            --bg-card: #151515;
+            --bg-card: #111111;
             --text-light: #ffffff;
-            --fonte-principal: 'Roboto', sans-serif;
             --fonte-titulo: 'Anton', sans-serif; 
             --fonte-zika: 'UnifrakturMaguntia', cursive; 
         }
 
         body { 
-            margin: 0; font-family: var(--fonte-principal); 
+            margin: 0; font-family: 'Roboto', sans-serif; 
             background: var(--bg-dark); color: var(--text-light); 
-            line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
         /* --- MENU --- */
         nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
         .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; font-family: var(--fonte-titulo); }
+        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; font-family: var(--fonte-titulo); text-transform: uppercase; }
         .nav-logo span { color: var(--cor-primaria); }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
-
-        /* --- HEADER --- */
-        .header-seletivas {
-            padding: 80px 20px; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&q=80'); 
-            background-size: cover; background-position: center; border-bottom: 5px solid var(--cor-primaria);
-        }
-        .titulo-pagina { font-family: var(--fonte-titulo); font-size: clamp(3rem, 8vw, 5rem); text-transform: uppercase; margin: 0; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-        .secao-titulo { font-family: var(--fonte-titulo); font-size: 2rem; text-transform: uppercase; margin-bottom: 30px; border-left: 6px solid var(--cor-primaria); padding-left: 15px; }
+        .secao-titulo { font-family: var(--fonte-titulo); font-size: 2.2rem; text-transform: uppercase; margin-bottom: 30px; border-left: 6px solid var(--cor-primaria); padding-left: 15px; }
 
         /* --- GRID POLOS --- */
-        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 60px; }
-        .polo-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid #222; transition: 0.3s; cursor: pointer; }
-        .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; }
-        .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.4rem; text-transform: uppercase; margin: 0; }
-        .polo-batalha { color: var(--cor-primaria); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
+        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 50px; }
+        .polo-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid #222; cursor: pointer; transition: 0.3s; text-align: center; }
+        .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; transform: translateY(-3px); }
+        .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.2rem; text-transform: uppercase; margin: 0; color: #fff; }
 
         /* --- GRID CLASSIFICADOS --- */
-        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
-        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
-        .card-mc:hover { border-color: var(--cor-primaria); transform: translateY(-5px); }
-
-        /* --- ESTILOS FINALISTAS --- */
-        .card-mc.card-finalista {
-            border: 2px solid var(--cor-finalista);
-            box-shadow: 0 0 10px rgba(255, 214, 0, 0.2);
+        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 20px; }
+        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: 0.4s; position: relative; }
+        
+        /* CARD LENDÁRIO (FINALISTA) */
+        .card-mc.card-finalista { 
+            border: 2px solid var(--cor-finalista); 
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+            background: linear-gradient(145deg, #111, #1a1500);
         }
-        .card-finalista .mc-batalha-tag {
-            background: var(--cor-finalista);
-            color: #000;
-            border: none;
-            font-weight: 900;
+        .card-finalista::before {
+            content: "LENDÁRIO";
+            position: absolute; top: 10px; left: 10px; background: var(--cor-finalista);
+            color: #000; font-size: 0.65rem; font-weight: 900; padding: 3px 10px; border-radius: 4px; z-index: 10;
         }
 
-        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #222; position: relative; cursor: pointer; }
-        .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.4s; }
-        .card-mc:hover .mc-foto { filter: grayscale(0%); }
+        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; cursor: pointer; }
+        .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
+        .card-mc:hover .mc-foto { filter: grayscale(0%); transform: scale(1.05); }
 
-        .mc-insta-overlay {
-            position: absolute; top: 10px; right: 10px; background: var(--cor-primaria);
-            color: #000; width: 30px; height: 30px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: 0.3s; transform: scale(0.5);
-        }
-        .card-mc:hover .mc-insta-overlay { opacity: 1; transform: scale(1); }
-
-        .mc-info { padding: 12px; text-align: center; flex-grow: 1; }
-        .mc-nome { font-family: var(--fonte-titulo); font-size: 1.6rem; text-transform: uppercase; color: #fff; margin: 0; }
-        .mc-batalha-tag { display: inline-block; font-size: 0.65rem; color: var(--cor-primaria); font-weight: 900; text-transform: uppercase; border: 1px solid rgba(243, 156, 18, 0.3); padding: 2px 8px; border-radius: 4px; }
+        .mc-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .mc-nome { font-family: var(--fonte-titulo); font-size: 1.9rem; text-transform: uppercase; margin: 0; line-height: 1; color: #fff; }
+        .mc-batalha-tag { display: inline-block; font-size: 0.75rem; color: var(--cor-primaria); font-weight: 900; margin-top: 10px; text-transform: uppercase; }
 
         .btn-card-download {
-            background: #222; color: var(--cor-primaria); border: none; padding: 10px;
-            font-size: 0.7rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
+            background: #222; color: var(--cor-primaria); border: none; padding: 14px;
+            font-size: 0.8rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
             width: 100%; transition: 0.3s; border-top: 1px solid #333; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
         .btn-card-download:hover { background: var(--cor-primaria); color: #000; }
+        .card-finalista .btn-card-download { background: #1a1500; color: var(--cor-finalista); }
+        .card-finalista .btn-card-download:hover { background: var(--cor-finalista); color: #000; }
 
-        .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
-
-        /* --- STORIES TEMPLATE --- */
+        /* --- TEMPLATE STORIES --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
         }
-        .st-background { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle at center, #222 0%, #000 70%); }
-        .st-overlay {
-            position: absolute; width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(243, 156, 18, 0.25) 0%, transparent 45%),
-                        radial-gradient(ellipse at bottom, rgba(243, 156, 18, 0.15) 0%, transparent 50%);
-            z-index: 1;
-        }
-        .st-content { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .st-header-title { font-family: var(--fonte-titulo); font-size: 90px; color: var(--cor-primaria); margin-top: 120px; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 30px rgba(243, 156, 18, 0.6); }
-        .st-sub-header { font-family: var(--fonte-principal); font-size: 40px; color: #fff; font-weight: 900; text-transform: uppercase; letter-spacing: 12px; margin-top: -15px; }
-        .st-foto-wrapper { position: relative; margin-top: 80px; }
-        .st-foto { width: 850px; height: 850px; object-fit: cover; border-radius: 20px; border: 10px solid var(--cor-primaria); box-shadow: 0 0 60px rgba(243, 156, 18, 0.4); }
-        .st-tag { position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; font-family: var(--fonte-titulo); font-size: 80px; padding: 10px 80px; text-transform: uppercase; box-shadow: 15px 15px 0px var(--cor-primaria); white-space: nowrap; }
-        .st-mc-nome { font-family: var(--fonte-titulo); font-size: 240px; color: #fff; text-transform: uppercase; margin-top: 110px; line-height: 0.8; text-shadow: 8px 8px 0px var(--cor-primaria); }
-        .st-polo-info { font-size: 55px; color: #fff; font-weight: 900; margin-top: 30px; text-transform: uppercase; border-top: 3px solid var(--cor-primaria); padding-top: 15px; letter-spacing: 3px; margin-bottom: 50px;}
-        .st-frase-tema { 
-            margin-top: auto; padding-bottom: 80px; 
-            font-family: var(--fonte-zika); font-size: 65px; 
-            color: var(--cor-primaria); text-shadow: 0 0 15px rgba(243, 156, 18, 0.7); 
-            letter-spacing: 1px; max-width: 90%; line-height: 1.1;
-            text-align: center; width: 100%; display: flex; justify-content: center;
-        }
+        .st-header-bg-text { font-family: var(--fonte-titulo); font-size: 180px; color: rgba(255,255,255,0.03); position: absolute; top: 40px; line-height: 0.8; text-align: center; width: 100%; z-index: 1; text-transform: uppercase; }
+        .st-content { position: relative; z-index: 10; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; }
+        .st-header-front { font-family: var(--fonte-titulo); font-size: 130px; color: var(--cor-primaria); margin-top: 100px; z-index: 5; text-transform: uppercase; letter-spacing: -2px; text-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        .st-foto-wrapper { position: relative; margin-top: 60px; z-index: 6; }
+        .st-foto { width: 880px; height: 880px; object-fit: cover; border: 18px solid var(--cor-primaria); box-shadow: 0 0 100px rgba(0,0,0,0.9); border-radius: 10px; }
+        .st-tag { position: absolute; bottom: -55px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; font-family: var(--fonte-titulo); font-size: 85px; padding: 12px 70px; text-transform: uppercase; box-shadow: 25px 25px 0px #000; white-space: nowrap; }
+        .st-mc-nome { font-family: var(--fonte-titulo); font-size: 270px; color: #fff; text-transform: uppercase; margin-top: 130px; line-height: 0.75; z-index: 5; text-shadow: 12px 12px 0px var(--cor-primaria); }
+        .st-polo-info { font-size: 65px; color: #fff; font-weight: 900; margin-top: 45px; text-transform: uppercase; letter-spacing: 6px; border-bottom: 5px solid var(--cor-primaria); padding-bottom: 5px; }
+        .st-frase-tema { margin-top: auto; padding-bottom: 90px; font-family: var(--fonte-zika); font-size: 75px; color: var(--cor-primaria); }
+
+        .st-finalista .st-header-front { color: var(--cor-finalista); }
+        .st-finalista .st-foto { border-color: var(--cor-finalista); }
+        .st-finalista .st-mc-nome { text-shadow: 12px 12px 0px var(--cor-finalista); }
+        .st-finalista .st-frase-tema { color: var(--cor-finalista); }
 
         @media (max-width: 768px) { .grid-classificados { grid-template-columns: repeat(2, 1fr); } }
     </style>
@@ -134,42 +104,27 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo"><a href="index.html">COALIZÃO<span>016</span></a></div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Início</a>
-                <a href="batalhas.html" class="nav-link">Batalhas</a>
-                <a href="seletivas.html" class="nav-link active">Seletivas</a>
-                <a href="regulamento.html" class="nav-link">Regulamento</a>
-                <a href="mapaindex.html" class="nav-link">Mapa</a>
-            </div>
         </div>
     </nav>
 
-    <header class="header-seletivas">
-        <h1 class="titulo-pagina">LIGA <span style="color: var(--cor-primaria);">CAIPIRA</span></h1>
-    </header>
-
     <div class="container">
-        
         <h2 class="secao-titulo">FILTRAR POR POLO</h2>
         <div class="grid-polos" id="lista-polos"></div>
-
         <h2 class="secao-titulo" id="vagas-titulo">CLASSIFICADOS GERAIS <button class="btn-reset" onclick="resetarFiltro()">Ver Todos</button></h2>
         <div class="grid-classificados" id="lista-classificados"></div>
     </div>
 
     <div id="stories-template">
-        <div class="st-background"></div>
-        <div class="st-overlay"></div>
+        <div class="st-header-bg-text">LIGA CAIPIRA<br>DE FREESTYLE</div>
         <div class="st-content">
-            <div class="st-header-title">LIGA CAIPIRA</div>
-            <div class="st-sub-header">DE FREESTYLE</div>
+            <div class="st-header-front">LIGA CAIPIRA</div>
             <div class="st-foto-wrapper">
                 <img src="" id="st-img" class="st-foto" crossorigin="anonymous">
                 <div id="st-tag-text" class="st-tag">CLASSIFICADO</div>
             </div>
             <div id="st-mc-nome" class="st-mc-nome">NOME</div>
-            <div id="st-polo-nome" class="st-polo-info">POLO RIBEIRÃO PRETO</div>
-            <div class="st-frase-tema">Realize seus sonhos<br>ou morra tentando.</div>
+            <div id="st-polo-info" class="st-polo-info">POLO</div>
+            <div class="st-frase-tema">Realize seus sonhos ou morra tentando.</div>
         </div>
     </div>
 
@@ -188,9 +143,9 @@
         ];
 
         const classificados = [
-            { nome: 'TYRANO', poloSlug: 'ribeirao', insta: 'tyranoofc', finalista: true },
-            { nome: 'BUBBA', poloSlug: 'ribeirao', insta: 'bubbassalto', finalista: true },
-            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016' },
+            { nome: 'TYRANO', poloSlug: 'final', insta: 'tyranoofc', finalista: true },
+            { nome: 'BUBBA', poloSlug: 'final', insta: 'bubbassalto', finalista: true },
+            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016', genero: 'F' },
             { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'oreiudodorap_' },
             { nome: 'REZENDE', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'rezendeemici' },
             { nome: 'HAIKI', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'mc_haiki' },
@@ -206,115 +161,82 @@
         ];
 
         function renderizarPolos() {
-            const container = document.getElementById('lista-polos');
-            container.innerHTML = polos.map(p => `
+            document.getElementById('lista-polos').innerHTML = polos.map(p => `
                 <div class="polo-card" id="polo-${p.slug}" onclick="filtrarPorPolo('${p.slug}')">
                     <h3 class="polo-cidade">${p.cidade}</h3>
-                    <span class="polo-batalha">${p.batalha}</span>
                 </div>
             `).join('');
         }
 
         function renderizarClassificados(lista = classificados, nomePolo = "GERAIS") {
             const container = document.getElementById('lista-classificados');
-            const titulo = document.getElementById('vagas-titulo');
-            
-            // Prioriza finalistas no topo, depois alfabético
-            const listaOrdenada = [...lista].sort((a, b) => {
-                if (a.finalista && !b.finalista) return -1;
-                if (!a.finalista && b.finalista) return 1;
-                return a.nome.localeCompare(b.nome);
-            });
-
-            titulo.innerHTML = `CLASSIFICADOS: <span style="color: var(--cor-primaria);">${nomePolo}</span> ${nomePolo !== "GERAIS" ? '<button class="btn-reset" onclick="resetarFiltro()">Voltar</button>' : ''}`;
+            const listaOrdenada = [...lista].sort((a, b) => (a.finalista === b.finalista) ? a.nome.localeCompare(b.nome) : a.finalista ? -1 : 1);
 
             container.innerHTML = listaOrdenada.map(mc => {
-                // Aqui está a mágica: Busca o nome da batalha se NÃO for finalista
-                let textoExibicao = "FINALISTA LIGA";
-                if (!mc.finalista) {
-                    const batInfo = (typeof Batalhas !== 'undefined') ? Batalhas.find(b => b.codigo === mc.batId) : null;
-                    textoExibicao = batInfo ? batInfo.nome : "Batalha Local";
-                }
-
-                const nomeArq = mc.nome.toLowerCase();
-                const linkInsta = mc.insta ? `https://instagram.com/${mc.insta}` : '#';
+                const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
+                const nomeBat = batInfo ? batInfo.nome : "Batalha Local";
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
+                const nomeLower = mc.nome.toLowerCase();
 
                 return `
                     <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
-                        <div class="mc-foto-container" onclick="window.open('${linkInsta}', '_blank')">
-                            <img src="img/${nomeArq}.jpg" class="mc-foto" id="img-${mc.nome}" onerror="tentarPng(this, '${nomeArq}')">
-                            <div class="mc-insta-overlay"><i class="fab fa-instagram"></i></div>
+                        <div class="mc-foto-container">
+                            <img src="img/${nomeLower}.jpg" 
+                                 class="mc-foto" 
+                                 id="img-${mc.nome}" 
+                                 onerror="if (this.src.includes('.jpg')) { this.src='img/${nomeLower}.png'; } else { this.src='img/default-mc.jpg'; }">
                         </div>
                         <div class="mc-info">
                             <h3 class="mc-nome">${mc.nome}</h3>
-                            <div class="mc-batalha-tag"><span>${textoExibicao}</span></div>
+                            <span class="mc-batalha-tag">${mc.finalista ? 'FINALISTA LIGA' : nomeBat}</span>
                         </div>
-                        <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${poloInfo ? poloInfo.cidade : 'Caipira'}', '${mc.genero || 'M'}', ${mc.finalista || false})">
-                            <i class="fas ${mc.finalista ? 'fa-crown' : 'fa-camera'}"></i> ${mc.finalista ? 'Card Finalista' : 'Gerar Card'}
+                        <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${mc.finalista ? 'FINAL LIGA' : poloInfo.cidade}', '${mc.genero || 'M'}', ${mc.finalista || false})">
+                            <i class="fas ${mc.finalista ? 'fa-crown' : 'fa-camera'}"></i> 
+                            ${mc.finalista ? 'CARD LENDÁRIO' : 'GERAR CARD'}
                         </button>
                     </div>
                 `;
             }).join('');
         }
 
-        function tentarPng(img, nome) {
-            if (img.src.includes('.jpg')) { img.src = `img/${nome}.png`; } 
-            else { img.src = 'img/default-mc.jpg'; img.onerror = null; }
-        }
-
-        function filtrarPorPolo(slug) {
-            document.querySelectorAll('.polo-card').forEach(c => c.classList.remove('active'));
-            if(document.getElementById(`polo-${slug}`)) document.getElementById(`polo-${slug}`).classList.add('active');
-            const filtrados = classificados.filter(mc => mc.poloSlug === slug);
-            const poloInfo = polos.find(p => p.slug === slug);
-            renderizarClassificados(filtrados, poloInfo.cidade.toUpperCase());
-        }
-
-        function resetarFiltro() {
-            document.querySelectorAll('.polo-card').forEach(c => c.classList.remove('active'));
-            renderizarClassificados();
-        }
-
+        // Função para tentar PNG se JPG falhar, agora dentro do contexto do Gerador também
         async function baixarArte(nome, cidade, genero, ehFinalista) {
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CRIANDO...';
+            btn.innerHTML = '...';
+
+            const template = document.getElementById('stories-template');
+            ehFinalista ? template.classList.add('st-finalista') : template.classList.remove('st-finalista');
 
             document.getElementById('st-mc-nome').innerText = nome;
-            document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
+            document.getElementById('st-polo-info').innerText = cidade.toUpperCase();
             
-            const tagStories = document.getElementById('st-tag-text');
-            if (ehFinalista) {
-                tagStories.innerText = "FINALISTA LIGA";
-                tagStories.style.background = "#ffd700";
-            } else {
-                tagStories.innerText = (genero === 'F') ? 'CLASSIFICADA' : 'CLASSIFICADO';
-                tagStories.style.background = "#fff";
-            }
+            const tagSt = document.getElementById('st-tag-text');
+            tagSt.innerText = ehFinalista ? "FINALISTA LIGA" : (genero === 'F' ? "CLASSIFICADA" : "CLASSIFICADO");
             
-            const imgMC = document.getElementById(`img-${nome}`);
             const stImg = document.getElementById('st-img');
-            stImg.src = imgMC.src;
+            stImg.src = document.getElementById(`img-${nome}`).src;
 
             stImg.onload = async () => {
-                try {
-                    const canvas = await html2canvas(document.getElementById('stories-template'), {
-                        scale: 2, useCORS: true, backgroundColor: "#000000"
-                    });
-                    const imageData = canvas.toDataURL("image/png");
-                    const divFull = document.createElement('div');
-                    divFull.style = `position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center;`;
-                    divFull.innerHTML = `
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 20px; background: rgba(243, 156, 18, 0.9); color: #000; text-align: center; font-weight: bold; font-family: sans-serif; z-index: 101;">SEGURE NA FOTO PARA SALVAR</div>
-                        <button id="close-fix" style="position: absolute; bottom: 30px; background: #fff; color: #000; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; z-index: 102; cursor: pointer;">VOLTAR</button>
-                        <img src="${imageData}" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 100;">
-                    `;
-                    document.body.appendChild(divFull);
-                    document.getElementById('close-fix').onclick = () => { document.body.removeChild(divFull); btn.innerHTML = originalText; };
-                } catch (err) { alert("Erro ao gerar card."); btn.innerHTML = originalText; }
+                const canvas = await html2canvas(template, { scale: 2, useCORS: true });
+                const imageData = canvas.toDataURL("image/png");
+                const divFull = document.createElement('div');
+                divFull.style = `position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center;`;
+                divFull.innerHTML = `
+                    <img src="${imageData}" style="width: 100%; height: 100%; object-fit: contain;">
+                    <button id="close-fix" style="position: absolute; bottom: 30px; background: #fff; padding: 15px 30px; border-radius: 50px; font-weight: bold; cursor: pointer;">VOLTAR</button>
+                `;
+                document.body.appendChild(divFull);
+                document.getElementById('close-fix').onclick = () => { document.body.removeChild(divFull); btn.innerHTML = originalText; };
             };
         }
+
+        function filtrarPorPolo(slug) {
+            const filtrados = classificados.filter(mc => mc.poloSlug === slug);
+            renderizarClassificados(filtrados, slug.toUpperCase());
+        }
+
+        function resetarFiltro() { renderizarClassificados(); }
 
         document.addEventListener('DOMContentLoaded', () => {
             renderizarPolos();
