@@ -85,7 +85,7 @@
 
         .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
 
-        /* --- STORIES TEMPLATE (OCULTO) --- */
+        /* --- STORIES TEMPLATE (OCULTO NO FUNDO) --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
@@ -110,7 +110,7 @@
             font-family: var(--fonte-zika); font-size: 65px; 
             color: var(--cor-primaria); text-shadow: 0 0 15px rgba(243, 156, 18, 0.7); 
             letter-spacing: 1px; max-width: 90%; line-height: 1.1;
-            text-align: center; width: 100%; display: center; justify-content: center;
+            text-align: center; width: 100%; display: flex; justify-content: center;
         }
 
         @media (max-width: 768px) { .grid-classificados { grid-template-columns: repeat(2, 1fr); } }
@@ -185,8 +185,8 @@
             { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'aninha_gabi2013', genero: 'F' },
             { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'miguelricardosecundino' },
             { nome: 'NOISY', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'noisyemici' },
-            { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT010', insta: '_jotace016' },
-            { nome: 'SWART', poloSlug: 'saocarlos', batId: 'BAT010', insta: 'swart_mc' }
+            { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT020', insta: '_jotace016' },
+            { nome: 'SWART', poloSlug: 'saocarlos', batId: 'BAT020', insta: 'eo_gol_do_moita_016' }
         ];
 
         function renderizarPolos() {
@@ -253,11 +253,11 @@
             renderizarClassificados();
         }
 
-        // --- FUNÇÃO DE GERAR CARD (COM SUPORTE AO INSTAGRAM) ---
+        // --- FUNÇÃO "FORCE" PARA INSTAGRAM ---
         async function baixarArte(nome, cidade, genero) {
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GERANDO...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CRIANDO...';
 
             document.getElementById('st-mc-nome').innerText = nome;
             document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
@@ -265,8 +265,6 @@
             
             const imgMC = document.getElementById(`img-${nome}`);
             const stImg = document.getElementById('st-img');
-            
-            // Força o carregamento da imagem do MC no template antes de gerar o canvas
             stImg.src = imgMC.src;
 
             stImg.onload = async () => {
@@ -279,34 +277,33 @@
 
                     const imageData = canvas.toDataURL("image/png");
 
-                    // CRIA O MODAL PARA SALVAR
-                    const modal = document.createElement('div');
-                    modal.style = `
-                        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                        background: rgba(0,0,0,0.95); z-index: 99999; display: flex;
+                    // TELA CHEIA PARA SALVAMENTO FORÇADO
+                    const divFull = document.createElement('div');
+                    divFull.id = "insta-fix-overlay";
+                    divFull.style = `
+                        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                        background: #000; z-index: 999999; display: flex; 
                         flex-direction: column; align-items: center; justify-content: center;
-                        padding: 20px; box-sizing: border-box;
                     `;
 
-                    modal.innerHTML = `
-                        <div style="text-align:center; width:100%; max-width:400px;">
-                            <p style="color:#f39c12; font-family:'Anton'; font-size:1.5rem; margin-bottom:10px;">CARD GERADO!</p>
-                            <p style="color:#fff; font-size:0.9rem; margin-bottom:15px;">Segure o dedo na imagem abaixo para salvar.</p>
-                            <img src="${imageData}" style="width:100%; border-radius:10px; border:2px solid #f39c12; pointer-events: auto;">
-                            <button id="close-modal" style="margin-top:20px; background:#333; color:#fff; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer;">FECHAR</button>
+                    divFull.innerHTML = `
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 20px; background: rgba(243, 156, 18, 0.9); color: #000; text-align: center; font-weight: bold; font-family: sans-serif; z-index: 101;">
+                            SEGURE NA FOTO PARA SALVAR NO CELULAR
                         </div>
+                        <button id="close-fix" style="position: absolute; bottom: 30px; background: #fff; color: #000; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; z-index: 102; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">VOLTAR AO SITE</button>
+                        <img src="${imageData}" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 100;">
                     `;
 
-                    document.body.appendChild(modal);
+                    document.body.appendChild(divFull);
 
-                    document.getElementById('close-modal').onclick = () => {
-                        document.body.removeChild(modal);
+                    document.getElementById('close-fix').onclick = () => {
+                        document.body.removeChild(divFull);
                         btn.innerHTML = originalText;
                     };
 
                 } catch (err) {
                     console.error(err);
-                    alert("Erro ao gerar. Tente um print!");
+                    alert("Erro ao gerar card. Tente tirar um print da tela!");
                     btn.innerHTML = originalText;
                 }
             };
