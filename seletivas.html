@@ -22,16 +22,12 @@
         }
 
         body { 
-            margin: 0; 
-            font-family: var(--fonte-principal); 
-            background: var(--bg-dark); 
-            color: var(--text-light); 
-            line-height: 1.6;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            margin: 0; font-family: var(--fonte-principal); 
+            background: var(--bg-dark); color: var(--text-light); 
+            line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* --- MENU PADRONIZADO --- */
+        /* --- MENU --- */
         nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
         .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; font-family: var(--fonte-titulo); }
@@ -40,67 +36,67 @@
         .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
 
-        .nav-social-group { display: flex; gap: 15px; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px; }
-        .nav-social { color: #fff; font-size: 1.1rem; transition: 0.3s; }
-        .nav-social:hover { color: var(--cor-primaria); }
-
         /* --- HEADER --- */
         .header-seletivas {
-            padding: 100px 20px;
-            text-align: center;
+            padding: 80px 20px; text-align: center;
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&q=80'); 
-            background-size: cover;
-            background-position: center;
-            border-bottom: 5px solid var(--cor-primaria);
+            background-size: cover; background-position: center; border-bottom: 5px solid var(--cor-primaria);
         }
+        .titulo-pagina { font-family: var(--fonte-titulo); font-size: clamp(3rem, 8vw, 5rem); text-transform: uppercase; margin: 0; }
 
-        .titulo-pagina { font-family: var(--fonte-titulo); font-size: clamp(3.5rem, 10vw, 6rem); text-transform: uppercase; line-height: 0.9; margin: 0; letter-spacing: -2px; }
-        .subtitulo-pagina { color: var(--cor-primaria); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; font-size: 1rem; margin-bottom: 10px; display: block; }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-        .secao-titulo { font-family: var(--fonte-titulo); font-size: 2.5rem; text-transform: uppercase; margin-bottom: 40px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; letter-spacing: 1px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .secao-titulo { font-family: var(--fonte-titulo); font-size: 2rem; text-transform: uppercase; margin-bottom: 30px; border-left: 6px solid var(--cor-primaria); padding-left: 15px; }
 
         /* --- POLOS --- */
-        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-bottom: 80px; }
-        .polo-card { 
-            background: var(--bg-card); padding: 25px; border-radius: 8px; border: 1px solid #222; 
-            display: flex; flex-direction: column; position: relative; transition: 0.3s; cursor: pointer;
-        }
-        .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; transform: translateY(-3px); }
-        
-        .polo-numero { position: absolute; right: 20px; top: 10px; font-family: var(--fonte-titulo); font-size: 3rem; color: rgba(255,255,255,0.05); pointer-events: none; }
-        .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.6rem; color: #fff; text-transform: uppercase; margin: 0; z-index: 1; }
-        .polo-batalha { color: var(--cor-primaria); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 15px; z-index: 1; }
-        .polo-data { background: #333; color: #fff; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; align-self: flex-start; }
+        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 60px; }
+        .polo-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid #222; position: relative; transition: 0.3s; cursor: pointer; }
+        .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; }
+        .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.4rem; color: #fff; text-transform: uppercase; margin: 0; }
+        .polo-batalha { color: var(--cor-primaria); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; }
 
         /* --- CLASSIFICADOS --- */
-        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .card-mc-no-photo { 
-            background: #111; border: 1px solid #222; border-radius: 6px; padding: 30px 20px;
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            transition: 0.3s; position: relative; overflow: hidden;
-        }
-        .card-mc-no-photo:hover { border-color: var(--cor-primaria); background: #161616; transform: translateY(-5px); }
+        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
+        .card-mc:hover { border-color: var(--cor-primaria); transform: translateY(-5px); }
 
-        .mc-nome { font-family: var(--fonte-titulo); font-size: 3rem; text-transform: uppercase; color: #fff; line-height: 0.9; margin-bottom: 15px; z-index: 1; letter-spacing: 1px; }
-        
-        .mc-batalha-tag {
-            display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.6); 
-            padding: 8px 15px; border-radius: 4px; border: 1px solid #333; z-index: 1;
-        }
-        .batalha-nome-mini { font-size: 0.75rem; color: var(--cor-primaria); font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #222; position: relative; cursor: pointer; }
+        .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.4s; }
+        .card-mc:hover .mc-foto { filter: grayscale(0%); }
 
-        .btn-reset {
-            background: transparent; border: 1px solid #333; color: #666; padding: 8px 15px;
-            border-radius: 4px; cursor: pointer; font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
-            margin-left: 15px; transition: 0.3s;
+        .mc-insta-overlay {
+            position: absolute; top: 10px; right: 10px; background: var(--cor-primaria);
+            color: #000; width: 30px; height: 30px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s; transform: scale(0.5);
         }
-        .btn-reset:hover { border-color: var(--cor-primaria); color: var(--cor-primaria); }
+        .card-mc:hover .mc-insta-overlay { opacity: 1; transform: scale(1); }
 
-        @media (max-width: 768px) {
-            .nav-links { gap: 10px; }
-            .nav-social-group { display: none; }
+        .mc-info { padding: 12px; text-align: center; flex-grow: 1; }
+        .mc-nome { font-family: var(--fonte-titulo); font-size: 1.6rem; text-transform: uppercase; color: #fff; margin: 0 0 5px 0; }
+        .mc-batalha-tag { display: inline-block; font-size: 0.65rem; color: var(--cor-primaria); font-weight: 900; text-transform: uppercase; border: 1px solid rgba(243, 156, 18, 0.3); padding: 2px 8px; border-radius: 4px; }
+
+        /* Botão Download */
+        .btn-card-download {
+            background: #222; color: var(--cor-primaria); border: none; padding: 10px;
+            font-size: 0.7rem; font-weight: 900; text-transform: uppercase; cursor: pointer;
+            width: 100%; transition: 0.3s; border-top: 1px solid #333; display: flex; align-items: center; justify-content: center; gap: 8px;
         }
+        .btn-card-download:hover { background: var(--cor-primaria); color: #000; }
+
+        /* --- STORIES TEMPLATE (HIDDEN) --- */
+        #stories-template {
+            position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
+            background: #000; display: flex; flex-direction: column; align-items: center; border: 25px solid var(--cor-primaria);
+        }
+        .st-content { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 250px; }
+        .st-foto { width: 700px; height: 700px; object-fit: cover; border-radius: 50%; border: 20px solid var(--cor-primaria); margin-bottom: 60px; }
+        .st-nome { font-family: var(--fonte-titulo); font-size: 160px; color: #fff; text-transform: uppercase; margin: 0; line-height: 0.8; }
+        .st-tag { background: var(--cor-primaria); color: #000; font-family: var(--fonte-titulo); font-size: 60px; padding: 15px 80px; margin: 50px 0; }
+        .st-footer { margin-top: auto; padding-bottom: 120px; font-family: var(--fonte-titulo); font-size: 50px; color: var(--cor-primaria); letter-spacing: 5px; }
+
+        .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
+
+        @media (max-width: 768px) { .grid-classificados { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
@@ -112,18 +108,13 @@
                 <a href="index.html" class="nav-link">Início</a>
                 <a href="batalhas.html" class="nav-link">Batalhas</a>
                 <a href="seletivas.html" class="nav-link active">Seletivas</a>
+                <a href="regulamento.html" class="nav-link">Regulamento</a>
                 <a href="mapaindex.html" class="nav-link">Mapa</a>
-                <div class="nav-social-group">
-                    <a href="https://instagram.com/coalizao016" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-youtube"></i></a>
-                    <a href="https://tiktok.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-tiktok"></i></a>
-                </div>
             </div>
         </div>
     </nav>
 
     <header class="header-seletivas">
-        <span class="subtitulo-pagina">A Elite do Interior</span>
         <h1 class="titulo-pagina">SELETIVAS <span style="color: var(--cor-primaria);">REGIONAIS</span></h1>
     </header>
 
@@ -135,47 +126,52 @@
         <div class="grid-classificados" id="lista-classificados"></div>
     </div>
 
-    <footer style="text-align: center; padding: 60px 20px; color: #444; border-top: 1px solid #111;">
-        <p>&copy; 2026 Coalizão 016 - A Voz do Interior Paulista</p>
-    </footer>
+    <div id="stories-template">
+        <div class="st-content">
+            <img src="" id="st-img" class="st-foto">
+            <div class="st-tag">CLASSIFICADO</div>
+            <div id="st-mc-nome" class="st-nome">NOME</div>
+            <div id="st-polo-nome" style="font-size: 55px; color: #fff; font-weight: 900; margin-top: 20px; text-transform: uppercase;">POLO CIDADE</div>
+            <div class="st-footer">COALIZÃO 016 - LIGA CAIPIRA</div>
+        </div>
+    </div>
 
     <script src="batalhas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
         const polos = [
-            { id: '01', slug: 'ribeirao', cidade: 'Ribeirão Preto', batalha: 'Sangue na 7', data: '07/05' },
-            { id: '02', slug: 'araraquara', cidade: 'Araraquara', batalha: 'Batalha do Raio', data: '19/04' },
-            { id: '03', slug: 'saocarlos', cidade: 'São Carlos', batalha: 'Hip-hop Salva', data: '02/05' },
-            { id: '04', slug: 'bauru', cidade: 'Bauru', batalha: 'Batalha dos 13', data: '02/04' },
-            { id: '05', slug: 'riopreto', cidade: 'SJ do Rio Preto', batalha: 'Batalha do Braile', data: '12/04' },
-            { id: '06', slug: 'franca', cidade: 'Franca', batalha: 'Batalha dos Nômades', data: '23/04' },
-            { id: '07', slug: 'campinas', cidade: 'Campinas', batalha: 'Batalha do Cálice', data: '01/05' }
+            { id: '01', slug: 'ribeirao', cidade: 'Ribeirão Preto', batalha: 'Sangue na 7' },
+            { id: '02', slug: 'araraquara', cidade: 'Araraquara', batalha: 'Batalha do Raio' },
+            { id: '03', slug: 'saocarlos', cidade: 'São Carlos', batalha: 'Hip-hop Salva' },
+            { id: '04', slug: 'bauru', cidade: 'Bauru', batalha: 'Batalha dos 13' },
+            { id: '05', slug: 'riopreto', cidade: 'SJ do Rio Preto', batalha: 'Batalha do Braile' },
+            { id: '06', slug: 'franca', cidade: 'Franca', batalha: 'Batalha dos Nômades' },
+            { id: '07', slug: 'campinas', cidade: 'Campinas', batalha: 'Batalha do Cálice' }
         ];
 
         const classificados = [
-            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030' },
-            { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030' },
-            { nome: 'REZENDE', poloSlug: 'ribeirao', batId: 'BAT018' },
-            { nome: 'HAIKI', poloSlug: 'ribeirao', batId: 'BAT018' },
-            { nome: 'PDG', poloSlug: 'araraquara', batId: 'BAT026' },
-            { nome: 'VALUSTRE', poloSlug: 'araraquara', batId: 'BAT011' },
-            { nome: 'LARIÊ', poloSlug: 'araraquara', batId: 'BAT011' },
-            { nome: 'NARDEX', poloSlug: 'saocarlos', batId: 'BAT023' },
-            { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023' },
-            { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008' },
-            { nome: 'NOISY', poloSlug: 'saocarlos', batId: 'BAT008' },
-            { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT020' },
-            { nome: 'SWART', poloSlug: 'saocarlos', batId: 'BAT020' }
+            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016' },
+            { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'oreiudodorap_' },
+            { nome: 'REZENDE', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'rezendeemici' },
+            { nome: 'HAIKI', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'mc_haiki' },
+            { nome: 'PDG', poloSlug: 'araraquara', batId: 'BAT026', insta: 'piordageracao' },
+            { nome: 'VALUSTRE', poloSlug: 'araraquara', batId: 'BAT011', insta: '_valustre' },
+            { nome: 'LARIÊ', poloSlug: 'araraquara', batId: 'BAT011', insta: 'larie.prod' },
+            { nome: 'NARDEX', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'nardex_mc' },
+            { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023', insta: 'gabizinha_mc' },
+            { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'ms_rima' },
+            { nome: 'NOISY', poloSlug: 'saocarlos', batId: 'BAT008', insta: 'noisyemici' },
+            { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT010', insta: '_jotace016' },
+            { nome: 'SWART', poloSlug: 'saocarlos', batId: 'BAT010', insta: 'swart_mc' }
         ];
 
         function renderizarPolos() {
             const container = document.getElementById('lista-polos');
             container.innerHTML = polos.map(p => `
                 <div class="polo-card" id="polo-${p.slug}" onclick="filtrarPorPolo('${p.slug}')">
-                    <span class="polo-numero">${p.id}</span>
                     <h3 class="polo-cidade">${p.cidade}</h3>
                     <span class="polo-batalha">${p.batalha}</span>
-                    <span class="polo-data">📅 ${p.data}</span>
                 </div>
             `).join('');
         }
@@ -183,8 +179,6 @@
         function renderizarClassificados(lista = classificados, nomePolo = "GERAIS") {
             const container = document.getElementById('lista-classificados');
             const titulo = document.getElementById('vagas-titulo');
-            
-            // Ordena os nomes em ordem alfabética para facilitar a busca
             const listaOrdenada = [...lista].sort((a, b) => a.nome.localeCompare(b.nome));
 
             titulo.innerHTML = `CLASSIFICADOS: <span style="color: var(--cor-primaria);">${nomePolo}</span> ${nomePolo !== "GERAIS" ? '<button class="btn-reset" onclick="resetarFiltro()">Voltar</button>' : ''}`;
@@ -192,30 +186,63 @@
             container.innerHTML = listaOrdenada.map(mc => {
                 const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
                 const nomeBat = batInfo ? batInfo.nome : "Batalha Local";
-                
+                const nomeArq = mc.nome.toLowerCase();
+                const linkInsta = mc.insta ? `https://instagram.com/${mc.insta}` : '#';
+                const poloInfo = polos.find(p => p.slug === mc.poloSlug);
+
                 return `
-                    <div class="card-mc-no-photo">
-                        <span class="mc-nome">${mc.nome}</span>
-                        <div class="mc-batalha-tag">
-                            <span class="batalha-nome-mini">${nomeBat}</span>
+                    <div class="card-mc">
+                        <div class="mc-foto-container" onclick="window.open('${linkInsta}', '_blank')">
+                            <img src="img/${nomeArq}.jpg" class="mc-foto" id="img-${mc.nome}" onerror="tentarPng(this, '${nomeArq}')">
+                            <div class="mc-insta-overlay"><i class="fab fa-instagram"></i></div>
                         </div>
+                        <div class="mc-info">
+                            <h3 class="mc-nome">${mc.nome}</h3>
+                            <div class="mc-batalha-tag"><span class="batalha-nome-mini">${nomeBat}</span></div>
+                        </div>
+                        <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${poloInfo.cidade}')">
+                            <i class="fas fa-camera"></i> Card Stories
+                        </button>
                     </div>
                 `;
             }).join('');
         }
 
+        function tentarPng(img, nome) {
+            if (img.src.includes('.jpg')) { img.src = `img/${nome}.png`; } 
+            else { img.src = 'img/default-mc.jpg'; img.onerror = null; }
+        }
+
         function filtrarPorPolo(slug) {
             document.querySelectorAll('.polo-card').forEach(c => c.classList.remove('active'));
-            document.getElementById(`polo-${slug}`).classList.add('active');
+            if(document.getElementById(`polo-${slug}`)) document.getElementById(`polo-${slug}`).classList.add('active');
             const filtrados = classificados.filter(mc => mc.poloSlug === slug);
             const poloInfo = polos.find(p => p.slug === slug);
             renderizarClassificados(filtrados, poloInfo.cidade.toUpperCase());
-            document.getElementById('vagas-titulo').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function resetarFiltro() {
             document.querySelectorAll('.polo-card').forEach(c => c.classList.remove('active'));
             renderizarClassificados();
+        }
+
+        async function baixarArte(nome, cidade) {
+            document.getElementById('st-mc-nome').innerText = nome;
+            document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
+            document.getElementById('st-img').src = document.getElementById(`img-${nome}`).src;
+
+            setTimeout(() => {
+                html2canvas(document.getElementById('stories-template'), { 
+                    scale: 1, 
+                    useCORS: true,
+                    logging: false 
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `Coalizao016-${nome}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            }, 300);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
