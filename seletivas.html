@@ -13,6 +13,7 @@
     <style>
         :root {
             --cor-primaria: #f39c12; 
+            --cor-finalista: #ffd700; 
             --bg-dark: #0a0a0a; 
             --bg-nav: #000000; 
             --bg-card: #151515;
@@ -49,7 +50,7 @@
         .secao-titulo { font-family: var(--fonte-titulo); font-size: 2rem; text-transform: uppercase; margin-bottom: 30px; border-left: 6px solid var(--cor-primaria); padding-left: 15px; }
 
         /* --- GRID POLOS --- */
-        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 60px; }
+        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 60px; }
         .polo-card { background: var(--bg-card); padding: 20px; border-radius: 8px; border: 1px solid #222; transition: 0.3s; cursor: pointer; }
         .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; }
         .polo-cidade { font-family: var(--fonte-titulo); font-size: 1.4rem; text-transform: uppercase; margin: 0; }
@@ -59,6 +60,18 @@
         .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
         .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
         .card-mc:hover { border-color: var(--cor-primaria); transform: translateY(-5px); }
+
+        /* --- ESTILOS FINALISTAS --- */
+        .card-mc.card-finalista {
+            border: 2px solid var(--cor-finalista);
+            box-shadow: 0 0 10px rgba(255, 214, 0, 0.2);
+        }
+        .card-finalista .mc-batalha-tag {
+            background: var(--cor-finalista);
+            color: #000;
+            border: none;
+            font-weight: 900;
+        }
 
         .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #222; position: relative; cursor: pointer; }
         .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.4s; }
@@ -85,7 +98,7 @@
 
         .btn-reset { background: transparent; border: 1px solid #333; color: #666; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; margin-left: 10px; }
 
-        /* --- STORIES TEMPLATE (OCULTO NO FUNDO) --- */
+        /* --- STORIES TEMPLATE --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; width: 1080px; height: 1920px;
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
@@ -132,11 +145,12 @@
     </nav>
 
     <header class="header-seletivas">
-        <h1 class="titulo-pagina">SELETIVAS <span style="color: var(--cor-primaria);">REGIONAIS</span></h1>
+        <h1 class="titulo-pagina">LIGA <span style="color: var(--cor-primaria);">CAIPIRA</span></h1>
     </header>
 
     <div class="container">
-        <h2 class="secao-titulo">ESCOLHA UM POLO</h2>
+        
+        <h2 class="secao-titulo">FILTRAR POR POLO</h2>
         <div class="grid-polos" id="lista-polos"></div>
 
         <h2 class="secao-titulo" id="vagas-titulo">CLASSIFICADOS GERAIS <button class="btn-reset" onclick="resetarFiltro()">Ver Todos</button></h2>
@@ -174,7 +188,9 @@
         ];
 
         const classificados = [
-            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016', genero: 'F' },
+            { nome: 'TYRANO', poloSlug: 'ribeirao', insta: 'tyranoofc', finalista: true },
+            { nome: 'BUBBA', poloSlug: 'ribeirao', insta: 'bubbassalto', finalista: true },
+            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'jm.almeida016' },
             { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030', insta: 'oreiudodorap_' },
             { nome: 'REZENDE', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'rezendeemici' },
             { nome: 'HAIKI', poloSlug: 'ribeirao', batId: 'BAT018', insta: 'mc_haiki' },
@@ -202,29 +218,40 @@
         function renderizarClassificados(lista = classificados, nomePolo = "GERAIS") {
             const container = document.getElementById('lista-classificados');
             const titulo = document.getElementById('vagas-titulo');
-            const listaOrdenada = [...lista].sort((a, b) => a.nome.localeCompare(b.nome));
+            
+            // Prioriza finalistas no topo, depois alfabético
+            const listaOrdenada = [...lista].sort((a, b) => {
+                if (a.finalista && !b.finalista) return -1;
+                if (!a.finalista && b.finalista) return 1;
+                return a.nome.localeCompare(b.nome);
+            });
 
             titulo.innerHTML = `CLASSIFICADOS: <span style="color: var(--cor-primaria);">${nomePolo}</span> ${nomePolo !== "GERAIS" ? '<button class="btn-reset" onclick="resetarFiltro()">Voltar</button>' : ''}`;
 
             container.innerHTML = listaOrdenada.map(mc => {
-                const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
-                const nomeBat = batInfo ? batInfo.nome : "Batalha Local";
+                // Aqui está a mágica: Busca o nome da batalha se NÃO for finalista
+                let textoExibicao = "FINALISTA LIGA";
+                if (!mc.finalista) {
+                    const batInfo = (typeof Batalhas !== 'undefined') ? Batalhas.find(b => b.codigo === mc.batId) : null;
+                    textoExibicao = batInfo ? batInfo.nome : "Batalha Local";
+                }
+
                 const nomeArq = mc.nome.toLowerCase();
                 const linkInsta = mc.insta ? `https://instagram.com/${mc.insta}` : '#';
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
 
                 return `
-                    <div class="card-mc">
+                    <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
                         <div class="mc-foto-container" onclick="window.open('${linkInsta}', '_blank')">
                             <img src="img/${nomeArq}.jpg" class="mc-foto" id="img-${mc.nome}" onerror="tentarPng(this, '${nomeArq}')">
                             <div class="mc-insta-overlay"><i class="fab fa-instagram"></i></div>
                         </div>
                         <div class="mc-info">
                             <h3 class="mc-nome">${mc.nome}</h3>
-                            <div class="mc-batalha-tag"><span class="batalha-nome-mini">${nomeBat}</span></div>
+                            <div class="mc-batalha-tag"><span>${textoExibicao}</span></div>
                         </div>
-                        <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${poloInfo.cidade}', '${mc.genero || 'M'}')">
-                            <i class="fas fa-camera"></i> Gerar Card
+                        <button class="btn-card-download" onclick="baixarArte('${mc.nome}', '${poloInfo ? poloInfo.cidade : 'Caipira'}', '${mc.genero || 'M'}', ${mc.finalista || false})">
+                            <i class="fas ${mc.finalista ? 'fa-crown' : 'fa-camera'}"></i> ${mc.finalista ? 'Card Finalista' : 'Gerar Card'}
                         </button>
                     </div>
                 `;
@@ -232,12 +259,8 @@
         }
 
         function tentarPng(img, nome) {
-            if (img.src.includes('.jpg')) { 
-                img.src = `img/${nome}.png`; 
-            } else { 
-                img.src = 'img/default-mc.jpg'; 
-                img.onerror = null; 
-            }
+            if (img.src.includes('.jpg')) { img.src = `img/${nome}.png`; } 
+            else { img.src = 'img/default-mc.jpg'; img.onerror = null; }
         }
 
         function filtrarPorPolo(slug) {
@@ -253,15 +276,22 @@
             renderizarClassificados();
         }
 
-        // --- FUNÇÃO "FORCE" PARA INSTAGRAM ---
-        async function baixarArte(nome, cidade, genero) {
+        async function baixarArte(nome, cidade, genero, ehFinalista) {
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CRIANDO...';
 
             document.getElementById('st-mc-nome').innerText = nome;
             document.getElementById('st-polo-nome').innerText = `POLO ${cidade.toUpperCase()}`;
-            document.getElementById('st-tag-text').innerText = (genero === 'F') ? 'CLASSIFICADA' : 'CLASSIFICADO';
+            
+            const tagStories = document.getElementById('st-tag-text');
+            if (ehFinalista) {
+                tagStories.innerText = "FINALISTA LIGA";
+                tagStories.style.background = "#ffd700";
+            } else {
+                tagStories.innerText = (genero === 'F') ? 'CLASSIFICADA' : 'CLASSIFICADO';
+                tagStories.style.background = "#fff";
+            }
             
             const imgMC = document.getElementById(`img-${nome}`);
             const stImg = document.getElementById('st-img');
@@ -270,42 +300,19 @@
             stImg.onload = async () => {
                 try {
                     const canvas = await html2canvas(document.getElementById('stories-template'), {
-                        scale: 2,
-                        useCORS: true,
-                        backgroundColor: "#000000"
+                        scale: 2, useCORS: true, backgroundColor: "#000000"
                     });
-
                     const imageData = canvas.toDataURL("image/png");
-
-                    // TELA CHEIA PARA SALVAMENTO FORÇADO
                     const divFull = document.createElement('div');
-                    divFull.id = "insta-fix-overlay";
-                    divFull.style = `
-                        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-                        background: #000; z-index: 999999; display: flex; 
-                        flex-direction: column; align-items: center; justify-content: center;
-                    `;
-
+                    divFull.style = `position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center;`;
                     divFull.innerHTML = `
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 20px; background: rgba(243, 156, 18, 0.9); color: #000; text-align: center; font-weight: bold; font-family: sans-serif; z-index: 101;">
-                            SEGURE NA FOTO PARA SALVAR NO CELULAR
-                        </div>
-                        <button id="close-fix" style="position: absolute; bottom: 30px; background: #fff; color: #000; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; z-index: 102; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">VOLTAR AO SITE</button>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; padding: 20px; background: rgba(243, 156, 18, 0.9); color: #000; text-align: center; font-weight: bold; font-family: sans-serif; z-index: 101;">SEGURE NA FOTO PARA SALVAR</div>
+                        <button id="close-fix" style="position: absolute; bottom: 30px; background: #fff; color: #000; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; z-index: 102; cursor: pointer;">VOLTAR</button>
                         <img src="${imageData}" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 100;">
                     `;
-
                     document.body.appendChild(divFull);
-
-                    document.getElementById('close-fix').onclick = () => {
-                        document.body.removeChild(divFull);
-                        btn.innerHTML = originalText;
-                    };
-
-                } catch (err) {
-                    console.error(err);
-                    alert("Erro ao gerar card. Tente tirar um print da tela!");
-                    btn.innerHTML = originalText;
-                }
+                    document.getElementById('close-fix').onclick = () => { document.body.removeChild(divFull); btn.innerHTML = originalText; };
+                } catch (err) { alert("Erro ao gerar card."); btn.innerHTML = originalText; }
             };
         }
 
