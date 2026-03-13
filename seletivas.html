@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Classificados | Coalizão 016 & Liga Caipira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,95 +23,103 @@
         }
 
         body { 
-            margin: 0; 
-            font-family: var(--fonte-principal); 
-            background: var(--bg-dark); 
-            color: var(--text-light); 
+            margin: 0; font-family: var(--fonte-principal); background: var(--bg-dark); color: var(--text-light); 
             overflow-x: hidden;
         }
 
-        /* --- MENU PADRONIZADO (COALIZÃO 016) --- */
+        /* --- MENU PADRONIZADO --- */
         nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; font-family: var(--fonte-titulo); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; font-family: var(--fonte-titulo); }
         .nav-logo span { color: var(--cor-primaria); }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
+        .menu-toggle { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .nav-content { display: flex; align-items: center; gap: 25px; }
+        .nav-links { display: flex; gap: 18px; }
+        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+        .nav-link.active { color: var(--cor-primaria) !important; }
+        .nav-social-group { display: flex; gap: 15px; border-left: 1px solid #333; padding-left: 20px; }
+        .nav-social { color: #fff; font-size: 1.1rem; }
 
-        .nav-social-group { display: flex; gap: 15px; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px; }
-        .nav-social { color: #fff; font-size: 1.1rem; transition: 0.3s; }
-        .nav-social:hover { color: var(--cor-primaria); }
-
-        /* --- CONTEÚDO CLASSIFICADOS --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-        .secao-titulo { font-family: var(--fonte-titulo); font-size: 3rem; text-transform: uppercase; margin-bottom: 30px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; color: #fff; }
+        /* --- CONTEÚDO --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 30px 15px; }
+        .secao-titulo { font-family: var(--fonte-titulo); font-size: clamp(2rem, 8vw, 3rem); text-transform: uppercase; margin: 40px 0 20px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; color: #fff; }
 
         /* FILTRO DE POLOS */
-        .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 50px; }
+        .grid-polos { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
         .polo-card { 
-            background: var(--bg-card); padding: 15px; border-radius: 6px; border: 1px solid #222; 
-            cursor: pointer; text-align: center; transition: 0.3s; font-size: 1.1rem; text-transform: uppercase;
-            font-family: 'Bebas Neue'; letter-spacing: 1px;
+            background: var(--bg-card); padding: 12px 20px; border-radius: 6px; border: 1px solid #222; 
+            cursor: pointer; text-align: center; transition: 0.3s; font-size: 1rem; text-transform: uppercase;
+            font-family: 'Bebas Neue'; letter-spacing: 1px; flex: 1; min-width: 120px;
         }
         .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; color: var(--cor-primaria); }
 
-        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        /* GRID MCS */
+        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
         
         /* CARD MC */
-        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; display: flex; flex-direction: column; transition: 0.4s; }
-        .card-mc:hover { transform: translateY(-5px); border-color: var(--cor-primaria); }
+        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; }
         .card-finalista { border: 2px solid var(--ouro) !important; box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
 
-        /* FOTO E ÍCONE INSTA */
+        /* FOTO COM EFEITO PRETO E BRANCO */
         .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; position: relative; }
-        .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
-        .card-mc:hover .mc-foto { filter: grayscale(0%); }
+        .mc-foto { 
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: grayscale(100%); /* Efeito P&B */
+            transition: 0.5s ease; 
+        }
+        .card-mc:hover .mc-foto, .card-mc:active .mc-foto { 
+            filter: grayscale(0%); /* Colorido no Hover/Toque */
+            transform: scale(1.05);
+        }
 
         .link-insta-foto {
-            position: absolute; top: 12px; right: 12px;
-            background: rgba(0,0,0,0.6); width: 34px; height: 34px;
+            position: absolute; top: 10px; right: 10px;
+            background: rgba(0,0,0,0.7); width: 34px; height: 34px;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; border: 1px solid rgba(255,255,255,0.3);
-            color: #fff; z-index: 20; transition: 0.3s;
+            border-radius: 50%; color: #fff; z-index: 10; transition: 0.3s;
         }
-        .link-insta-foto:hover { background: var(--cor-primaria); color: #000; transform: scale(1.15); border-color: #000; }
-        .link-insta-foto svg { width: 20px; height: 20px; fill: currentColor; }
+        .link-insta-foto:hover { background: var(--cor-primaria); color: #000; }
 
-        /* INFO MC */
         .mc-info { padding: 15px; text-align: center; flex-grow: 1; }
-        .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.3rem; text-transform: uppercase; margin: 0; color: #fff; }
-        .mc-batalha-site { font-size: 0.9rem; color: var(--cor-primaria); display: block; margin-top: 5px; font-family: 'Bebas Neue'; }
+        .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.1rem; text-transform: uppercase; margin: 0; color: #fff; }
+        .mc-batalha-site { font-size: 0.85rem; color: var(--cor-primaria); display: block; margin-top: 5px; font-family: 'Bebas Neue'; }
 
         .btn-gerar { 
-            background: #222; color: #fff; border: none; padding: 15px; 
-            font-family: 'Bebas Neue'; font-size: 1.1rem; cursor: pointer; border-top: 1px solid #333;
+            background: #1a1a1a; color: #fff; border: none; padding: 15px; 
+            font-family: 'Bebas Neue'; font-size: 1.1rem; cursor: pointer; border-top: 1px solid #222;
         }
         .btn-gerar:hover { background: var(--cor-primaria); color: #000; }
 
-        /* --- TEMPLATE STORIES (1080x1920) --- */
+        /* --- TEMPLATE STORIES (OFF-SCREEN) --- */
         #stories-template {
-            position: absolute; left: -9999px; top: -9999px; 
+            position: fixed; left: -2000px; top: 0; 
             width: 1080px; height: 1920px;
-            background: #000; overflow: hidden; display: flex; flex-direction: column; align-items: center;
+            background: #000; display: flex; flex-direction: column; align-items: center;
         }
-        /* ... Estilos do Stories permanecem os mesmos dos envios anteriores ... */
         .st-bg-title { position: absolute; top: 250px; font-family: 'Archivo Black'; font-size: 160px; color: rgba(255,255,255,0.04); text-align: center; line-height: 0.8; z-index: 1; text-transform: uppercase; }
         .st-logos { position: absolute; top: 80px; width: 900px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-        .st-logos img[src*="coalizao"] { height: 120px; }
-        .st-logos img[src*="logo-liga"] { height: 230px; }
+        .st-logos img { height: 120px; }
         .st-photo-wrapper { position: relative; margin-top: 320px; z-index: 5; width: 940px; height: 1000px; border: 8px solid #fff; }
         .st-photo { width: 100%; height: 100%; object-fit: cover; }
         .st-photo-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, #000 100%); z-index: 6; }
         .st-battle-badge { position: absolute; top: -45px; right: -45px; background: var(--cor-primaria); color: #000; font-size: 50px; padding: 15px 45px; transform: rotate(4deg); font-family: 'Archivo Black'; z-index: 11; box-shadow: 15px 15px 0 #000; text-transform: uppercase; }
-        .st-mc-name { position: absolute; bottom: 370px; font-family: 'Bangers', cursive; font-size: 280px; color: #fff; text-transform: uppercase; z-index: 15; letter-spacing: 5px; line-height: 0.8; text-shadow: 12px 12px 0px var(--cor-primaria); text-align: center; width: 100%; }
+        .st-mc-name { position: absolute; bottom: 370px; font-family: 'Bangers', cursive; font-size: 260px; color: #fff; text-transform: uppercase; z-index: 15; letter-spacing: 5px; line-height: 0.8; text-shadow: 12px 12px 0px var(--cor-primaria); text-align: center; width: 100%; }
         .st-footer { position: absolute; bottom: 80px; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10; }
         .st-polo-tag { font-size: 55px; letter-spacing: 8px; color: rgba(255,255,255,0.7); margin-bottom: 15px; border-top: 4px solid var(--cor-primaria); padding-top: 10px; text-transform: uppercase; }
         .st-motto { font-family: 'UnifrakturMaguntia'; font-size: 95px; color: var(--cor-primaria); text-align: center; width: 100%; }
+        
         .finalista-mode .st-mc-name { text-shadow: 12px 12px 0px var(--ouro); }
-        .finalista-mode .st-battle-badge { background: var(--ouro); box-shadow: 15px 15px 0 #b39700; }
-        .finalista-mode .st-motto { color: var(--ouro); }
-        .finalista-mode .st-polo-tag { border-color: var(--ouro); color: var(--ouro); }
+        .finalista-mode .st-battle-badge { background: var(--ouro); }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 992px) {
+            .menu-toggle { display: block; }
+            .nav-content { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #000; padding: 30px 0; border-bottom: 3px solid var(--cor-primaria); }
+            .nav-content.active { display: flex; }
+            .nav-links { flex-direction: column; width: 100%; text-align: center; gap: 20px; }
+            .nav-social-group { border-left: none; margin-top: 20px; border-top: 1px solid #222; width: 80%; justify-content: center; padding-top: 20px; }
+            .grid-classificados { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -119,16 +127,18 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo"><a href="index.html">COALIZÃO<span>016</span></a></div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Início</a>
-                <a href="batalhas.html" class="nav-link">Batalhas</a>
-                <a href="seletivas.html" class="nav-link active">Seletivas</a>
-                <a href="regulamento.html" class="nav-link">Regulamento</a>
-                <a href="mapaindex.html" class="nav-link">Mapa</a>
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <div class="nav-content" id="nav-content">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Início</a>
+                    <a href="batalhas.html" class="nav-link">Batalhas</a>
+                    <a href="seletivas.html" class="nav-link active">Seletivas</a>
+                    <a href="regulamento.html" class="nav-link">Regulamento</a>
+                    <a href="mapaindex.html" class="nav-link">Mapa</a>
+                </div>
                 <div class="nav-social-group">
                     <a href="https://instagram.com/coalizao016" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a>
                     <a href="https://youtube.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-youtube"></i></a>
-                    <a href="https://tiktok.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
@@ -145,8 +155,8 @@
     <div id="stories-template">
         <div class="st-bg-title">LIGA CAIPIRA<br>FREESTYLE</div>
         <div class="st-logos">
-            <img src="img/coalizao.png">
-            <img src="img/logo-liga.png">
+            <img src="img/coalizao.png" onerror="this.src='https://via.placeholder.com/120?text=COALIZAO'">
+            <img src="img/logo-liga.png" onerror="this.src='https://via.placeholder.com/120?text=LIGA'">
         </div>
         <div class="st-photo-wrapper">
             <div id="st-badge" class="st-battle-badge">BATALHA</div>
@@ -173,28 +183,31 @@
         const classificados = [
             { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
             { nome: 'BUBBA', insta: 'bubbassalto', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
-            { nome: 'JM', insta: 'jm.almeida016', poloSlug: 'ribeirao', batId: 'BAT030', genero: 'F' },
+            { nome: 'JM', insta: 'jm.almeida016', poloSlug: 'ribeirao', batId: 'BAT030' },
             { nome: 'JIMMY', insta: 'oreiudodorap_', poloSlug: 'ribeirao', batId: 'BAT030' },
             { nome: 'REZENDE', insta: 'rezendeemici', poloSlug: 'ribeirao', batId: 'BAT018' },
             { nome: 'HAIKI', insta: 'mc_haiki', poloSlug: 'ribeirao', batId: 'BAT018' },
             { nome: 'PDG', insta: 'piordageracao', poloSlug: 'araraquara', batId: 'BAT026' },
             { nome: 'VALUSTRE', insta: '_valustre', poloSlug: 'araraquara', batId: 'BAT011' },
-            { nome: 'LARIÊ', insta: 'larie.prod', poloSlug: 'araraquara', batId: 'BAT011', genero: 'F' },
+            { nome: 'LARIÊ', insta: 'larie.prod', poloSlug: 'araraquara', batId: 'BAT011' },
             { nome: 'NARDEX', insta: 'nardex.emici', poloSlug: 'saocarlos', batId: 'BAT023' },
-            { nome: 'GABIZINHA', insta: 'aninha_gabi2013', poloSlug: 'saocarlos', batId: 'BAT023', genero: 'F' },
+            { nome: 'GABIZINHA', insta: 'aninha_gabi2013', poloSlug: 'saocarlos', batId: 'BAT023' },
             { nome: 'MS', insta: 'miguelricardosecundino', poloSlug: 'saocarlos', batId: 'BAT008' },
             { nome: 'NOISY', insta: 'noisyemici', poloSlug: 'saocarlos', batId: 'BAT008' },
             { nome: 'JOTACE', insta: '_jotace016', poloSlug: 'saocarlos', batId: 'BAT020' },
             { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' }
         ];
 
-        const instaIcon = `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`;
+        // Toggle Menu Mobile
+        document.getElementById('mobile-menu').onclick = () => {
+            document.getElementById('nav-content').classList.toggle('active');
+        };
 
         function renderizarSite(lista = classificados) {
             const container = document.getElementById('lista-mcs');
             container.innerHTML = lista.map(mc => {
                 const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
-                const textoSelo = mc.finalista ? "FINALISTA" : (batInfo ? batInfo.nome : "Batalha Local");
+                const textoSelo = mc.finalista ? "FINALISTA" : (batInfo ? batInfo.nome : "CLASSIFICADO");
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
                 const nomeL = mc.nome.toLowerCase();
                 const localCard = mc.finalista ? "LIGA CAIPIRA | FINAL" : `POLO ${poloInfo.cidade.toUpperCase()}`;
@@ -202,49 +215,56 @@
                 return `
                     <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
                         <div class="mc-foto-container">
-                            <a href="https://instagram.com/${mc.insta}" target="_blank" class="link-insta-foto" title="Ver Instagram de ${mc.nome}">
-                                ${instaIcon}
+                            <a href="https://instagram.com/${mc.insta}" target="_blank" class="link-insta-foto">
+                                <i class="fab fa-instagram"></i>
                             </a>
                             <img src="img/${nomeL}.jpg" class="mc-foto" id="img-${mc.nome}" 
-                                 onerror="if(this.src.includes('.jpg')){this.src='img/${nomeL}.png'}else{this.src='img/default.jpg'}">
+                                 onerror="if(this.src.includes('.jpg')){this.src='img/${nomeL}.png'}else{this.src='https://via.placeholder.com/300x300/151515/ffffff?text=${mc.nome}'}">
                         </div>
                         <div class="mc-info">
                             <h3 class="mc-nome-site">${mc.nome}</h3>
                             <span class="mc-batalha-site">${textoSelo}</span>
                         </div>
-                        <button class="btn-gerar" onclick="gerarCard('${mc.nome}', '${textoSelo}', '${localCard}', ${mc.finalista || false})">GERAR CARD POST</button>
+                        <button class="btn-gerar" onclick="gerarCard('${mc.nome}', '${textoSelo}', '${localCard}', ${mc.finalista || false})">GERAR POST</button>
                     </div>
                 `;
             }).join('');
         }
 
         async function gerarCard(nome, batalha, localInfo, ehFinalista) {
-            await document.fonts.ready;
             const template = document.getElementById('stories-template');
             const mainImg = document.getElementById('st-main-img');
+            const sourceImg = document.getElementById(`img-${nome}`);
+
             template.classList.toggle('finalista-mode', ehFinalista);
             document.getElementById('st-name').innerText = nome;
             document.getElementById('st-badge').innerText = batalha;
             document.getElementById('st-polo').innerText = localInfo;
-            mainImg.src = document.getElementById(`img-${nome}`).src;
+            
+            mainImg.src = sourceImg.src;
             
             mainImg.onload = async () => {
-                const canvas = await html2canvas(template, { scale: 1.5, useCORS: true, backgroundColor: '#000' });
-                const dataUrl = canvas.toDataURL("image/png");
-                const viewer = document.createElement('div');
-                viewer.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center;";
-                viewer.innerHTML = `
-                    <img src="${dataUrl}" style="height:85vh; border: 5px solid #333; border-radius:15px; box-shadow: 0 0 50px #000;">
-                    <p style="color:#fff; font-family:sans-serif; margin-top:15px; letter-spacing:1px;"><b>SEGURE NA IMAGEM PARA SALVAR</b></p>
-                    <button onclick="this.parentElement.remove()" style="margin-top:15px; padding:12px 40px; border-radius:30px; border:none; background:white; font-family:'Archivo Black'; cursor:pointer; text-transform:uppercase;">FECHAR</button>
-                `;
-                document.body.appendChild(viewer);
+                try {
+                    const canvas = await html2canvas(template, { scale: 1.2, useCORS: true, allowTaint: true });
+                    const dataUrl = canvas.toDataURL("image/png");
+                    
+                    const viewer = document.createElement('div');
+                    viewer.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px;";
+                    viewer.innerHTML = `
+                        <img src="${dataUrl}" style="max-height:80vh; width:auto; border-radius:10px; box-shadow: 0 0 40px #000;">
+                        <p style="color:#fff; margin:20px 0; font-family:sans-serif; text-align:center;"><b>SEGURE NA IMAGEM PARA SALVAR</b></p>
+                        <button onclick="this.parentElement.remove()" style="padding:15px 40px; border-radius:30px; border:none; background:var(--cor-primaria); color:#000; font-weight:bold; cursor:pointer; font-family:'Bebas Neue'; font-size:1.2rem;">VOLTAR</button>
+                    `;
+                    document.body.appendChild(viewer);
+                } catch(e) {
+                    alert("Erro ao gerar card. Tente usar o navegador Chrome.");
+                }
             };
         }
 
         function renderizarPolos() {
             const pContainer = document.getElementById('lista-polos');
-            pContainer.innerHTML = polos.map(p => `<div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>`).join('') + `<div class="polo-card" onclick="resetarFiltro(this)">VER TODOS</div>`;
+            pContainer.innerHTML = polos.map(p => `<div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>`).join('') + `<div class="polo-card active" onclick="resetarFiltro(this)">VER TODOS</div>`;
         }
 
         function filtrar(slug, elemento) {

@@ -2,12 +2,12 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Regulamento Oficial | Coalizão 016</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -23,80 +23,78 @@
         }
 
         body { 
-            margin: 0; 
-            font-family: var(--fonte-principal); 
-            background: var(--bg-dark); 
-            color: var(--text-light); 
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            margin: 0; font-family: var(--fonte-principal); background: var(--bg-dark); color: var(--text-light); 
+            line-height: 1.6; overflow-x: hidden;
         }
 
         /* --- MENU PADRONIZADO --- */
         nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; font-family: var(--fonte-titulo); }
         .nav-logo span { color: var(--cor-primaria); }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
+        
+        .menu-toggle { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .nav-content { display: flex; align-items: center; gap: 25px; }
+        .nav-links { display: flex; gap: 18px; }
+        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+        .nav-link.active { color: var(--cor-primaria) !important; }
 
-        .nav-social-group { display: flex; gap: 15px; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px; }
-        .nav-social { color: #fff; font-size: 1.1rem; transition: 0.3s; }
-        .nav-social:hover { color: var(--cor-primaria); }
+        .nav-social-group { display: flex; gap: 15px; border-left: 1px solid #333; padding-left: 20px; }
+        .nav-social { color: #fff; font-size: 1.1rem; }
 
-        /* --- HEADER (GRADIENTE NO LUGAR DA IMAGEM) --- */
+        /* --- HEADER --- */
         .header-regulamento {
-            padding: 100px 20px;
+            padding: 80px 20px;
             text-align: center;
             background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
             border-bottom: 5px solid var(--cor-primaria);
         }
+        .titulo-pagina { font-family: var(--fonte-titulo); font-size: clamp(2.5rem, 8vw, 4.5rem); text-transform: uppercase; margin: 0; line-height: 1; }
+        .subtitulo-pagina { color: var(--cor-primaria); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block; }
 
-        .titulo-pagina { font-family: var(--fonte-titulo); font-size: clamp(3rem, 8vw, 5rem); text-transform: uppercase; margin: 0; line-height: 1; }
-        .subtitulo-pagina { color: var(--cor-primaria); font-weight: 900; letter-spacing: 3px; text-transform: uppercase; font-size: 1rem; margin-bottom: 10px; display: block; }
+        /* --- CONTEÚDO (SISTEMA DE ACORDEÃO) --- */
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 15px; }
+        
+        .regra-item { background: var(--bg-card); border: 1px solid #222; border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: 0.3s; }
+        
+        .regra-header { 
+            padding: 20px; background: #111; display: flex; justify-content: space-between; align-items: center; 
+            cursor: pointer; user-select: none;
+        }
+        .regra-header h3 { 
+            margin: 0; font-family: 'Bebas Neue'; font-size: 1.5rem; letter-spacing: 1px; color: var(--cor-primaria);
+            display: flex; align-items: center; gap: 15px;
+        }
+        .regra-header h3 span { color: rgba(255,255,255,0.1); font-family: var(--fonte-titulo); font-size: 1.8rem; }
+        .regra-header i { transition: 0.3s; color: #444; }
 
-        /* --- CONTEÚDO --- */
-        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-        .regra-grid { display: grid; gap: 30px; }
-        .regra-box {
-            background: var(--bg-card);
-            padding: 35px;
-            border-radius: 12px;
-            border-left: 6px solid var(--cor-primaria);
+        .regra-content { 
+            max-height: 0; overflow: hidden; transition: all 0.4s ease-out; background: #151515;
+            padding: 0 20px; color: #ccc;
         }
 
-        .regra-box h3 {
-            font-family: var(--fonte-titulo);
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            margin-top: 0;
-            color: var(--cor-primaria);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        /* Estado Aberto */
+        .regra-item.active { border-color: var(--cor-primaria); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .regra-item.active .regra-content { max-height: 800px; padding: 20px; border-top: 1px solid #222; }
+        .regra-item.active .regra-header i { transform: rotate(180deg); color: var(--cor-primaria); }
 
-        .regra-box h3 span { color: rgba(255,255,255,0.1); font-size: 2.5rem; }
-        .regra-box p { color: #ccc; font-size: 1.05rem; }
-        .regra-box ul { padding-left: 20px; color: #ccc; }
-        .regra-box li { margin-bottom: 10px; }
+        /* Destaques dentro do texto */
+        .alerta-box { border-left: 4px solid var(--cor-alerta); padding: 10px 15px; background: rgba(231, 76, 60, 0.1); margin: 15px 0; border-radius: 0 8px 8px 0; color: #eee; }
+        .regra-content ul { padding-left: 20px; }
+        .regra-content li { margin-bottom: 8px; }
 
-        .regra-box.etica {
-            border-left-color: var(--cor-alerta);
-            background: linear-gradient(to right, rgba(231, 76, 60, 0.05), transparent);
-        }
-        .regra-box.etica h3 { color: var(--cor-alerta); }
+        footer { text-align: center; padding: 40px 20px; color: #444; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .footer-info {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid #222;
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
+        /* Responsividade Mobile */
+        @media (max-width: 992px) {
+            .menu-toggle { display: block; }
+            .nav-content { 
+                display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; 
+                background: #000; padding: 30px 0; border-bottom: 3px solid var(--cor-primaria); 
+            }
+            .nav-content.active { display: flex; }
+            .nav-links { flex-direction: column; text-align: center; gap: 20px; }
+            .nav-social-group { border-left: none; margin-top: 20px; border-top: 1px solid #333; width: 80%; justify-content: center; padding-top: 20px; }
         }
     </style>
 </head>
@@ -105,12 +103,15 @@
     <nav>
         <div class="nav-container">
             <div class="nav-logo"><a href="index.html">COALIZÃO<span>016</span></a></div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Início</a>
-                <a href="batalhas.html" class="nav-link">Batalhas</a>
-                <a href="seletivas.html" class="nav-link">Seletivas</a>
-                <a href="regulamento.html" class="nav-link active">Regulamento</a>
-                <a href="mapaindex.html" class="nav-link">Mapa</a>
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <div class="nav-content" id="nav-content">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Início</a>
+                    <a href="batalhas.html" class="nav-link">Batalhas</a>
+                    <a href="seletivas.html" class="nav-link">Seletivas</a>
+                    <a href="regulamento.html" class="nav-link active">Regulamento</a>
+                    <a href="mapaindex.html" class="nav-link">Mapa</a>
+                </div>
                 <div class="nav-social-group">
                     <a href="https://instagram.com/coalizao016" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a>
                     <a href="https://youtube.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-youtube"></i></a>
@@ -121,69 +122,123 @@
     </nav>
 
     <header class="header-regulamento">
-        <span class="subtitulo-pagina">Normas e Condutas</span>
+        <span class="subtitulo-pagina">Normas e Condutas 2026</span>
         <h1 class="titulo-pagina">REGULAMENTO <span style="color: var(--cor-primaria);">OFICIAL</span></h1>
     </header>
 
     <div class="container">
         
-        <div class="regra-grid">
-            
-            <div class="regra-box">
+        <div class="regra-item">
+            <div class="regra-header">
                 <h3><span>01</span> ETAPAS BASE</h3>
-                <p>As batalhas oficialmente inscritas até o dia <strong>23/02/2026</strong> têm o direito garantido de realizar uma <strong>Etapa Base</strong> para classificação para as seletivas oficiais.</p>
-                <p><strong>Vagas:</strong> A quantidade de classificados em cada etapa base será <strong>previamente informada</strong> pela diretoria da Liga à organização de cada batalha parceira, seguindo o planejamento técnico de cada polo.</p>
+                <i class="fas fa-chevron-down"></i>
             </div>
+            <div class="regra-content">
+                <p>As batalhas oficialmente inscritas até o dia <strong>23/02/2026</strong> têm o direito garantido de realizar uma <strong>Etapa Base</strong> para classificação para as seletivas oficiais.</p>
+                
+                <p><strong>Vagas:</strong> Cada batalha tem direito a <strong>01 (uma) vaga</strong> classificatória por padrão. Caso a batalha tenha direito a mais de uma vaga, essa quantidade extra será previamente informada pela diretoria da Liga à organização da batalha parceira.</p>
+                
+                <p style="font-size: 0.85rem; color: var(--cor-primaria);"><em>*Na ausência de comunicado oficial sobre vagas extras, prevalece o direito a apenas uma vaga.</em></p>
+            </div>
+        </div>
 
-            <div class="regra-box">
+        <div class="regra-item">
+            <div class="regra-header">
                 <h3><span>02</span> SELETIVAS OFICIAIS (POLOS)</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="regra-content">
                 <p>O campeonato está estruturado em <strong>7 Polos Regionais</strong>. Cada seletiva oficial de polo deve seguir os seguintes critérios:</p>
                 <ul>
-                    <li>Presença obrigatória de, no mínimo, <strong>dois jurados</strong> qualificados.</li>
-                    <li>Cada seletiva garante <strong>duas vagas diretas</strong> para a Grande Final da Liga Caipira.</li>
+                    <li>Presença obrigatória de, no mínimo, dois jurados qualificados.</li>
+                    <li>Cada seletiva garante <strong>duas vagas diretas</strong> para a Grande Final da Liga Caipira em Ribeirão Preto.</li>
                 </ul>
             </div>
+        </div>
 
-            <div class="regra-box">
+        <div class="regra-item">
+            <div class="regra-header">
                 <h3><span>03</span> EXCLUSIVIDADE DE VAGA</h3>
-                <p>Para garantir a rotatividade e oportunidade a novos artistas, MC's que já conquistaram sua classificação <strong>estão proibidos</strong> de participar de qualquer outra etapa da liga.</p>
-                <p style="color: var(--cor-alerta); font-weight: bold;">Caso o MC classificado participe de outra etapa, ele perderá automaticamente a vaga já conquistada.</p>
+                <i class="fas fa-chevron-down"></i>
             </div>
+            <div class="regra-content">
+                <p>Para garantir a rotatividade, MC's que já conquistaram sua classificação <strong>estão proibidos</strong> de participar de qualquer outra etapa da liga.</p>
+                <div class="alerta-box">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>PUNIÇÃO:</strong> Caso o MC classificado participe de outra etapa, ele perderá automaticamente a vaga já conquistada.
+                </div>
+            </div>
+        </div>
 
-            <div class="regra-box">
+        <div class="regra-item">
+            <div class="regra-header">
                 <h3><span>04</span> AUSÊNCIAS E SUBSTITUIÇÕES</h3>
-                <p>O não comparecimento do MC classificado na Seletiva Oficial de seu respectivo polo resultará em <strong>desclassificação imediata</strong>, independente de aviso prévio.</p>
-                <p><strong>Sorteio de Vaga:</strong> Em caso de ausência, a vaga será destinada a sorteio no local do evento, com prioridade absoluta para a <strong>diversidade de gênero</strong> ou <strong>pessoas com deficiência (PCD)</strong>.</p>
+                <i class="fas fa-chevron-down"></i>
             </div>
-
-            <div class="regra-box etica">
-                <h3><span>05</span> ÉTICA E TOLERÂNCIA ZERO</h3>
-                <p>A Coalizão 016 preza pela integridade de todos os participantes. Não será tolerado:</p>
-                <ul>
-                    <li>Qualquer tipo de <strong>discurso de ódio ou preconceito</strong> contra minorias (racismo, homofobia, transfobia, xenofobia, etc).</li>
-                    <li>Qualquer forma de <strong>abuso ou assédio</strong> moral ou sexual.</li>
-                </ul>
-                <p>Artistas ou colaboradores envolvidos em denúncias dessa natureza serão <strong>afastados permanentemente</strong> da liga e perderão todos os direitos e vagas conquistados.</p>
+            <div class="regra-content">
+                <p>O não comparecimento na Seletiva Oficial resultará em desclassificação imediata.</p>
+                <p><strong>Sorteio:</strong> Em caso de ausência, a vaga será destinada a sorteio no local, com prioridade absoluta para a <strong>diversidade de gênero</strong> ou <strong>pessoas com deficiência (PCD)</strong>.</p>
             </div>
-
-            <div class="regra-box">
-                <h3><span>06</span> A GRANDE FINAL (RIBEIRÃO PRETO)</h3>
-                <p>Os finalistas terão os seguintes direitos garantidos pela organização:</p>
-                <ul>
-                    <li><strong>Transporte:</strong> Pagamento do valor da passagem para Ribeirão Preto (mediante contrato assinado).</li>
-                    <li><strong>Backstage:</strong> Acesso à área restrita com alimentação e bebidas não alcoólicas.</li>
-                    <li><strong>Acompanhante:</strong> Direito a um acompanhante com acesso ao backstage durante o evento.</li>
-                    <li><strong>Cachê:</strong> Cachê e premiação garantida para todos os classificados, de acordo com a fase alcançada.</li>
-                </ul>
-            </div>
-
         </div>
 
-        <div class="footer-info">
+        <div class="regra-item" style="border-left-color: var(--cor-alerta);">
+            <div class="regra-header">
+                <h3 style="color: var(--cor-alerta);"><span>05</span> ÉTICA E TOLERÂNCIA ZERO</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="regra-content">
+                <p>A Coalizão 016 preza pela integridade. Não será tolerado:</p>
+                <ul>
+                    <li>Discurso de ódio ou preconceito (racismo, homofobia, transfobia, xenofobia, etc).</li>
+                    <li>Qualquer forma de abuso ou assédio moral ou sexual.</li>
+                </ul>
+                <div class="alerta-box" style="border-color: var(--cor-alerta);">
+                    Envolvidos em denúncias comprovadas serão <strong>afastados permanentemente</strong> da liga e perderão todos os direitos conquistados.
+                </div>
+            </div>
+        </div>
+
+        <div class="regra-item">
+            <div class="regra-header">
+                <h3><span>06</span> A GRANDE FINAL</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="regra-content">
+                <p>Os finalistas terão os seguintes direitos garantidos:</p>
+                <ul>
+                    <li><strong>Transporte:</strong> Ajuda de custo para deslocamento até Ribeirão Preto.</li>
+                    <li><strong>Backstage:</strong> Acesso à área restrita com alimentação e acompanhante.</li>
+                    <li><strong>Cachê:</strong> Premiação garantida para todos os classificados de acordo com a fase alcançada.</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
             <p>&copy; 2026 Coalizão 016 - A Voz do Interior Paulista</p>
-            <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Este regulamento pode sofrer atualizações conforme necessidade da diretoria.</p>
-        </div>
+            <p style="font-size: 0.65rem; color: #333;">As normas podem ser alteradas pela diretoria sem aviso prévio conforme necessidade técnica.</p>
+        </footer>
     </div>
 
+    <script>
+        // Menu Mobile Toggle
+        const menuBtn = document.getElementById('mobile-menu');
+        const navContent = document.getElementById('nav-content');
+        menuBtn.onclick = () => {
+            navContent.classList.toggle('active');
+            menuBtn.querySelector('i').classList.toggle('fa-bars');
+            menuBtn.querySelector('i').classList.toggle('fa-times');
+        };
+
+        // Lógica do Acordeão
+        const itensRegra = document.querySelectorAll('.regra-item');
+        itensRegra.forEach(item => {
+            const header = item.querySelector('.regra-header');
+            header.onclick = () => {
+                // Remove a classe active de todos para fechar os outros ao abrir um (opcional)
+                // itensRegra.forEach(i => { if(i !== item) i.classList.remove('active'); });
+                
+                item.classList.toggle('active');
+            };
+        });
+    </script>
 </body>
 </html>
