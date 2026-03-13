@@ -6,8 +6,7 @@
     <title>Classificados | Coalizão 016 & Liga Caipira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&family=Inter:ital,wght@1,900&display=swap" rel="stylesheet">    
     <style>
         :root {
             --ouro: #ffd700;
@@ -76,8 +75,36 @@
             display: flex; justify-content: space-between; align-items: center; z-index: 10;
         }
         .st-logos img[src*="coalizao"] { height: 110px; width: auto; }
-        .st-logos img[src*="logo-liga"] { height: 140px; width: auto; }
+/* Aumento da Logo da Liga para maior legibilidade */
+.st-logos img[src*="logo-liga"] { 
+    height: 180px; /* Aumentei de 140px para 180px */
+    width: auto; 
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
+}
 
+/* Nova Estética do Nome do MC */
+.st-mc-name {
+    position: absolute; 
+    bottom: 380px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-style: italic; /* O itálico dá dinamismo */
+    font-size: 210px; 
+    color: #fff;
+    text-transform: uppercase; 
+    z-index: 15;
+    letter-spacing: -8px; 
+    line-height: 0.8;
+    /* Sombra mais nítida e profunda */
+    text-shadow: 12px 12px 0px var(--laranja), 24px 24px 0px rgba(0,0,0,0.5);
+    text-align: center; 
+    width: 100%;
+}
+
+/* Ajuste do nome para o modo finalista */
+.finalista-mode .st-mc-name { 
+    text-shadow: 12px 12px 0px var(--ouro), 24px 24px 0px rgba(0,0,0,0.5); 
+}
         .st-photo-wrapper {
             position: relative; margin-top: 280px; z-index: 5;
             width: 920px; height: 1000px;
