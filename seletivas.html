@@ -6,7 +6,7 @@
     <title>Classificados | Coalizão 016 & Liga Caipira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&family=Inter:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&family=Bangers&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* --- INTERFACE DO SITE --- */
+        /* --- UI DO SITE --- */
         nav { background: #000; padding: 25px 0; border-bottom: 2px solid #1a1a1a; text-align: center; }
         .nav-logo { font-size: 2.2rem; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 3px; }
         .nav-logo span { color: var(--laranja); }
@@ -56,7 +56,7 @@
         }
         .btn-gerar:hover { background: var(--laranja); color: #000; }
 
-        /* --- TEMPLATE DO CARD STORY (1080x1920) --- */
+        /* --- TEMPLATE STORIES (1080x1920) --- */
         #stories-template {
             position: absolute; left: -9999px; top: -9999px; 
             width: 1080px; height: 1920px;
@@ -73,15 +73,13 @@
             position: absolute; top: 80px; width: 900px;
             display: flex; justify-content: space-between; align-items: center; z-index: 10;
         }
-        
-        /* Ajuste fino das logos no card */
-        .st-logos img[src*="coalizao"] { height: 110px; width: auto; }
-        .st-logos img[src*="logo-liga"] { height: 210px; width: auto; filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)); }
+        .st-logos img[src*="coalizao"] { height: 120px; width: auto; }
+        .st-logos img[src*="logo-liga"] { height: 230px; width: auto; filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)); }
 
         .st-photo-wrapper {
-            position: relative; margin-top: 280px; z-index: 5;
-            width: 920px; height: 1000px;
-            border: 6px solid #fff;
+            position: relative; margin-top: 320px; z-index: 5;
+            width: 940px; height: 1000px;
+            border: 8px solid #fff;
         }
         .st-photo { width: 100%; height: 100%; object-fit: cover; }
         .st-photo-gradient {
@@ -91,28 +89,26 @@
         }
 
         .st-battle-badge {
-            position: absolute; top: -40px; right: -40px;
+            position: absolute; top: -45px; right: -45px;
             background: var(--laranja); color: #000;
-            font-size: 48px; padding: 15px 40px;
+            font-size: 50px; padding: 15px 45px;
             transform: rotate(4deg); font-family: 'Archivo Black';
             z-index: 11; box-shadow: 15px 15px 0 #000;
             text-transform: uppercase;
         }
 
-        /* NOME DO MC - FONTE INTER 900 ITALIC */
+        /* NOME DO MC - FONTE BANGERS (ESTILO HQ/STREET) */
         .st-mc-name {
             position: absolute; 
             bottom: 370px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 900;
-            font-style: italic;
-            font-size: 220px; 
+            font-family: 'Bangers', cursive;
+            font-size: 280px; /* Bem maior para compensar a fonte */
             color: #fff;
             text-transform: uppercase; 
             z-index: 15;
-            letter-spacing: -10px; 
+            letter-spacing: 5px; 
             line-height: 0.8;
-            text-shadow: 15px 15px 0px var(--laranja), 30px 30px 0px rgba(0,0,0,0.5);
+            text-shadow: 12px 12px 0px var(--laranja);
             text-align: center; 
             width: 100%;
         }
@@ -123,16 +119,15 @@
         }
         .st-polo-tag {
             font-size: 55px; letter-spacing: 8px; color: rgba(255,255,255,0.7);
-            margin-bottom: 15px; border-top: 3px solid var(--laranja); padding-top: 10px;
+            margin-bottom: 15px; border-top: 4px solid var(--laranja); padding-top: 10px;
             text-transform: uppercase;
         }
         .st-motto {
-            font-family: 'UnifrakturMaguntia'; font-size: 90px; color: var(--laranja);
+            font-family: 'UnifrakturMaguntia'; font-size: 95px; color: var(--laranja);
             text-align: center; width: 100%;
         }
 
-        /* Estilos para modo Finalista */
-        .finalista-mode .st-mc-name { text-shadow: 15px 15px 0px var(--ouro), 30px 30px 0px rgba(0,0,0,0.5); }
+        .finalista-mode .st-mc-name { text-shadow: 12px 12px 0px var(--ouro); }
         .finalista-mode .st-battle-badge { background: var(--ouro); }
         .finalista-mode .st-motto { color: var(--ouro); }
         .finalista-mode .st-polo-tag { border-color: var(--ouro); }
@@ -140,14 +135,11 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">COALIZÃO <span>016</span></div>
-    </nav>
+    <nav><div class="nav-logo">COALIZÃO <span>016</span></div></nav>
 
     <div class="container">
         <h2 class="secao-titulo">POLOS</h2>
         <div class="grid-polos" id="lista-polos"></div>
-
         <h2 class="secao-titulo">CLASSIFICADOS</h2>
         <div class="grid-classificados" id="lista-mcs"></div>
     </div>
@@ -226,6 +218,9 @@
         }
 
         async function gerarCard(nome, batalha, cidade, ehFinalista) {
+            // Aguarda as fontes carregarem para não dar erro no print
+            await document.fonts.ready;
+
             const template = document.getElementById('stories-template');
             const mainImg = document.getElementById('st-main-img');
             
@@ -237,12 +232,7 @@
             mainImg.src = document.getElementById(`img-${nome}`).src;
             
             mainImg.onload = async () => {
-                const canvas = await html2canvas(template, { 
-                    scale: 1.5, 
-                    useCORS: true, 
-                    backgroundColor: '#000' 
-                });
-                
+                const canvas = await html2canvas(template, { scale: 1.5, useCORS: true, backgroundColor: '#000' });
                 const dataUrl = canvas.toDataURL("image/png");
                 const viewer = document.createElement('div');
                 viewer.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center;";
@@ -257,9 +247,7 @@
 
         function renderizarPolos() {
             const pContainer = document.getElementById('lista-polos');
-            pContainer.innerHTML = polos.map(p => `
-                <div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>
-            `).join('') + `<div class="polo-card" onclick="resetarFiltro(this)">VER TODOS</div>`;
+            pContainer.innerHTML = polos.map(p => `<div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>`).join('') + `<div class="polo-card" onclick="resetarFiltro(this)">VER TODOS</div>`;
         }
 
         function filtrar(slug, elemento) {
