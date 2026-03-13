@@ -79,7 +79,6 @@
         }
         .btn-gerar:hover { background: var(--cor-primaria); color: #000; }
 
-        /* FAIXA FINALISTA DIAGONAL */
         .faixa-finalista {
             position: absolute; bottom: 25px; right: -50px; width: 180px;
             background: linear-gradient(45deg, var(--ouro-dark), var(--ouro), var(--ouro-dark));
@@ -89,19 +88,31 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.5); pointer-events: none;
         }
 
-        /* TEMPLATE STORIES (OFF-SCREEN) */
-        #stories-template { position: fixed; left: -2000px; top: 0; width: 1080px; height: 1920px; background: #000; display: flex; flex-direction: column; align-items: center; }
-        .st-bg-title { position: absolute; top: 250px; font-family: 'Archivo Black'; font-size: 160px; color: rgba(255,255,255,0.04); text-align: center; line-height: 0.8; z-index: 1; text-transform: uppercase; }
-        .st-logos { position: absolute; top: 80px; width: 900px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-        .st-logos img { height: 120px; }
-        .st-photo-wrapper { position: relative; margin-top: 320px; z-index: 5; width: 940px; height: 1000px; border: 8px solid #fff; }
+        /* --- TEMPLATE STORIES (AJUSTADO) --- */
+        #stories-template { 
+            position: fixed; left: -2000px; top: 0; width: 1080px; height: 1920px; 
+            background: #000; display: flex; flex-direction: column; align-items: center; 
+        }
+        .st-bg-title { position: absolute; top: 300px; font-family: 'Archivo Black'; font-size: 160px; color: rgba(255,255,255,0.04); text-align: center; line-height: 0.8; z-index: 1; text-transform: uppercase; }
+        
+        /* Logos Maiores e Melhor Espaçadas */
+        .st-logos { 
+            position: absolute; top: 70px; width: 950px; 
+            display: flex; justify-content: space-around; align-items: center; z-index: 10; 
+        }
+        .st-logos img { height: 190px; width: auto; object-fit: contain; }
+
+        /* Wrapper da Foto com mais espaço no topo */
+        .st-photo-wrapper { position: relative; margin-top: 400px; z-index: 5; width: 940px; height: 1000px; border: 8px solid #fff; }
         .st-photo { width: 100%; height: 100%; object-fit: cover; }
         .st-photo-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, #000 100%); z-index: 6; }
+        
         .st-battle-badge { position: absolute; top: -45px; right: -45px; background: var(--cor-primaria); color: #000; font-size: 50px; padding: 15px 45px; transform: rotate(4deg); font-family: 'Archivo Black'; z-index: 11; box-shadow: 15px 15px 0 #000; text-transform: uppercase; }
         .st-mc-name { position: absolute; bottom: 370px; font-family: 'Bangers', cursive; font-size: 260px; color: #fff; text-transform: uppercase; z-index: 15; letter-spacing: 5px; line-height: 0.8; text-shadow: 12px 12px 0px var(--cor-primaria); text-align: center; width: 100%; }
         .st-footer { position: absolute; bottom: 80px; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10; }
         .st-polo-tag { font-size: 55px; letter-spacing: 8px; color: rgba(255,255,255,0.7); margin-bottom: 15px; border-top: 4px solid var(--cor-primaria); padding-top: 10px; text-transform: uppercase; }
         .st-motto { font-family: 'UnifrakturMaguntia'; font-size: 95px; color: var(--cor-primaria); text-align: center; width: 100%; }
+        
         .finalista-mode .st-mc-name { text-shadow: 12px 12px 0px var(--ouro); }
         .finalista-mode .st-battle-badge { background: var(--ouro); }
 
@@ -148,8 +159,8 @@
     <div id="stories-template">
         <div class="st-bg-title">LIGA CAIPIRA<br>FREESTYLE</div>
         <div class="st-logos">
-            <img src="img/coalizao.png" onerror="this.src='https://via.placeholder.com/120?text=COALIZAO'">
-            <img src="img/logo-liga.png" onerror="this.src='https://via.placeholder.com/120?text=LIGA'">
+            <img src="img/coalizao.png" onerror="this.src='https://via.placeholder.com/180x180?text=COALIZAO'">
+            <img src="img/logo-liga.png" onerror="this.src='https://via.placeholder.com/180x180?text=LIGA'">
         </div>
         <div class="st-photo-wrapper">
             <div id="st-badge" class="st-battle-badge">BATALHA</div>
@@ -167,7 +178,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
-        // 1. POLOS ATUALIZADOS E ORDENADOS ALFABETICAMENTE
         const polos = [
             { slug: 'araraquara', cidade: 'Araraquara' },
             { slug: 'bauru', cidade: 'Bauru' },
@@ -204,8 +214,6 @@
 
         function renderizarSite(lista = classificados) {
             const container = document.getElementById('lista-mcs');
-            
-            // 2. ORDENAÇÃO: FINALISTAS PRIMEIRO, DEPOIS ORDEM ALFABÉTICA GERAL
             const listaOrdenada = [...lista].sort((a, b) => {
                 if (a.finalista && !b.finalista) return -1;
                 if (!a.finalista && b.finalista) return 1;
@@ -218,15 +226,12 @@
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
                 const nomeL = mc.nome.toLowerCase();
                 const localCard = mc.finalista ? "LIGA CAIPIRA | FINAL" : `POLO ${poloInfo.cidade.toUpperCase()}`;
-                const faixaHTML = mc.finalista ? `<div class="faixa-finalista">Finalista</div>` : '';
-
+                
                 return `
                     <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
-                        ${faixaHTML}
+                        ${mc.finalista ? `<div class="faixa-finalista">Finalista</div>` : ''}
                         <div class="mc-foto-container">
-                            <a href="https://instagram.com/${mc.insta}" target="_blank" class="link-insta-foto">
-                                <i class="fab fa-instagram"></i>
-                            </a>
+                            <a href="https://instagram.com/${mc.insta}" target="_blank" class="link-insta-foto"><i class="fab fa-instagram"></i></a>
                             <img src="img/${nomeL}.jpg" class="mc-foto" id="img-${mc.nome}" 
                                  onerror="if(this.src.includes('.jpg')){this.src='img/${nomeL}.png'}else{this.src='https://via.placeholder.com/300x300/151515/ffffff?text=${mc.nome}'}">
                         </div>
@@ -244,11 +249,13 @@
             const template = document.getElementById('stories-template');
             const mainImg = document.getElementById('st-main-img');
             const sourceImg = document.getElementById(`img-${nome}`);
+            
             template.classList.toggle('finalista-mode', ehFinalista);
             document.getElementById('st-name').innerText = nome;
             document.getElementById('st-badge').innerText = batalha;
             document.getElementById('st-polo').innerText = localInfo;
             mainImg.src = sourceImg.src;
+
             mainImg.onload = async () => {
                 try {
                     const canvas = await html2canvas(template, { scale: 1.2, useCORS: true, allowTaint: true });
@@ -267,7 +274,6 @@
 
         function renderizarPolos() {
             const pContainer = document.getElementById('lista-polos');
-            // ADICIONA "VER TODOS" AO FINAL OU INÍCIO CONFORME PREFERIR
             const htmlPolos = polos.map(p => `<div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>`).join('');
             pContainer.innerHTML = htmlPolos + `<div class="polo-card active" onclick="resetarFiltro(this)">VER TODOS</div>`;
         }
