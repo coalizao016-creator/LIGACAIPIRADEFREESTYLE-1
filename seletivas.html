@@ -38,18 +38,30 @@
         .polo-card:hover, .polo-card.active { border-color: var(--laranja); background: #1a1a1a; color: var(--laranja); }
 
         .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        
+        /* CARD MC */
         .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; display: flex; flex-direction: column; transition: 0.4s; }
         .card-mc:hover { transform: translateY(-5px); border-color: var(--laranja); }
-        
-        /* Destaque para o card do site dos finalistas */
         .card-finalista { border: 2px solid var(--ouro) !important; box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
 
-        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; }
+        /* FOTO E ÍCONE INSTA */
+        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; position: relative; }
         .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
         .card-mc:hover .mc-foto { filter: grayscale(0%); }
 
+        .link-insta-foto {
+            position: absolute; top: 12px; right: 12px;
+            background: rgba(0,0,0,0.6); width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.3);
+            color: #fff; z-index: 20; transition: 0.3s;
+        }
+        .link-insta-foto:hover { background: var(--laranja); color: #000; transform: scale(1.15); border-color: #000; }
+        .link-insta-foto svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* INFO MC */
         .mc-info { padding: 15px; text-align: center; flex-grow: 1; }
-        .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.4rem; text-transform: uppercase; margin: 0; }
+        .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.3rem; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: -0.5px; }
         .mc-batalha-site { font-size: 0.9rem; color: var(--laranja); display: block; margin-top: 5px; }
 
         .btn-gerar { 
@@ -100,18 +112,12 @@
         }
 
         .st-mc-name {
-            position: absolute; 
-            bottom: 370px;
-            font-family: 'Bangers', cursive;
-            font-size: 280px; 
-            color: #fff;
-            text-transform: uppercase; 
-            z-index: 15;
-            letter-spacing: 5px; 
-            line-height: 0.8;
+            position: absolute; bottom: 370px;
+            font-family: 'Bangers', cursive; font-size: 280px; 
+            color: #fff; text-transform: uppercase; z-index: 15;
+            letter-spacing: 5px; line-height: 0.8;
             text-shadow: 12px 12px 0px var(--laranja);
-            text-align: center; 
-            width: 100%;
+            text-align: center; width: 100%;
         }
 
         .st-footer {
@@ -128,14 +134,10 @@
             text-align: center; width: 100%;
         }
 
-        /* MODO FINALISTA - ESTÉTICA LENDÁRIA */
         .finalista-mode .st-mc-name { text-shadow: 12px 12px 0px var(--ouro); }
-        .finalista-mode .st-battle-badge { 
-            background: var(--ouro); 
-            box-shadow: 15px 15px 0 #b39700; /* Sombra dourada escura */
-        }
+        .finalista-mode .st-battle-badge { background: var(--ouro); box-shadow: 15px 15px 0 #b39700; }
         .finalista-mode .st-motto { color: var(--ouro); }
-        .finalista-mode .st-polo-tag { border-color: var(--ouro); }
+        .finalista-mode .st-polo-tag { border-color: var(--ouro); color: var(--ouro); }
     </style>
 </head>
 <body>
@@ -174,44 +176,44 @@
         const polos = [
             { slug: 'ribeirao', cidade: 'Ribeirão Preto' },
             { slug: 'araraquara', cidade: 'Araraquara' },
-            { slug: 'saocarlos', cidade: 'São Carlos' },
-            { slug: 'bauru', cidade: 'Bauru' },
-            { slug: 'riopreto', cidade: 'SJ do Rio Preto' },
-            { slug: 'franca', cidade: 'Franca' },
-            { slug: 'campinas', cidade: 'Campinas' }
+            { slug: 'saocarlos', cidade: 'São Carlos' }
         ];
 
         const classificados = [
-            { nome: 'TYRANO', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
-            { nome: 'BUBBA', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
-            { nome: 'JM', poloSlug: 'ribeirao', batId: 'BAT030' },
-            { nome: 'JIMMY', poloSlug: 'ribeirao', batId: 'BAT030' },
-            { nome: 'REZENDE', poloSlug: 'ribeirao', batId: 'BAT018' },
-            { nome: 'HAIKI', poloSlug: 'ribeirao', batId: 'BAT018' },
-            { nome: 'PDG', poloSlug: 'araraquara', batId: 'BAT026' },
-            { nome: 'VALUSTRE', poloSlug: 'araraquara', batId: 'BAT011' },
-            { nome: 'LARIÊ', poloSlug: 'araraquara', batId: 'BAT011' },
-            { nome: 'NARDEX', poloSlug: 'saocarlos', batId: 'BAT023' },
-            { nome: 'GABIZINHA', poloSlug: 'saocarlos', batId: 'BAT023' },
-            { nome: 'MS', poloSlug: 'saocarlos', batId: 'BAT008' },
-            { nome: 'NOISY', poloSlug: 'saocarlos', batId: 'BAT008' },
-            { nome: 'JOTACE', poloSlug: 'saocarlos', batId: 'BAT020' },
-            { nome: 'SWART', poloSlug: 'saocarlos', batId: 'BAT020' }
+            { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
+            { nome: 'BUBBA', insta: 'bubbassalto', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
+            { nome: 'JM', insta: 'jm.almeida016', poloSlug: 'ribeirao', batId: 'BAT030', genero: 'F' },
+            { nome: 'JIMMY', insta: 'oreiudodorap_', poloSlug: 'ribeirao', batId: 'BAT030' },
+            { nome: 'REZENDE', insta: 'rezendeemici', poloSlug: 'ribeirao', batId: 'BAT018' },
+            { nome: 'HAIKI', insta: 'mc_haiki', poloSlug: 'ribeirao', batId: 'BAT018' },
+            { nome: 'PDG', insta: 'piordageracao', poloSlug: 'araraquara', batId: 'BAT026' },
+            { nome: 'VALUSTRE', insta: '_valustre', poloSlug: 'araraquara', batId: 'BAT011' },
+            { nome: 'LARIÊ', insta: 'larie.prod', poloSlug: 'araraquara', batId: 'BAT011', genero: 'F' },
+            { nome: 'NARDEX', insta: 'nardex.emici', poloSlug: 'saocarlos', batId: 'BAT023' },
+            { nome: 'GABIZINHA', insta: 'aninha_gabi2013', poloSlug: 'saocarlos', batId: 'BAT023', genero: 'F' },
+            { nome: 'MS', insta: 'miguelricardosecundino', poloSlug: 'saocarlos', batId: 'BAT008' },
+            { nome: 'NOISY', insta: 'noisyemici', poloSlug: 'saocarlos', batId: 'BAT008' },
+            { nome: 'JOTACE', insta: '_jotace016', poloSlug: 'saocarlos', batId: 'BAT020' },
+            { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' }
         ];
+
+        const instaIcon = `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`;
 
         function renderizarSite(lista = classificados) {
             const container = document.getElementById('lista-mcs');
             container.innerHTML = lista.map(mc => {
                 const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
-                
-                // Correção aqui: Se for finalista, o texto da batalha vira "FINALISTA"
                 const textoSelo = mc.finalista ? "FINALISTA" : (batInfo ? batInfo.nome : "Batalha Local");
-                
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
                 const nomeL = mc.nome.toLowerCase();
+                const localCard = mc.finalista ? "LIGA CAIPIRA | FINAL" : `POLO ${poloInfo.cidade.toUpperCase()}`;
+
                 return `
                     <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
                         <div class="mc-foto-container">
+                            <a href="https://instagram.com/${mc.insta}" target="_blank" class="link-insta-foto" title="Ver Instagram de ${mc.nome}">
+                                ${instaIcon}
+                            </a>
                             <img src="img/${nomeL}.jpg" class="mc-foto" id="img-${mc.nome}" 
                                  onerror="if(this.src.includes('.jpg')){this.src='img/${nomeL}.png'}else{this.src='img/default.jpg'}">
                         </div>
@@ -219,22 +221,20 @@
                             <h3 class="mc-nome-site">${mc.nome}</h3>
                             <span class="mc-batalha-site">${textoSelo}</span>
                         </div>
-                        <button class="btn-gerar" onclick="gerarCard('${mc.nome}', '${textoSelo}', '${poloInfo ? poloInfo.cidade : 'Regional'}', ${mc.finalista || false})">GERAR CARD POST</button>
+                        <button class="btn-gerar" onclick="gerarCard('${mc.nome}', '${textoSelo}', '${localCard}', ${mc.finalista || false})">GERAR CARD POST</button>
                     </div>
                 `;
             }).join('');
         }
 
-        async function gerarCard(nome, batalha, cidade, ehFinalista) {
+        async function gerarCard(nome, batalha, localInfo, ehFinalista) {
             await document.fonts.ready;
             const template = document.getElementById('stories-template');
             const mainImg = document.getElementById('st-main-img');
-            
             template.classList.toggle('finalista-mode', ehFinalista);
             document.getElementById('st-name').innerText = nome;
             document.getElementById('st-badge').innerText = batalha;
-            document.getElementById('st-polo').innerText = `POLO ${cidade.toUpperCase()}`;
-            
+            document.getElementById('st-polo').innerText = localInfo;
             mainImg.src = document.getElementById(`img-${nome}`).src;
             
             mainImg.onload = async () => {
