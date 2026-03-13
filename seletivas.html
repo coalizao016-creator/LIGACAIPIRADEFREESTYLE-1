@@ -6,42 +6,61 @@
     <title>Classificados | Coalizão 016 & Liga Caipira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&family=Bangers&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
+            --cor-primaria: #f39c12; 
             --ouro: #ffd700;
-            --laranja: #f39c12;
-            --dark: #050505;
-            --bg-card: #111111;
+            --bg-dark: #0a0a0a; 
+            --bg-nav: #000000; 
+            --bg-card: #151515;
+            --text-light: #ffffff;
+            --fonte-principal: 'Roboto', sans-serif;
+            --fonte-titulo: 'Anton', sans-serif;
         }
 
         body { 
-            background: var(--dark); color: #fff; 
-            font-family: 'Bebas Neue', sans-serif; margin: 0; 
+            margin: 0; 
+            font-family: var(--fonte-principal); 
+            background: var(--bg-dark); 
+            color: var(--text-light); 
             overflow-x: hidden;
         }
 
-        /* --- UI DO SITE --- */
-        nav { background: #000; padding: 25px 0; border-bottom: 2px solid #1a1a1a; text-align: center; }
-        .nav-logo { font-size: 2.2rem; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 3px; }
-        .nav-logo span { color: var(--laranja); }
+        /* --- MENU PADRONIZADO (COALIZÃO 016) --- */
+        nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; font-family: var(--fonte-titulo); }
+        .nav-logo span { color: var(--cor-primaria); }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
 
+        .nav-social-group { display: flex; gap: 15px; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px; }
+        .nav-social { color: #fff; font-size: 1.1rem; transition: 0.3s; }
+        .nav-social:hover { color: var(--cor-primaria); }
+
+        /* --- CONTEÚDO CLASSIFICADOS --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-        .secao-titulo { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 30px; border-left: 8px solid var(--laranja); padding-left: 15px; color: #fff; }
+        .secao-titulo { font-family: var(--fonte-titulo); font-size: 3rem; text-transform: uppercase; margin-bottom: 30px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; color: #fff; }
 
+        /* FILTRO DE POLOS */
         .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 50px; }
         .polo-card { 
             background: var(--bg-card); padding: 15px; border-radius: 6px; border: 1px solid #222; 
             cursor: pointer; text-align: center; transition: 0.3s; font-size: 1.1rem; text-transform: uppercase;
+            font-family: 'Bebas Neue'; letter-spacing: 1px;
         }
-        .polo-card:hover, .polo-card.active { border-color: var(--laranja); background: #1a1a1a; color: var(--laranja); }
+        .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; color: var(--cor-primaria); }
 
         .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
         
         /* CARD MC */
         .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; display: flex; flex-direction: column; transition: 0.4s; }
-        .card-mc:hover { transform: translateY(-5px); border-color: var(--laranja); }
+        .card-mc:hover { transform: translateY(-5px); border-color: var(--cor-primaria); }
         .card-finalista { border: 2px solid var(--ouro) !important; box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
 
         /* FOTO E ÍCONE INSTA */
@@ -56,19 +75,19 @@
             border-radius: 50%; border: 1px solid rgba(255,255,255,0.3);
             color: #fff; z-index: 20; transition: 0.3s;
         }
-        .link-insta-foto:hover { background: var(--laranja); color: #000; transform: scale(1.15); border-color: #000; }
+        .link-insta-foto:hover { background: var(--cor-primaria); color: #000; transform: scale(1.15); border-color: #000; }
         .link-insta-foto svg { width: 20px; height: 20px; fill: currentColor; }
 
         /* INFO MC */
         .mc-info { padding: 15px; text-align: center; flex-grow: 1; }
-        .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.3rem; text-transform: uppercase; margin: 0; color: #fff; letter-spacing: -0.5px; }
-        .mc-batalha-site { font-size: 0.9rem; color: var(--laranja); display: block; margin-top: 5px; }
+        .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.3rem; text-transform: uppercase; margin: 0; color: #fff; }
+        .mc-batalha-site { font-size: 0.9rem; color: var(--cor-primaria); display: block; margin-top: 5px; font-family: 'Bebas Neue'; }
 
         .btn-gerar { 
             background: #222; color: #fff; border: none; padding: 15px; 
             font-family: 'Bebas Neue'; font-size: 1.1rem; cursor: pointer; border-top: 1px solid #333;
         }
-        .btn-gerar:hover { background: var(--laranja); color: #000; }
+        .btn-gerar:hover { background: var(--cor-primaria); color: #000; }
 
         /* --- TEMPLATE STORIES (1080x1920) --- */
         #stories-template {
@@ -76,64 +95,19 @@
             width: 1080px; height: 1920px;
             background: #000; overflow: hidden; display: flex; flex-direction: column; align-items: center;
         }
-
-        .st-bg-title {
-            position: absolute; top: 250px; font-family: 'Archivo Black';
-            font-size: 160px; color: rgba(255,255,255,0.04);
-            text-align: center; line-height: 0.8; z-index: 1; text-transform: uppercase;
-        }
-
-        .st-logos {
-            position: absolute; top: 80px; width: 900px;
-            display: flex; justify-content: space-between; align-items: center; z-index: 10;
-        }
-        .st-logos img[src*="coalizao"] { height: 120px; width: auto; }
-        .st-logos img[src*="logo-liga"] { height: 230px; width: auto; filter: drop-shadow(0 0 20px rgba(0,0,0,0.8)); }
-
-        .st-photo-wrapper {
-            position: relative; margin-top: 320px; z-index: 5;
-            width: 940px; height: 1000px;
-            border: 8px solid #fff;
-        }
+        /* ... Estilos do Stories permanecem os mesmos dos envios anteriores ... */
+        .st-bg-title { position: absolute; top: 250px; font-family: 'Archivo Black'; font-size: 160px; color: rgba(255,255,255,0.04); text-align: center; line-height: 0.8; z-index: 1; text-transform: uppercase; }
+        .st-logos { position: absolute; top: 80px; width: 900px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+        .st-logos img[src*="coalizao"] { height: 120px; }
+        .st-logos img[src*="logo-liga"] { height: 230px; }
+        .st-photo-wrapper { position: relative; margin-top: 320px; z-index: 5; width: 940px; height: 1000px; border: 8px solid #fff; }
         .st-photo { width: 100%; height: 100%; object-fit: cover; }
-        .st-photo-gradient {
-            position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 40%, #000 100%);
-            z-index: 6;
-        }
-
-        .st-battle-badge {
-            position: absolute; top: -45px; right: -45px;
-            background: var(--laranja); color: #000;
-            font-size: 50px; padding: 15px 45px;
-            transform: rotate(4deg); font-family: 'Archivo Black';
-            z-index: 11; box-shadow: 15px 15px 0 #000;
-            text-transform: uppercase;
-        }
-
-        .st-mc-name {
-            position: absolute; bottom: 370px;
-            font-family: 'Bangers', cursive; font-size: 280px; 
-            color: #fff; text-transform: uppercase; z-index: 15;
-            letter-spacing: 5px; line-height: 0.8;
-            text-shadow: 12px 12px 0px var(--laranja);
-            text-align: center; width: 100%;
-        }
-
-        .st-footer {
-            position: absolute; bottom: 80px; width: 100%;
-            display: flex; flex-direction: column; align-items: center; z-index: 10;
-        }
-        .st-polo-tag {
-            font-size: 55px; letter-spacing: 8px; color: rgba(255,255,255,0.7);
-            margin-bottom: 15px; border-top: 4px solid var(--laranja); padding-top: 10px;
-            text-transform: uppercase;
-        }
-        .st-motto {
-            font-family: 'UnifrakturMaguntia'; font-size: 95px; color: var(--laranja);
-            text-align: center; width: 100%;
-        }
-
+        .st-photo-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, #000 100%); z-index: 6; }
+        .st-battle-badge { position: absolute; top: -45px; right: -45px; background: var(--cor-primaria); color: #000; font-size: 50px; padding: 15px 45px; transform: rotate(4deg); font-family: 'Archivo Black'; z-index: 11; box-shadow: 15px 15px 0 #000; text-transform: uppercase; }
+        .st-mc-name { position: absolute; bottom: 370px; font-family: 'Bangers', cursive; font-size: 280px; color: #fff; text-transform: uppercase; z-index: 15; letter-spacing: 5px; line-height: 0.8; text-shadow: 12px 12px 0px var(--cor-primaria); text-align: center; width: 100%; }
+        .st-footer { position: absolute; bottom: 80px; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10; }
+        .st-polo-tag { font-size: 55px; letter-spacing: 8px; color: rgba(255,255,255,0.7); margin-bottom: 15px; border-top: 4px solid var(--cor-primaria); padding-top: 10px; text-transform: uppercase; }
+        .st-motto { font-family: 'UnifrakturMaguntia'; font-size: 95px; color: var(--cor-primaria); text-align: center; width: 100%; }
         .finalista-mode .st-mc-name { text-shadow: 12px 12px 0px var(--ouro); }
         .finalista-mode .st-battle-badge { background: var(--ouro); box-shadow: 15px 15px 0 #b39700; }
         .finalista-mode .st-motto { color: var(--ouro); }
@@ -142,11 +116,28 @@
 </head>
 <body>
 
-    <nav><div class="nav-logo">COALIZÃO <span>016</span></div></nav>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">COALIZÃO<span>016</span></a></div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="batalhas.html" class="nav-link">Batalhas</a>
+                <a href="seletivas.html" class="nav-link active">Seletivas</a>
+                <a href="regulamento.html" class="nav-link">Regulamento</a>
+                <a href="mapaindex.html" class="nav-link">Mapa</a>
+                <div class="nav-social-group">
+                    <a href="https://instagram.com/coalizao016" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-youtube"></i></a>
+                    <a href="https://tiktok.com/@Coalizao016" target="_blank" class="nav-social"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="container">
-        <h2 class="secao-titulo">POLOS</h2>
+        <h2 class="secao-titulo">POLOS REGIONAIS</h2>
         <div class="grid-polos" id="lista-polos"></div>
+        
         <h2 class="secao-titulo">CLASSIFICADOS</h2>
         <div class="grid-classificados" id="lista-mcs"></div>
     </div>

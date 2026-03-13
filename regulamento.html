@@ -40,13 +40,15 @@
         .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { color: var(--cor-primaria) !important; }
 
-        /* --- HEADER --- */
+        .nav-social-group { display: flex; gap: 15px; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px; }
+        .nav-social { color: #fff; font-size: 1.1rem; transition: 0.3s; }
+        .nav-social:hover { color: var(--cor-primaria); }
+
+        /* --- HEADER (GRADIENTE NO LUGAR DA IMAGEM) --- */
         .header-regulamento {
             padding: 100px 20px;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-position: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
             border-bottom: 5px solid var(--cor-primaria);
         }
 
@@ -55,15 +57,12 @@
 
         /* --- CONTEÚDO --- */
         .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-
         .regra-grid { display: grid; gap: 30px; }
-
         .regra-box {
             background: var(--bg-card);
             padding: 35px;
             border-radius: 12px;
             border-left: 6px solid var(--cor-primaria);
-            transition: 0.3s;
         }
 
         .regra-box h3 {
@@ -78,13 +77,10 @@
         }
 
         .regra-box h3 span { color: rgba(255,255,255,0.1); font-size: 2.5rem; }
-
         .regra-box p { color: #ccc; font-size: 1.05rem; }
-        
         .regra-box ul { padding-left: 20px; color: #ccc; }
         .regra-box li { margin-bottom: 10px; }
 
-        /* Estilo para a regra de Ética */
         .regra-box.etica {
             border-left-color: var(--cor-alerta);
             background: linear-gradient(to right, rgba(231, 76, 60, 0.05), transparent);
@@ -100,7 +96,7 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplificação para mobile */
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -113,7 +109,7 @@
                 <a href="index.html" class="nav-link">Início</a>
                 <a href="batalhas.html" class="nav-link">Batalhas</a>
                 <a href="seletivas.html" class="nav-link">Seletivas</a>
-                <a href="regulamento.html" class="nav-link">Regulamento</a>
+                <a href="regulamento.html" class="nav-link active">Regulamento</a>
                 <a href="mapaindex.html" class="nav-link">Mapa</a>
                 <div class="nav-social-group">
                     <a href="https://instagram.com/coalizao016" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a>
@@ -187,7 +183,6 @@
             <p>&copy; 2026 Coalizão 016 - A Voz do Interior Paulista</p>
             <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Este regulamento pode sofrer atualizações conforme necessidade da diretoria.</p>
         </div>
-
     </div>
 
 </body>
