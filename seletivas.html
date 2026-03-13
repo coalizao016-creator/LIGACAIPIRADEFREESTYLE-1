@@ -14,6 +14,7 @@
         :root {
             --cor-primaria: #f39c12; 
             --ouro: #ffd700;
+            --ouro-dark: #b89b00;
             --bg-dark: #0a0a0a; 
             --bg-nav: #000000; 
             --bg-card: #151515;
@@ -22,12 +23,9 @@
             --fonte-titulo: 'Anton', sans-serif;
         }
 
-        body { 
-            margin: 0; font-family: var(--fonte-principal); background: var(--bg-dark); color: var(--text-light); 
-            overflow-x: hidden;
-        }
+        body { margin: 0; font-family: var(--fonte-principal); background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
 
-        /* --- MENU PADRONIZADO --- */
+        /* --- MENU --- */
         nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; font-family: var(--fonte-titulo); }
@@ -44,33 +42,23 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 30px 15px; }
         .secao-titulo { font-family: var(--fonte-titulo); font-size: clamp(2rem, 8vw, 3rem); text-transform: uppercase; margin: 40px 0 20px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; color: #fff; }
 
-        /* FILTRO DE POLOS */
+        /* FILTROS */
         .grid-polos { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
         .polo-card { 
-            background: var(--bg-card); padding: 12px 20px; border-radius: 6px; border: 1px solid #222; 
-            cursor: pointer; text-align: center; transition: 0.3s; font-size: 1rem; text-transform: uppercase;
-            font-family: 'Bebas Neue'; letter-spacing: 1px; flex: 1; min-width: 120px;
+            background: var(--bg-card); padding: 10px 15px; border-radius: 6px; border: 1px solid #222; 
+            cursor: pointer; text-align: center; transition: 0.3s; font-size: 0.9rem; text-transform: uppercase;
+            font-family: 'Bebas Neue'; letter-spacing: 1px; flex: 1; min-width: 140px;
         }
         .polo-card:hover, .polo-card.active { border-color: var(--cor-primaria); background: #1a1a1a; color: var(--cor-primaria); }
 
         /* GRID MCS */
         .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        
-        /* CARD MC */
-        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; }
+        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
         .card-finalista { border: 2px solid var(--ouro) !important; box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
 
-        /* FOTO COM EFEITO PRETO E BRANCO */
-        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; position: relative; }
-        .mc-foto { 
-            width: 100%; height: 100%; object-fit: cover; 
-            filter: grayscale(100%); /* Efeito P&B */
-            transition: 0.5s ease; 
-        }
-        .card-mc:hover .mc-foto, .card-mc:active .mc-foto { 
-            filter: grayscale(0%); /* Colorido no Hover/Toque */
-            transform: scale(1.05);
-        }
+        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; position: relative; z-index: 1; }
+        .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s ease; }
+        .card-mc:hover .mc-foto { filter: grayscale(0%); transform: scale(1.05); }
 
         .link-insta-foto {
             position: absolute; top: 10px; right: 10px;
@@ -80,22 +68,29 @@
         }
         .link-insta-foto:hover { background: var(--cor-primaria); color: #000; }
 
-        .mc-info { padding: 15px; text-align: center; flex-grow: 1; }
+        .mc-info { padding: 15px; text-align: center; flex-grow: 1; position: relative; z-index: 2; background: var(--bg-card); }
         .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.1rem; text-transform: uppercase; margin: 0; color: #fff; }
         .mc-batalha-site { font-size: 0.85rem; color: var(--cor-primaria); display: block; margin-top: 5px; font-family: 'Bebas Neue'; }
 
         .btn-gerar { 
             background: #1a1a1a; color: #fff; border: none; padding: 15px; 
             font-family: 'Bebas Neue'; font-size: 1.1rem; cursor: pointer; border-top: 1px solid #222;
+            position: relative; z-index: 3;
         }
         .btn-gerar:hover { background: var(--cor-primaria); color: #000; }
 
-        /* --- TEMPLATE STORIES (OFF-SCREEN) --- */
-        #stories-template {
-            position: fixed; left: -2000px; top: 0; 
-            width: 1080px; height: 1920px;
-            background: #000; display: flex; flex-direction: column; align-items: center;
+        /* FAIXA FINALISTA DIAGONAL */
+        .faixa-finalista {
+            position: absolute; bottom: 25px; right: -50px; width: 180px;
+            background: linear-gradient(45deg, var(--ouro-dark), var(--ouro), var(--ouro-dark));
+            color: #000; text-align: center; font-family: 'Archivo Black', sans-serif;
+            font-size: 0.8rem; text-transform: uppercase; font-weight: bold; padding: 8px 0;
+            transform: rotate(-45deg); transform-origin: bottom right; z-index: 5;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); pointer-events: none;
         }
+
+        /* TEMPLATE STORIES (OFF-SCREEN) */
+        #stories-template { position: fixed; left: -2000px; top: 0; width: 1080px; height: 1920px; background: #000; display: flex; flex-direction: column; align-items: center; }
         .st-bg-title { position: absolute; top: 250px; font-family: 'Archivo Black'; font-size: 160px; color: rgba(255,255,255,0.04); text-align: center; line-height: 0.8; z-index: 1; text-transform: uppercase; }
         .st-logos { position: absolute; top: 80px; width: 900px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
         .st-logos img { height: 120px; }
@@ -107,11 +102,9 @@
         .st-footer { position: absolute; bottom: 80px; width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 10; }
         .st-polo-tag { font-size: 55px; letter-spacing: 8px; color: rgba(255,255,255,0.7); margin-bottom: 15px; border-top: 4px solid var(--cor-primaria); padding-top: 10px; text-transform: uppercase; }
         .st-motto { font-family: 'UnifrakturMaguntia'; font-size: 95px; color: var(--cor-primaria); text-align: center; width: 100%; }
-        
         .finalista-mode .st-mc-name { text-shadow: 12px 12px 0px var(--ouro); }
         .finalista-mode .st-battle-badge { background: var(--ouro); }
 
-        /* RESPONSIVIDADE */
         @media (max-width: 992px) {
             .menu-toggle { display: block; }
             .nav-content { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #000; padding: 30px 0; border-bottom: 3px solid var(--cor-primaria); }
@@ -174,11 +167,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
+        // 1. POLOS ATUALIZADOS E ORDENADOS ALFABETICAMENTE
         const polos = [
-            { slug: 'ribeirao', cidade: 'Ribeirão Preto' },
             { slug: 'araraquara', cidade: 'Araraquara' },
+            { slug: 'bauru', cidade: 'Bauru' },
+            { slug: 'campinas', cidade: 'Campinas' },
+            { slug: 'franca', cidade: 'Franca' },
+            { slug: 'ribeirao', cidade: 'Ribeirão Preto' },
+            { slug: 'sjr-preto', cidade: 'São José do Rio Preto' },
             { slug: 'saocarlos', cidade: 'São Carlos' }
-        ];
+        ].sort((a, b) => a.cidade.localeCompare(b.cidade));
 
         const classificados = [
             { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
@@ -195,25 +193,36 @@
             { nome: 'MS', insta: 'miguelricardosecundino', poloSlug: 'saocarlos', batId: 'BAT008' },
             { nome: 'NOISY', insta: 'noisyemici', poloSlug: 'saocarlos', batId: 'BAT008' },
             { nome: 'JOTACE', insta: '_jotace016', poloSlug: 'saocarlos', batId: 'BAT020' },
-            { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' }
+            { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' },
+            { nome: 'SUILA', insta: 'suila_do_raap', poloSlug: 'franca', batId: 'BAT019' },
+            { nome: 'LAST', insta: '_last_mc', poloSlug: 'franca', batId: 'BAT019' }
         ];
 
-        // Toggle Menu Mobile
         document.getElementById('mobile-menu').onclick = () => {
             document.getElementById('nav-content').classList.toggle('active');
         };
 
         function renderizarSite(lista = classificados) {
             const container = document.getElementById('lista-mcs');
-            container.innerHTML = lista.map(mc => {
+            
+            // 2. ORDENAÇÃO: FINALISTAS PRIMEIRO, DEPOIS ORDEM ALFABÉTICA GERAL
+            const listaOrdenada = [...lista].sort((a, b) => {
+                if (a.finalista && !b.finalista) return -1;
+                if (!a.finalista && b.finalista) return 1;
+                return a.nome.localeCompare(b.nome);
+            });
+
+            container.innerHTML = listaOrdenada.map(mc => {
                 const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
                 const textoSelo = mc.finalista ? "FINALISTA" : (batInfo ? batInfo.nome : "CLASSIFICADO");
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
                 const nomeL = mc.nome.toLowerCase();
                 const localCard = mc.finalista ? "LIGA CAIPIRA | FINAL" : `POLO ${poloInfo.cidade.toUpperCase()}`;
+                const faixaHTML = mc.finalista ? `<div class="faixa-finalista">Finalista</div>` : '';
 
                 return `
                     <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
+                        ${faixaHTML}
                         <div class="mc-foto-container">
                             <a href="https://instagram.com/${mc.insta}" target="_blank" class="link-insta-foto">
                                 <i class="fab fa-instagram"></i>
@@ -235,19 +244,15 @@
             const template = document.getElementById('stories-template');
             const mainImg = document.getElementById('st-main-img');
             const sourceImg = document.getElementById(`img-${nome}`);
-
             template.classList.toggle('finalista-mode', ehFinalista);
             document.getElementById('st-name').innerText = nome;
             document.getElementById('st-badge').innerText = batalha;
             document.getElementById('st-polo').innerText = localInfo;
-            
             mainImg.src = sourceImg.src;
-            
             mainImg.onload = async () => {
                 try {
                     const canvas = await html2canvas(template, { scale: 1.2, useCORS: true, allowTaint: true });
                     const dataUrl = canvas.toDataURL("image/png");
-                    
                     const viewer = document.createElement('div');
                     viewer.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px;";
                     viewer.innerHTML = `
@@ -256,15 +261,15 @@
                         <button onclick="this.parentElement.remove()" style="padding:15px 40px; border-radius:30px; border:none; background:var(--cor-primaria); color:#000; font-weight:bold; cursor:pointer; font-family:'Bebas Neue'; font-size:1.2rem;">VOLTAR</button>
                     `;
                     document.body.appendChild(viewer);
-                } catch(e) {
-                    alert("Erro ao gerar card. Tente usar o navegador Chrome.");
-                }
+                } catch(e) { alert("Erro ao gerar card."); }
             };
         }
 
         function renderizarPolos() {
             const pContainer = document.getElementById('lista-polos');
-            pContainer.innerHTML = polos.map(p => `<div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>`).join('') + `<div class="polo-card active" onclick="resetarFiltro(this)">VER TODOS</div>`;
+            // ADICIONA "VER TODOS" AO FINAL OU INÍCIO CONFORME PREFERIR
+            const htmlPolos = polos.map(p => `<div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>`).join('');
+            pContainer.innerHTML = htmlPolos + `<div class="polo-card active" onclick="resetarFiltro(this)">VER TODOS</div>`;
         }
 
         function filtrar(slug, elemento) {
