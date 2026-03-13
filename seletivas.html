@@ -6,7 +6,8 @@
     <title>Classificados | Coalizão 016 & Liga Caipira</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&family=Inter:ital,wght@1,900&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=UnifrakturMaguntia&family=Inter:ital,wght@1,900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --ouro: #ffd700;
@@ -29,7 +30,6 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
         .secao-titulo { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 30px; border-left: 8px solid var(--laranja); padding-left: 15px; color: #fff; }
 
-        /* MENU DE FILTROS */
         .grid-polos { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 50px; }
         .polo-card { 
             background: var(--bg-card); padding: 15px; border-radius: 6px; border: 1px solid #222; 
@@ -37,11 +37,10 @@
         }
         .polo-card:hover, .polo-card.active { border-color: var(--laranja); background: #1a1a1a; color: var(--laranja); }
 
-        /* GRID DE CLASSFICADOS */
         .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
         .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; position: relative; display: flex; flex-direction: column; transition: 0.4s; }
         .card-mc:hover { transform: translateY(-5px); border-color: var(--laranja); }
-        .card-finalista { border: 2px solid var(--ouro) !important; box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); }
+        .card-finalista { border: 2px solid var(--ouro) !important; }
 
         .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; }
         .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
@@ -74,66 +73,57 @@
             position: absolute; top: 80px; width: 900px;
             display: flex; justify-content: space-between; align-items: center; z-index: 10;
         }
-        .st-logos img[src*="coalizao"] { height: 110px; width: auto; }
-/* Aumento da Logo da Liga para maior legibilidade */
-.st-logos img[src*="logo-liga"] { 
-    height: 180px; /* Aumentei de 140px para 180px */
-    width: auto; 
-    filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
-}
+        
+        /* LOGO COALIZÃO */
+        .st-logos img[src*="coalizao"] { 
+            height: 110px; 
+            width: auto; 
+        }
 
-/* Nova Estética do Nome do MC */
-.st-mc-name {
-    position: absolute; 
-    bottom: 380px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-style: italic; /* O itálico dá dinamismo */
-    font-size: 210px; 
-    color: #fff;
-    text-transform: uppercase; 
-    z-index: 15;
-    letter-spacing: -8px; 
-    line-height: 0.8;
-    /* Sombra mais nítida e profunda */
-    text-shadow: 12px 12px 0px var(--laranja), 24px 24px 0px rgba(0,0,0,0.5);
-    text-align: center; 
-    width: 100%;
-}
+        /* LOGO LIGA (AGORA REALMENTE MAIOR) */
+        .st-logos img[src*="logo-liga"] { 
+            height: 200px; /* Aumentado para visibilidade total */
+            width: auto; 
+            filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
+        }
 
-/* Ajuste do nome para o modo finalista */
-.finalista-mode .st-mc-name { 
-    text-shadow: 12px 12px 0px var(--ouro), 24px 24px 0px rgba(0,0,0,0.5); 
-}
         .st-photo-wrapper {
             position: relative; margin-top: 280px; z-index: 5;
             width: 920px; height: 1000px;
-            border: 5px solid #fff;
+            border: 6px solid #fff;
         }
         .st-photo { width: 100%; height: 100%; object-fit: cover; }
         .st-photo-gradient {
             position: absolute; inset: 0;
-            background: linear-gradient(to bottom, transparent 50%, #000 100%);
+            background: linear-gradient(to bottom, transparent 40%, #000 100%);
             z-index: 6;
         }
 
         .st-battle-badge {
-            position: absolute; top: -35px; right: -35px;
+            position: absolute; top: -40px; right: -40px;
             background: var(--laranja); color: #000;
-            font-size: 45px; padding: 12px 35px;
+            font-size: 48px; padding: 15px 40px;
             transform: rotate(4deg); font-family: 'Archivo Black';
-            z-index: 11; box-shadow: 12px 12px 0 #000;
+            z-index: 11; box-shadow: 15px 15px 0 #000;
             text-transform: uppercase;
         }
 
+        /* NOME DO MC - NOVA FONTE INTER EXTRA BOLD ITALIC */
         .st-mc-name {
-            position: absolute; bottom: 380px;
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 210px; color: #fff;
-            text-transform: uppercase; z-index: 15;
-            letter-spacing: -12px; line-height: 0.8;
-            text-shadow: 18px 18px 0px var(--laranja);
-            text-align: center; width: 100%;
+            position: absolute; 
+            bottom: 370px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 220px; 
+            color: #fff;
+            text-transform: uppercase; 
+            z-index: 15;
+            letter-spacing: -10px; 
+            line-height: 0.8;
+            text-shadow: 15px 15px 0px var(--laranja), 30px 30px 0px rgba(0,0,0,0.5);
+            text-align: center; 
+            width: 100%;
         }
 
         .st-footer {
@@ -146,12 +136,12 @@
             text-transform: uppercase;
         }
         .st-motto {
-            font-family: 'UnifrakturMaguntia'; font-size: 85px; color: var(--laranja);
+            font-family: 'UnifrakturMaguntia'; font-size: 90px; color: var(--laranja);
             text-align: center; width: 100%;
         }
 
-        /* Finalista Mode */
-        .finalista-mode .st-mc-name { text-shadow: 18px 18px 0px var(--ouro); }
+        /* Finalista Mode Adjustments */
+        .finalista-mode .st-mc-name { text-shadow: 15px 15px 0px var(--ouro), 30px 30px 0px rgba(0,0,0,0.5); }
         .finalista-mode .st-battle-badge { background: var(--ouro); }
         .finalista-mode .st-motto { color: var(--ouro); }
         .finalista-mode .st-polo-tag { border-color: var(--ouro); }
@@ -159,14 +149,11 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-logo">COALIZÃO <span>016</span></div>
-    </nav>
+    <nav><div class="nav-logo">COALIZÃO <span>016</span></div></nav>
 
     <div class="container">
         <h2 class="secao-titulo">POLOS</h2>
         <div class="grid-polos" id="lista-polos"></div>
-
         <h2 class="secao-titulo">CLASSIFICADOS</h2>
         <div class="grid-classificados" id="lista-mcs"></div>
     </div>
@@ -256,12 +243,7 @@
             mainImg.src = document.getElementById(`img-${nome}`).src;
             
             mainImg.onload = async () => {
-                const canvas = await html2canvas(template, { 
-                    scale: 1.5, 
-                    useCORS: true, 
-                    backgroundColor: '#000' 
-                });
-                
+                const canvas = await html2canvas(template, { scale: 1.5, useCORS: true, backgroundColor: '#000' });
                 const dataUrl = canvas.toDataURL("image/png");
                 const viewer = document.createElement('div');
                 viewer.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center;";
@@ -276,16 +258,13 @@
 
         function renderizarPolos() {
             const pContainer = document.getElementById('lista-polos');
-            pContainer.innerHTML = polos.map(p => `
-                <div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>
-            `).join('') + `<div class="polo-card" onclick="resetarFiltro(this)">VER TODOS</div>`;
+            pContainer.innerHTML = polos.map(p => `<div class="polo-card" onclick="filtrar('${p.slug}', this)">${p.cidade}</div>`).join('') + `<div class="polo-card" onclick="resetarFiltro(this)">VER TODOS</div>`;
         }
 
         function filtrar(slug, elemento) {
             document.querySelectorAll('.polo-card').forEach(el => el.classList.remove('active'));
             elemento.classList.add('active');
-            const filtrados = classificados.filter(m => m.poloSlug === slug);
-            renderizarSite(filtrados);
+            renderizarSite(classificados.filter(m => m.poloSlug === slug));
         }
 
         function resetarFiltro(elemento) {
