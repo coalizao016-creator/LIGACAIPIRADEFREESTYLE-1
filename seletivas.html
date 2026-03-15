@@ -88,21 +88,19 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.5); pointer-events: none;
         }
 
-        /* --- TEMPLATE STORIES (AJUSTADO) --- */
+        /* --- TEMPLATE STORIES --- */
         #stories-template { 
             position: fixed; left: -2000px; top: 0; width: 1080px; height: 1920px; 
             background: #000; display: flex; flex-direction: column; align-items: center; 
         }
         .st-bg-title { position: absolute; top: 300px; font-family: 'Archivo Black'; font-size: 160px; color: rgba(255,255,255,0.04); text-align: center; line-height: 0.8; z-index: 1; text-transform: uppercase; }
         
-        /* Logos Maiores e Melhor Espaçadas */
         .st-logos { 
             position: absolute; top: 70px; width: 950px; 
             display: flex; justify-content: space-around; align-items: center; z-index: 10; 
         }
         .st-logos img { height: 190px; width: auto; object-fit: contain; }
 
-        /* Wrapper da Foto com mais espaço no topo */
         .st-photo-wrapper { position: relative; margin-top: 400px; z-index: 5; width: 940px; height: 1000px; border: 8px solid #fff; }
         .st-photo { width: 100%; height: 100%; object-fit: cover; }
         .st-photo-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, #000 100%); z-index: 6; }
@@ -186,7 +184,7 @@
             { slug: 'ribeirao', cidade: 'Ribeirão Preto' },
             { slug: 'sjr-preto', cidade: 'São José do Rio Preto' },
             { slug: 'saocarlos', cidade: 'São Carlos' }
-        ].sort((a, b) => a.cidade.localeCompare(b.cidade));
+        ].sort((a, b) => a.cidade.localeCompare(b.cidade, 'pt-BR'));
 
         const classificados = [
             { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
@@ -205,7 +203,10 @@
             { nome: 'JOTACE', insta: '_jotace016', poloSlug: 'saocarlos', batId: 'BAT020' },
             { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' },
             { nome: 'SUILA', insta: 'suila_do_raap', poloSlug: 'franca', batId: 'BAT019' },
-            { nome: 'LAST', insta: '_last_mc', poloSlug: 'franca', batId: 'BAT019' }
+            { nome: 'LAST', insta: '_last_mc', poloSlug: 'franca', batId: 'BAT019' },
+            // NOVOS MC'S BAURU
+            { nome: 'M.S', insta: 'ms.ofc', poloSlug: 'bauru', batId: 'BAT055' },
+            { nome: 'TALIBAN', insta: 'talib4n_00', poloSlug: 'bauru', batId: 'BAT055' }
         ];
 
         document.getElementById('mobile-menu').onclick = () => {
@@ -217,7 +218,7 @@
             const listaOrdenada = [...lista].sort((a, b) => {
                 if (a.finalista && !b.finalista) return -1;
                 if (!a.finalista && b.finalista) return 1;
-                return a.nome.localeCompare(b.nome);
+                return a.nome.localeCompare(b.nome, 'pt-BR');
             });
 
             container.innerHTML = listaOrdenada.map(mc => {
@@ -225,7 +226,7 @@
                 const textoSelo = mc.finalista ? "FINALISTA" : (batInfo ? batInfo.nome : "CLASSIFICADO");
                 const poloInfo = polos.find(p => p.slug === mc.poloSlug);
                 const nomeL = mc.nome.toLowerCase();
-                const localCard = mc.finalista ? "LIGA CAIPIRA | FINAL" : `POLO ${poloInfo.cidade.toUpperCase()}`;
+                const localCard = mc.finalista ? "LIGA CAIPIRA | FINAL" : `POLO ${(poloInfo ? poloInfo.cidade : 'GERAL').toUpperCase()}`;
                 
                 return `
                     <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
