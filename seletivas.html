@@ -204,20 +204,24 @@
             { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' },
             { nome: 'SUILA', insta: 'suila_do_raap', poloSlug: 'franca', batId: 'BAT019' },
             { nome: 'LAST', insta: '_last_mc', poloSlug: 'franca', batId: 'BAT019' },
-            // NOVOS MC'S BAURU
             { nome: 'M.S', insta: 'ms.ofc', poloSlug: 'bauru', batId: 'BAT055' },
-            { nome: 'TALIBAN', insta: 'talib4n_00', poloSlug: 'bauru', batId: 'BAT055' }
+            { nome: 'TALIBAN', insta: 'talib4n_00', poloSlug: 'bauru', batId: 'BAT055' },
+            { nome: 'LB DA NORTE', insta: 'lbdanorte_ofc', poloSlug: 'sjr-preto', batId: 'BAT036' },
+            { nome: 'TIO BREEZE', insta: 'tio_breeze', poloSlug: 'sjr-preto', batId: 'BAT036' }
         ];
 
         document.getElementById('mobile-menu').onclick = () => {
             document.getElementById('nav-content').classList.toggle('active');
         };
 
-        function renderizarSite(lista = classificados) {
+        function renderizarSite(lista = classificados, ordenarFinalistas = true) {
             const container = document.getElementById('lista-mcs');
+            
             const listaOrdenada = [...lista].sort((a, b) => {
-                if (a.finalista && !b.finalista) return -1;
-                if (!a.finalista && b.finalista) return 1;
+                if (ordenarFinalistas) {
+                    if (a.finalista && !b.finalista) return -1;
+                    if (!a.finalista && b.finalista) return 1;
+                }
                 return a.nome.localeCompare(b.nome, 'pt-BR');
             });
 
@@ -282,13 +286,22 @@
         function filtrar(slug, elemento) {
             document.querySelectorAll('.polo-card').forEach(el => el.classList.remove('active'));
             elemento.classList.add('active');
-            renderizarSite(classificados.filter(m => m.poloSlug === slug));
+            
+            // LÓGICA DE FILTRO: Se o polo for ribeirao, exclui finalistas. 
+            // Se for outro polo, apenas filtra normalmente.
+            let mcsFiltrados = classificados.filter(m => m.poloSlug === slug);
+            
+            if(slug === 'ribeirao') {
+                mcsFiltrados = mcsFiltrados.filter(m => !m.finalista);
+            }
+            
+            renderizarSite(mcsFiltrados, false);
         }
 
         function resetarFiltro(elemento) {
             document.querySelectorAll('.polo-card').forEach(el => el.classList.remove('active'));
             elemento.classList.add('active');
-            renderizarSite(classificados);
+            renderizarSite(classificados, true);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
