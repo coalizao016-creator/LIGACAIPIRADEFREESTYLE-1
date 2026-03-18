@@ -71,7 +71,7 @@ const eventos = [
     codigo: "BAT039"
   },
   {
-    data: "2026-03-18",
+    data: "2026-03-25",
     diaSemana: "Quarta-feira",
     horario: "20:00h",
     nomeBatalha: "MAESTRO",
