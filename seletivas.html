@@ -185,8 +185,7 @@
             { slug: 'sjr-preto', cidade: 'São José do Rio Preto' },
             { slug: 'saocarlos', cidade: 'São Carlos' }
         ].sort((a, b) => a.cidade.localeCompare(b.cidade, 'pt-BR'));
-
-        const classificados = [
+const classificados = [
             { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
             { nome: 'BUBBA', insta: 'bubbassalto', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
             { nome: 'JM', insta: 'jm.almeida016', poloSlug: 'ribeirao', batId: 'BAT030' },
@@ -211,9 +210,10 @@
             { nome: 'AUGUSTÃO', insta: 'au_gustao', poloSlug: 'bauru', batId: 'BAT037' },
             // MC'S SJRP
             { nome: 'LB DA NORTE', insta: 'lbdanorte_ofc', poloSlug: 'sjr-preto', batId: 'BAT036' },
-            { nome: 'TIO BREEZE', insta: 'tio_breeze', poloSlug: 'sjr-preto', batId: 'BAT036' }
+            { nome: 'BR1S4', insta: 'tio_breeze', poloSlug: 'sjr-preto', batId: 'BAT036' },
+            // MC'S CAMPINAS
+            { nome: 'MIGUEL', insta: 'm.inacioz', poloSlug: 'campinas', batId: 'BAT046' }
         ];
-
         document.getElementById('mobile-menu').onclick = () => {
             document.getElementById('nav-content').classList.toggle('active');
         };
