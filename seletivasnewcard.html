@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;700;900&family=Archivo+Black&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;900&family=Archivo+Black&family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -15,48 +15,40 @@
             --cor-primaria: #f39c12; 
             --ouro: #ffd700;
             --bg-dark: #0a0a0a; 
-            --bg-nav: #000000; 
             --bg-card: #151515;
             --text-light: #ffffff;
         }
 
         body { margin: 0; font-family: 'Roboto', sans-serif; background: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
 
-        /* --- MENU --- */
-        nav { background: var(--bg-nav); padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
+        /* --- INTERFACE DO SITE --- */
+        nav { background: #000; padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; font-family: 'Anton'; }
         .nav-logo span { color: var(--cor-primaria); }
-        .menu-toggle { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-        .nav-content { display: flex; align-items: center; gap: 25px; }
-        .nav-links { display: flex; gap: 18px; }
-        .nav-link { color: #fff !important; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
-        .nav-link.active { color: var(--cor-primaria) !important; }
 
-        /* --- CONTEÚDO --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 30px 15px; }
-        .secao-titulo { font-family: 'Anton'; font-size: clamp(2rem, 8vw, 3rem); text-transform: uppercase; margin: 40px 0 20px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; }
+        .secao-titulo { font-family: 'Anton'; font-size: 2.5rem; text-transform: uppercase; margin: 40px 0 20px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; }
 
-        /* FILTROS */
         .grid-polos { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
         .polo-card { 
             background: var(--bg-card); padding: 10px 15px; border-radius: 6px; border: 1px solid #222; 
-            cursor: pointer; text-align: center; transition: 0.3s; font-family: 'Bebas Neue'; flex: 1; min-width: 140px;
+            cursor: pointer; text-align: center; transition: 0.3s; font-family: 'Bebas Neue'; flex: 1; min-width: 130px;
         }
-        .polo-card.active { border-color: var(--cor-primaria); color: var(--cor-primaria); }
+        .polo-card.active { border-color: var(--cor-primaria); color: var(--cor-primaria); background: #1a1a1a; }
 
-        /* GRID MCS */
         .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-        .card-mc { background: var(--bg-card); border: 1px solid #222; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: 0.3s; }
-        .card-finalista { border: 2px solid var(--ouro) !important; }
-
-        .mc-foto-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #000; }
+        .card-mc { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column; transition: 0.3s; }
+        .card-finalista { border: 2px solid var(--ouro) !important; box-shadow: 0 0 15px rgba(255, 215, 0, 0.1); }
+        
+        .mc-foto-container { width: 100%; aspect-ratio: 1/1; background: #000; overflow: hidden; }
         .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
-        .card-mc:hover .mc-foto { filter: grayscale(0%); transform: scale(1.05); }
+        .card-mc:hover .mc-foto { filter: grayscale(0); transform: scale(1.05); }
 
         .mc-info { padding: 15px; text-align: center; flex-grow: 1; }
         .mc-nome-site { font-family: 'Archivo Black'; font-size: 1.1rem; text-transform: uppercase; margin: 0; }
-        .mc-batalha-site { font-size: 0.85rem; color: var(--cor-primaria); font-family: 'Bebas Neue'; }
+        .mc-batalha-site { font-size: 0.85rem; color: var(--cor-primaria); font-family: 'Bebas Neue'; display: block; margin-top: 5px; }
+        .mc-insta-link { font-size: 0.75rem; color: #666; text-decoration: none; margin-top: 5px; display: block; }
 
         .btn-gerar { 
             background: #1a1a1a; color: #fff; border: none; padding: 15px; 
@@ -64,45 +56,56 @@
         }
         .btn-gerar:hover { background: var(--cor-primaria); color: #000; }
 
-        /* --- TEMPLATE STORIES --- */
+        /* --- NOVO TEMPLATE STORIES (ESTILO CANVA PRO) --- */
         #stories-template { 
-            position: fixed; left: -5000px; top: 0; 
+            position: fixed; left: -5000px; 
             width: 1080px; height: 1350px; 
             background: #000; display: flex; flex-direction: column; align-items: center; overflow: hidden;
         }
 
-        .st-bg-repeat {
-            position: absolute; width: 100%; text-align: center;
-            font-family: 'Archivo Black', sans-serif; font-size: 260px; line-height: 0.85;
-            color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,0.12);
-            text-transform: uppercase; z-index: 1; top: -20px;
+        /* Nome no Fundo (Camada 1) */
+        .st-bg-text {
+            position: absolute; width: 100%; top: 45%; transform: translateY(-50%);
+            font-family: 'Archivo Black', sans-serif; font-size: 280px; line-height: 0.8;
+            color: transparent; -webkit-text-stroke: 3px rgba(255,255,255,0.1);
+            text-transform: uppercase; z-index: 1; text-align: center;
         }
 
+        /* Foto do MC (Camada 2) */
         .st-photo-wrapper {
-            position: absolute; bottom: 180px; width: 100%; height: 100%;
-            z-index: 3; display: flex; justify-content: center; align-items: flex-end;
+            position: absolute; inset: 0; z-index: 2;
+            display: flex; justify-content: center; align-items: flex-end;
         }
-        .st-photo { height: 92%; width: auto; object-fit: contain; z-index: 4; }
+        .st-photo { 
+            height: 95%; width: auto; object-fit: contain; 
+            filter: contrast(1.1) brightness(1.1) drop-shadow(0 0 50px rgba(0,0,0,0.9));
+        }
+
+        /* Máscara de Nome na Frente (Camada 3 - Efeito Profundidade) */
+        .st-fg-text {
+            position: absolute; width: 100%; top: 45%; transform: translateY(-50%);
+            font-family: 'Archivo Black', sans-serif; font-size: 280px; line-height: 0.8;
+            color: transparent; -webkit-text-stroke: 3px rgba(255,255,255,0.03);
+            text-transform: uppercase; z-index: 3; text-align: center; pointer-events: none;
+        }
 
         .st-vertical-badge {
-            position: absolute; top: 45%; right: 40px; transform: translateY(-50%) rotate(90deg);
-            font-family: 'Archivo Black'; font-size: 45px; color: var(--cor-primaria);
-            letter-spacing: 10px; opacity: 0.5; z-index: 5;
+            position: absolute; top: 40%; right: -120px; transform: rotate(90deg);
+            font-family: 'Archivo Black'; font-size: 55px; color: var(--cor-primaria);
+            letter-spacing: 15px; z-index: 5; text-transform: uppercase; opacity: 0.8;
         }
 
+        /* Rodapé Papel Rasgado Pro */
         .st-paper-footer {
-            position: absolute; bottom: 0; width: 100%; height: 240px; background: #fff; z-index: 10;
-            clip-path: polygon(0% 20%, 5% 5%, 15% 25%, 25% 10%, 40% 30%, 55% 5%, 70% 25%, 85% 10%, 100% 25%, 100% 100%, 0% 100%);
-            display: flex; align-items: center; justify-content: space-between; padding: 0 60px; box-sizing: border-box;
+            position: absolute; bottom: 0; width: 100%; height: 280px; background: #fff; z-index: 10;
+            clip-path: polygon(0% 15%, 7% 2%, 15% 18%, 28% 5%, 45% 22%, 58% 3%, 72% 19%, 88% 6%, 100% 18%, 100% 100%, 0% 100%);
+            display: flex; align-items: center; justify-content: space-around; padding: 40px; box-sizing: border-box;
         }
         .st-footer-logo { height: 110px; filter: grayscale(1) brightness(0); }
 
-        .finalista-mode .st-vertical-badge { color: var(--ouro); opacity: 0.9; }
+        .finalista-mode .st-vertical-badge { color: var(--ouro); opacity: 1; text-shadow: 0 0 20px rgba(255,215,0,0.3); }
 
         @media (max-width: 992px) {
-            .menu-toggle { display: block; }
-            .nav-content { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #000; padding: 20px; border-bottom: 3px solid var(--cor-primaria); }
-            .nav-content.active { display: flex; }
             .grid-classificados { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
@@ -111,14 +114,7 @@
 
     <nav>
         <div class="nav-container">
-            <div class="nav-logo"><a href="#">COALIZÃO<span>016</span></a></div>
-            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
-            <div class="nav-content" id="nav-content">
-                <div class="nav-links">
-                    <a href="#" class="nav-link active">Seletivas</a>
-                    <a href="#" class="nav-link">Batalhas</a>
-                </div>
-            </div>
+            <div class="nav-logo"><a href="index.html">COALIZÃO<span>016</span></a></div>
         </div>
     </nav>
 
@@ -131,17 +127,18 @@
     </div>
 
     <div id="stories-template">
-        <div id="st-repeat" class="st-bg-repeat">NOME</div>
+        <div id="st-bg-name" class="st-bg-text">NOME</div>
         <div class="st-photo-wrapper"><img src="" id="st-main-img" class="st-photo"></div>
+        <div id="st-fg-name" class="st-fg-text">NOME</div>
         <div id="st-badge-text" class="st-vertical-badge">CLASSIFICADO</div>
         <div class="st-paper-footer">
             <img src="img/logo-mkd.png" class="st-footer-logo" onerror="this.style.display='none'">
-            <img src="img/logo-kalahari.png" class="st-footer-logo" onerror="this.style.display='none'">
-            <img src="img/coalizao.png" class="st-footer-logo" style="height: 120px;">
-            <img src="img/logo-liga.png" class="st-footer-logo" style="height: 140px;">
+            <img src="img/coalizao.png" class="st-footer-logo" style="height: 140px;">
+            <img src="img/logo-liga.png" class="st-footer-logo" style="height: 150px;">
         </div>
     </div>
 
+    <script src="batalhas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
@@ -156,34 +153,33 @@
         ].sort((a, b) => a.cidade.localeCompare(b.cidade, 'pt-BR'));
 
         const classificados = [
-            { nome: 'TYRANO', poloSlug: 'ribeirao', finalista: true },
-            { nome: 'BUBBA', poloSlug: 'ribeirao', finalista: true },
-            { nome: 'JM', poloSlug: 'ribeirao' },
-            { nome: 'JIMMY', poloSlug: 'ribeirao' },
-            { nome: 'REZENDE', poloSlug: 'ribeirao' },
-            { nome: 'HAIKI', poloSlug: 'ribeirao' },
-            { nome: 'PDG', poloSlug: 'araraquara' },
-            { nome: 'VALUSTRE', poloSlug: 'araraquara' },
-            { nome: 'LARIÊ', poloSlug: 'araraquara' },
-            { nome: 'GUDY', poloSlug: 'araraquara' },
-            { nome: 'NARDEX', poloSlug: 'saocarlos' },
-            { nome: 'GABIZINHA', poloSlug: 'saocarlos' },
-            { nome: 'MS', poloSlug: 'saocarlos' },
-            { nome: 'NOISY', poloSlug: 'saocarlos' },
-            { nome: 'JOTACE', poloSlug: 'saocarlos' },
-            { nome: 'SWART', poloSlug: 'saocarlos' },
-            { nome: 'SUILA', poloSlug: 'franca' },
-            { nome: 'LAST', poloSlug: 'franca' },
-            { nome: 'M.S', poloSlug: 'bauru' },
-            { nome: 'TALIBAN', poloSlug: 'bauru' },
-            { nome: 'DINO', poloSlug: 'bauru' },
-            { nome: 'AUGUSTÃO', poloSlug: 'bauru' },
-            { nome: 'LB DA NORTE', poloSlug: 'sjr-preto' },
-            { nome: 'BR1S4', poloSlug: 'sjr-preto' },
-            { nome: 'MIGUEL', poloSlug: 'campinas' }
+            { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
+            { nome: 'BUBBA', insta: 'bubbassalto', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
+            { nome: 'JM', insta: 'jm.almeida016', poloSlug: 'ribeirao', batId: 'BAT030' },
+            { nome: 'JIMMY', insta: 'oreiudodorap_', poloSlug: 'ribeirao', batId: 'BAT030' },
+            { nome: 'REZENDE', insta: 'rezendeemici', poloSlug: 'ribeirao', batId: 'BAT018' },
+            { nome: 'HAIKI', insta: 'mc_haiki', poloSlug: 'ribeirao', batId: 'BAT018' },
+            { nome: 'PDG', insta: 'piordageracao', poloSlug: 'araraquara', batId: 'BAT026' },
+            { nome: 'VALUSTRE', insta: '_valustre', poloSlug: 'araraquara', batId: 'BAT011' },
+            { nome: 'LARIÊ', insta: 'larie.prod', poloSlug: 'araraquara', batId: 'BAT011' },
+            { nome: 'NARDEX', insta: 'nardex.emici', poloSlug: 'saocarlos', batId: 'BAT023' },
+            { nome: 'GABIZINHA', insta: 'aninha_gabi2013', poloSlug: 'saocarlos', batId: 'BAT023' },
+            { nome: 'MS', insta: 'miguelricardosecundino', poloSlug: 'saocarlos', batId: 'BAT008' },
+            { nome: 'NOISY', insta: 'noisyemici', poloSlug: 'saocarlos', batId: 'BAT008' },
+            { nome: 'JOTACE', insta: '_jotace016', poloSlug: 'saocarlos', batId: 'BAT020' },
+            { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' },
+            { nome: 'SUILA', insta: 'suila_do_raap', poloSlug: 'franca', batId: 'BAT019' },
+            { nome: 'LAST', insta: '_last_mc', poloSlug: 'franca', batId: 'BAT019' },
+            { nome: 'M.S', insta: 'ms.ofc', poloSlug: 'bauru', batId: 'BAT055' },
+            { nome: 'TALIBAN', insta: 'talib4n_00', poloSlug: 'bauru', batId: 'BAT055' },
+            { nome: 'GUDY', insta: 'gudyboooy', poloSlug: 'araraquara', batId: 'BAT039' },
+            { nome: 'DINO', insta: 'dinomc_014', poloSlug: 'bauru', batId: 'BAT037' },
+            { nome: 'AUGUSTÃO', insta: 'au_gustao', poloSlug: 'bauru', batId: 'BAT037' },
+            { nome: 'LB DA NORTE', insta: 'lbdanorte_ofc', poloSlug: 'sjr-preto', batId: 'BAT036' },
+            { nome: 'BR1S4', insta: 'tio_breeze', poloSlug: 'sjr-preto', batId: 'BAT036' },
+            { nome: 'MIGUEL', insta: 'm.inacioz', poloSlug: 'campinas', batId: 'BAT046' }
         ];
 
-        // Lógica de Troca de Extensão (JPG para PNG)
         function carregarFoto(img, nome) {
             const nomeL = nome.toLowerCase();
             img.src = `img/${nomeL}.jpg`;
@@ -197,39 +193,66 @@
             };
         }
 
-        function renderizarSite(lista = classificados) {
+        function renderizarSite(lista = classificados, ordenarFinalistas = true) {
             const container = document.getElementById('lista-mcs');
-            container.innerHTML = lista.map(mc => `
-                <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
-                    <div class="mc-foto-container">
-                        <img class="mc-foto" id="img-${mc.nome}" onload="this.style.opacity=1" style="opacity:0">
+            const listaOrdenada = [...lista].sort((a, b) => {
+                if (ordenarFinalistas) {
+                    if (a.finalista && !b.finalista) return -1;
+                    if (!a.finalista && b.finalista) return 1;
+                }
+                return a.nome.localeCompare(b.nome, 'pt-BR');
+            });
+
+            container.innerHTML = listaOrdenada.map(mc => {
+                const batInfo = (typeof batalhas !== 'undefined') ? batalhas.find(b => b.codigo === mc.batId) : null;
+                const textoSelo = mc.finalista ? "FINALISTA" : (batInfo ? batInfo.nome : "CLASSIFICADO");
+                
+                return `
+                    <div class="card-mc ${mc.finalista ? 'card-finalista' : ''}">
+                        <div class="mc-foto-container">
+                            <img class="mc-foto" id="img-${mc.nome}" onload="this.style.opacity=1" style="opacity:0">
+                        </div>
+                        <div class="mc-info">
+                            <h3 class="mc-nome-site">${mc.nome}</h3>
+                            <span class="mc-batalha-site">${textoSelo}</span>
+                            <a href="https://instagram.com/${mc.insta}" class="mc-insta-link" target="_blank">@${mc.insta}</a>
+                        </div>
+                        <button class="btn-gerar" onclick="prepararGeracao('${mc.nome}', ${mc.finalista || false}, '${textoSelo}')">GERAR CARD</button>
                     </div>
-                    <div class="mc-info">
-                        <h3 class="mc-nome-site">${mc.nome}</h3>
-                        <span class="mc-batalha-site">${mc.finalista ? 'FINALISTA' : 'CLASSIFICADO'}</span>
-                    </div>
-                    <button class="btn-gerar" onclick="prepararGeracao('${mc.nome}', ${mc.finalista || false})">GERAR CARD</button>
-                </div>
-            `).join('');
+                `;
+            }).join('');
             
-            lista.forEach(mc => carregarFoto(document.getElementById(`img-${mc.nome}`), mc.nome));
+            listaOrdenada.forEach(mc => carregarFoto(document.getElementById(`img-${mc.nome}`), mc.nome));
         }
 
-        async function prepararGeracao(nome, ehFinalista) {
+        async function prepararGeracao(nome, ehFinalista, seloTexto) {
             const template = document.getElementById('stories-template');
             const mainImg = document.getElementById('st-main-img');
             const sourceImg = document.getElementById(`img-${nome}`);
             
-            document.getElementById('st-repeat').innerHTML = `${nome}<br>${nome}<br>${nome}<br>${nome}`;
-            document.getElementById('st-badge-text').innerText = ehFinalista ? "FINALISTA" : "CLASSIFICADO";
+            const textoMultiplo = `${nome}<br>${nome}<br>${nome}`;
+            document.getElementById('st-bg-name').innerHTML = textoMultiplo;
+            document.getElementById('st-fg-name').innerHTML = textoMultiplo;
+            document.getElementById('st-badge-text').innerText = seloTexto;
             template.classList.toggle('finalista-mode', ehFinalista);
             
             mainImg.src = sourceImg.src;
             mainImg.onload = async () => {
-                const canvas = await html2canvas(template, { scale: 1.5, useCORS: true, backgroundColor: "#000" });
+                const canvas = await html2canvas(template, { 
+                    scale: 1.5, 
+                    useCORS: true, 
+                    backgroundColor: "#000",
+                    logging: false 
+                });
+                
+                const dataUrl = canvas.toDataURL("image/png");
                 const viewer = document.createElement('div');
                 viewer.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px;";
-                viewer.innerHTML = `<img src="${canvas.toDataURL()}" style="max-height:80vh; border-radius:10px;"><p style="color:#fff; margin:20px 0;">Segure na imagem para salvar</p><button onclick="this.parentElement.remove()" style="padding:10px 30px; background:orange; border:none; font-weight:bold; cursor:pointer;">FECHAR</button>`;
+                viewer.innerHTML = `
+                    <img src="${dataUrl}" style="max-height:80vh; border-radius:10px; box-shadow: 0 0 40px #000;">
+                    <p style="color:#fff; margin:20px 0; font-family:sans-serif;"><b>SEGURE NA IMAGEM PARA SALVAR</b></p>
+                    <button onclick="this.parentElement.remove()" style="padding:15px 40px; border-radius:30px; border:none; background:var(--cor-primaria); color:#000; font-weight:bold; cursor:pointer; font-family:'Bebas Neue'; font-size:1.2rem;">FECHAR</button>
+                `;
                 document.body.appendChild(viewer);
             };
         }
@@ -242,12 +265,13 @@
         function filtrar(slug, elemento) {
             document.querySelectorAll('.polo-card').forEach(el => el.classList.remove('active'));
             elemento.classList.add('active');
-            renderizarSite(classificados.filter(m => m.poloSlug === slug));
+            renderizarSite(classificados.filter(m => m.poloSlug === slug), false);
         }
 
-        document.getElementById('mobile-menu').onclick = () => document.getElementById('nav-content').classList.toggle('active');
-        renderizarPolos();
-        renderizarSite();
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarPolos();
+            renderizarSite();
+        });
     </script>
 </body>
 </html>
