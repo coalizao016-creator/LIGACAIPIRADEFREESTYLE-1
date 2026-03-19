@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Seletivas New Card | Coalizão 016</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;900&family=Archivo+Black&family=Bebas+Neue&family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --cor-primaria: #f39c12; 
+            --ouro: #ffd700;
+            --bg-dark: #0a0a0a; 
+            --bg-card: #151515;
+        }
+
+        body { margin: 0; font-family: 'Roboto', sans-serif; background: var(--bg-dark); color: #fff; overflow-x: hidden; }
+
+        /* --- INTERFACE DO SITE --- */
+        nav { background: #000; padding: 15px 0; border-bottom: 2px solid #1a1a1a; position: sticky; top: 0; z-index: 2000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo a { font-size: 1.6rem; font-weight: 900; color: #fff; text-decoration: none; font-family: 'Anton'; }
+        .nav-logo span { color: var(--cor-primaria); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 30px 15px; }
+        .secao-titulo { font-family: 'Anton'; font-size: 2.5rem; text-transform: uppercase; margin: 40px 0 20px; border-left: 8px solid var(--cor-primaria); padding-left: 15px; }
+
+        .grid-polos { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+        .polo-card { background: var(--bg-card); padding: 10px 15px; border-radius: 6px; cursor: pointer; font-family: 'Bebas Neue'; text-transform: uppercase; flex: 1; min-width: 120px; text-align: center; border: 1px solid #222; }
+        .polo-card.active { border-color: var(--cor-primaria); color: var(--cor-primaria); }
+
+        .grid-classificados { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .card-mc { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column; }
+        .mc-foto-container { width: 100%; aspect-ratio: 1/1; background: #000; }
+        .mc-foto { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.3s; }
+        .card-mc:hover .mc-foto { filter: grayscale(0); }
+        .mc-info { padding: 15px; text-align: center; }
+        .mc-nome-site { font-family: 'Archivo Black'; margin: 0; text-transform: uppercase; font-size: 1.2rem; }
+        .btn-gerar { background: #1a1a1a; color: #fff; border: none; padding: 12px; cursor: pointer; font-family: 'Bebas Neue'; font-size: 1.1rem; border-top: 1px solid #222; }
+        .btn-gerar:hover { background: var(--cor-primaria); color: #000; }
+
+        /* --- TEMPLATE DO CARD (ESTILO TYRANO) --- */
+        #stories-template { 
+            position: fixed; left: -5000px; top: 0; 
+            width: 1080px; height: 1350px; 
+            background: #000; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+
+        /* Nome repetido no fundo (Efeito Villagers Grunge/Stroke) */
+        .st-bg-repeat {
+            position: absolute; width: 100%; text-align: center;
+            font-family: 'Archivo Black', sans-serif; font-size: 280px; line-height: 0.8;
+            color: transparent; -webkit-text-stroke: 3px rgba(255,255,255,0.15);
+            text-transform: uppercase; z-index: 1; top: 0;
+        }
+
+        .st-photo-wrapper {
+            position: absolute; inset: 0; z-index: 3;
+            display: flex; justify-content: center; align-items: flex-end;
+            padding-bottom: 200px;
+        }
+        .st-photo { height: 95%; width: auto; object-fit: contain; z-index: 4; }
+
+        .st-badge-vertical {
+            position: absolute; top: 50%; right: 40px; transform: translateY(-50%) rotate(90deg);
+            font-family: 'Archivo Black'; font-size: 50px; color: var(--cor-primaria);
+            letter-spacing: 15px; opacity: 0.4; z-index: 5; text-transform: uppercase;
+        }
+
+        /* Rodapé Papel Rasgado Branco */
+        .st-paper-footer {
+            position: absolute; bottom: 0; width: 100%; height: 260px;
+            background: #fff; z-index: 10;
+            clip-path: polygon(0% 15%, 8% 0%, 18% 20%, 30% 5%, 45% 25%, 60% 2%, 75% 22%, 90% 5%, 100% 18%, 100% 100%, 0% 100%);
+            display: flex; align-items: center; justify-content: space-around; padding: 0 40px; box-sizing: border-box;
+        }
+        .st-footer-logo { height: 110px; filter: grayscale(1) brightness(0); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo"><a href="#">COALIZÃO<span>016</span></a></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="secao-titulo">POLOS REGIONAIS</h2>
+        <div class="grid-polos" id="lista-polos"></div>
+        <h2 class="secao-titulo">CLASSIFICADOS</h2>
+        <div class="grid-classificados" id="lista-mcs"></div>
+    </div>
+
+    <div id="stories-template">
+        <div id="st-repeat" class="st-bg-repeat">NOME<br>NOME<br>NOME<br>NOME</div>
+        <div class="st-photo-wrapper">
+            <img src="" id="st-main-img" class="st-photo">
+        </div>
+        <div id="st-badge-text" class="st-badge-vertical">CLASSIFICADO</div>
+        <div class="st-paper-footer">
+            <img src="img/logo-mkd.png" class="st-footer-logo" onerror="this.style.opacity='0.2'">
+            <img src="img/logo-kalahari.png" class="st-footer-logo" onerror="this.style.opacity='0.2'">
+            <img src="img/coalizao.png" class="st-footer-logo" style="height: 130px;">
+            <img src="img/logo-liga.png" class="st-footer-logo" style="height: 140px;">
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        // Dados limpos (conforme seu print)
+        const classificados = [
+            { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', finalista: true },
+            { nome: 'BUBBA', insta: 'bubbassalto', poloSlug: 'ribeirao', finalista: true },
+            { nome: 'JM', insta: 'jm.almeida016', poloSlug: 'ribeirao' },
+            { nome: 'JIMMY', insta: 'oreiudodorap_', poloSlug: 'ribeirao' },
+            { nome: 'REZENDE', insta: 'rezendeemici', poloSlug: 'ribeirao' },
+            { nome: 'PDG', insta: 'piordageracao', poloSlug: 'araraquara' },
+            { nome: 'VALUSTRE', insta: '_valustre', poloSlug: 'araraquara' },
+            { nome: 'NARDEX', insta: 'nardex.emici', poloSlug: 'saocarlos' }
+        ];
+
+        const polos = [
+            { slug: 'araraquara', cidade: 'Araraquara' },
+            { slug: 'ribeirao', cidade: 'Ribeirão Preto' },
+            { slug: 'saocarlos', cidade: 'São Carlos' }
+        ];
+
+        function renderizarSite(lista = classificados) {
+            const container = document.getElementById('lista-mcs');
+            container.innerHTML = lista.map(mc => `
+                <div class="card-mc">
+                    <div class="mc-foto-container">
+                        <img src="img/${mc.nome.toLowerCase()}.jpg" class="mc-foto" id="img-${mc.nome}" 
+                             onerror="this.src='https://via.placeholder.com/400x400/151515/ffffff?text=${mc.nome}'">
+                    </div>
+                    <div class="mc-info">
+                        <h3 class="mc-nome-site">${mc.nome}</h3>
+                    </div>
+                    <button class="btn-gerar" onclick="gerarCard('${mc.nome}', ${mc.finalista || false})">GERAR CARD</button>
+                </div>
+            `).join('');
+        }
+
+        async function gerarCard(nome, ehFinalista) {
+            const template = document.getElementById('stories-template');
+            const mainImg = document.getElementById('st-main-img');
+            const sourceImg = document.getElementById(`img-${nome}`);
+            
+            // Atualiza conteúdo
+            document.getElementById('st-repeat').innerHTML = `${nome}<br>${nome}<br>${nome}<br>${nome}`;
+            document.getElementById('st-badge-text').innerText = ehFinalista ? "FINALISTA" : "CLASSIFICADO";
+            
+            // IMPORTANTE: Tira o grayscale da foto no card gerado
+            mainImg.src = sourceImg.src;
+            mainImg.style.filter = "contrast(1.1) brightness(0.9)";
+
+            // Espera a imagem carregar antes de "tirar a foto"
+            mainImg.onload = async () => {
+                const canvas = await html2canvas(template, { 
+                    scale: 1.5, 
+                    useCORS: true, 
+                    backgroundColor: "#000" 
+                });
+                
+                const dataUrl = canvas.toDataURL("image/png");
+                const win = window.open();
+                win.document.write(`<body style="margin:0; background:#111; display:flex; justify-content:center; align-items:center;"><img src="${dataUrl}" style="max-height:90vh; border-radius:10px; shadow: 0 0 30px #000;"><p style="color:white; position:fixed; bottom:20px; font-family:sans-serif;">Segure na imagem para salvar</p></body>`);
+            };
+        }
+
+        renderizarSite();
+    </script>
+</body>
+</html>
