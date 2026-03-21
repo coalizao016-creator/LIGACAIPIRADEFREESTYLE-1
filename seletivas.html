@@ -185,7 +185,8 @@
             { slug: 'sjr-preto', cidade: 'São José do Rio Preto' },
             { slug: 'saocarlos', cidade: 'São Carlos' }
         ].sort((a, b) => a.cidade.localeCompare(b.cidade, 'pt-BR'));
-const classificados = [
+
+        const classificados = [
             { nome: 'TYRANO', insta: 'tyranoofc', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
             { nome: 'BUBBA', insta: 'bubbassalto', poloSlug: 'ribeirao', batId: 'BAT030', finalista: true },
             { nome: 'JM', insta: 'jm.almeida016', poloSlug: 'ribeirao', batId: 'BAT030' },
@@ -201,20 +202,20 @@ const classificados = [
             { nome: 'NOISY', insta: 'noisyemici', poloSlug: 'saocarlos', batId: 'BAT008' },
             { nome: 'JOTACE', insta: '_jotace016', poloSlug: 'saocarlos', batId: 'BAT020' },
             { nome: 'SWART', insta: 'eo_gol_do_moita_016', poloSlug: 'saocarlos', batId: 'BAT020' },
+            { nome: 'JAZZ', insta: '016_j4zzmc', poloSlug: 'saocarlos', batId: 'BAT022' },
+            { nome: 'DUKE', insta: 'duke_mc_', poloSlug: 'saocarlos', batId: 'BAT022' },
             { nome: 'SUILA', insta: 'suila_do_raap', poloSlug: 'franca', batId: 'BAT019' },
             { nome: 'LAST', insta: '_last_mc', poloSlug: 'franca', batId: 'BAT019' },
-            // MC'S BAURU
             { nome: 'M.S', insta: 'ms.ofc', poloSlug: 'bauru', batId: 'BAT055' },
             { nome: 'TALIBAN', insta: 'talib4n_00', poloSlug: 'bauru', batId: 'BAT055' },
             { nome: 'GUDY', insta: 'gudyboooy', poloSlug: 'araraquara', batId: 'BAT039' },
             { nome: 'DINO', insta: 'dinomc_014', poloSlug: 'bauru', batId: 'BAT037' },
             { nome: 'AUGUSTÃO', insta: 'au_gustao', poloSlug: 'bauru', batId: 'BAT037' },
-            // MC'S SJRP
             { nome: 'LB DA NORTE', insta: 'lbdanorte_ofc', poloSlug: 'sjr-preto', batId: 'BAT036' },
             { nome: 'BR1S4', insta: 'tio_breeze', poloSlug: 'sjr-preto', batId: 'BAT036' },
-            // MC'S CAMPINAS
             { nome: 'MIGUEL', insta: 'm.inacioz', poloSlug: 'campinas', batId: 'BAT046' }
         ];
+
         document.getElementById('mobile-menu').onclick = () => {
             document.getElementById('nav-content').classList.toggle('active');
         };
