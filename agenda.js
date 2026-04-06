@@ -261,8 +261,8 @@ const eventos = [
     codigo: "BAT014"
   },
   {
-    data: "2026-04-12",
-    diaSemana: "Domingo",
+    data: "2026-04-13",
+    diaSemana: "Segunda",
     horario: "18:00h",
     nomeBatalha: "BATALHA DO BENÇA",
     cidade: "Ribeirão Preto - SP",
