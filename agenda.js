@@ -331,13 +331,13 @@ const eventos = [
     codigo: "BAT052"
   },
   {
-    data: "2026-04-27",
-    diaSemana: "Segunda-feira",
-    horario: "20:00h",
-    nomeBatalha: "SINTONIA",
-    cidade: "Hortolândia - SP",
-    status: "Etapa Base - Liga Caipira",
-    linkInstagram: "https://www.instagram.com/batalhadasintonia_/",
+    data: "2026-07-12",
+    diaSemana: "DOMINGO",
+    horario: "14:00h",
+    nomeBatalha: "FINAL",
+    cidade: "Ribeirão Preto - SP",
+    status: "Etapa Final- Liga Caipira de Freestyle",
+    linkInstagram: "https://www.instagram.com/coalizao016_/",
     codigo: "BAT053"
   }
 ];
